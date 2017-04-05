@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Koa Server Render</title>
+    <script>
+      window.__PRELOADED_STATE__ = <%- JSON.stringify(preloadedState) %>
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+  <body>
+    <div id="container"><div><%- reactContent %></div></div>
+    <script src="/js/bundle.js"></script>
+  </body>
+</html>
