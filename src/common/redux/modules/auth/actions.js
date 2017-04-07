@@ -1,5 +1,5 @@
 import { push, replace } from 'react-router-redux';
-import { login, logout } from '~/client/utils/api/auth';
+import { login, logout } from 'client/utils/api/auth';
 import Constants from './constants';
 
 export function setUserInfo(user = {}) {

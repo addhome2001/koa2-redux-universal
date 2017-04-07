@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styles from '~/common/assets/css/app.css';
+import styles from 'common/assets/css/app.css';
 
 const Alert = ({ message, closeHandler }) =>
   <p className={ `${styles.alert} ${styles.alert_danger}` }>

@@ -10,9 +10,10 @@
     "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
     "react/prop-types": [1, { "ignore": ["dispatch", "route"] }],
   },
+  "parser": "babel-eslint",
   "settings": {
     "import/resolver": {
-      "babel-root-import": {}
+      "babel-module": {}
     }
   }
 }

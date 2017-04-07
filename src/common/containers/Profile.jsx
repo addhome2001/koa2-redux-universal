@@ -1,7 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react';
 import { connect } from 'react-redux';
-import styles from '~/common/assets/css/app.css';
-import Btn from '~/common/components/Btn.jsx';
+import Btn from 'common/components/Btn';
+import styles from 'common/assets/css/app.css';
 
 export class Profile extends PureComponent {
 

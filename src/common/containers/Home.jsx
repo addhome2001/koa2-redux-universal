@@ -2,11 +2,11 @@ import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as Actions from '~/common/redux/modules/auth/actions';
+import * as Actions from 'common/redux/modules/auth/actions';
 
 // Components
-import AuthFields from '~/common/components/AuthFields.jsx';
-import Btn from '~/common/components/Btn.jsx';
+import AuthFields from 'common/components/AuthFields';
+import Btn from 'common/components/Btn';
 
 export class Home extends Component {
 

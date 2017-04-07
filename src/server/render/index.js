@@ -1,8 +1,8 @@
 import { match, createMemoryHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import createStore from '~/common/redux/createStore';
-import routes from '~/common/routes';
+import createStore from 'common/redux/createStore';
+import routes from 'common/routes';
 
 import renderContent from './renderContent';
 

@@ -1,13 +1,13 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import capitalize from '~/common/utils/transform';
-import styles from '~/common/assets/css/app.css';
+import capitalize from 'common/utils/transform';
 
-import Btn from '~/common/components/Btn.jsx';
-import Alert from '~/common/components/Alert.jsx';
+import Btn from 'common/components/Btn';
+import Alert from 'common/components/Alert';
+import styles from 'common/assets/css/app.css';
 
-import * as Actions from '~/common/redux/modules/auth/actions';
+import * as Actions from 'common/redux/modules/auth/actions';
 
 export class Login extends Component {
 

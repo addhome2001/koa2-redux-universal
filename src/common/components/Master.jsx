@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styles from '~/common/assets/css/app.css';
+import styles from 'common/assets/css/app.css';
 
 const Master = ({ children }) =>
   <div className={ styles.container }>

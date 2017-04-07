@@ -1,12 +1,12 @@
-import Master from '~/common/components/Master.jsx';
-import About from '~/common/components/About.jsx';
-import ErrorPage from '~/common/components/ErrorPage.jsx';
-import NotFound from '~/common/components/NotFound.jsx';
+import Master from 'common/components/Master';
+import About from 'common/components/About';
+import ErrorPage from 'common/components/ErrorPage';
+import NotFound from 'common/components/NotFound';
 
 // Container
-import Login from '~/common/containers/Login.jsx';
-import Profile from '~/common/containers/Profile.jsx';
-import Home from '~/common/containers/Home.jsx';
+import Login from 'common/containers/Login';
+import Profile from 'common/containers/Profile';
+import Home from 'common/containers/Home';
 
 const routes = {
   path: '/',
