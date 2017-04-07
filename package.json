@@ -10,7 +10,7 @@
     "build:client": "better-npm-run build:client",
     "build:prod": "npm run clear && npm run compile && npm run build:client",
     "clear": "rimraf dist",
-    "serve": "npm run build:prod && better-npm-run serve",
+    "serve": "better-npm-run serve",
     "test": "better-npm-run mocha",
     "test:watch": "nodemon better-npm-run mocha",
     "lint": "./node_modules/.bin/eslint .",
