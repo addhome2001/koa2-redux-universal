@@ -7,10 +7,10 @@ const cmrhConf = require('../cmrh.conf');
 
 module.exports = {
   entry: {
-    bundle: path.resolve(__dirname, '../src', 'client'),
+    bundle: path.resolve(__dirname, '../dist', 'client'),
   },
   output: {
-    path: path.resolve(__dirname, '../src', 'server/static/js'),
+    path: path.resolve(__dirname, '../dist', 'server/static/js'),
     filename: '[name].js',
   },
   plugins: [
@@ -54,18 +54,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.js[x]?$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            },
-          },
-        ],
-      },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({

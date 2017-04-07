@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "better-npm-run dev",
     "debug": "better-npm-run debug",
-    "build": "npm run clear:client && better-npm-run build",
-    "clear:client": "rimraf src/static/css src/static/js",
-    "serve": "better-npm-run serve",
+    "compile": "better-npm-run compile",
+    "build:client": "better-npm-run build:client",
+    "build:prod": "npm run clear && npm run compile && npm run build:client",
+    "clear": "rimraf dist",
+    "serve": "npm run build:prod && better-npm-run serve",
     "test": "better-npm-run mocha",
     "test:watch": "nodemon better-npm-run mocha",
     "lint": "./node_modules/.bin/eslint .",
@@ -30,14 +32,20 @@
         "DEBUG": "*"
       }
     },
-    "build": {
+    "build:client": {
       "command": "webpack --profile --colors --progress --config ./webpack/prov.js",
       "env": {
         "NODE_ENV": "production"
       }
     },
+    "compile": {
+      "command": "babel src -d dist --copy-files",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
     "serve": {
-      "command": "node bin/server",
+      "command": "node dist/server",
       "env": {
         "NODE_ENV": "production",
         "IP": "localhost",
@@ -128,4 +136,5 @@
     "supertest": "^2.0.0",
     "webpack": "^2.3.0",
     "webpack-notifier": "^1.5.0"
+  }
 }
