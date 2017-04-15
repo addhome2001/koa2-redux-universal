@@ -1,13 +1,13 @@
-const users = [{
+import { hashSync } from 'bcryptjs';
+
+const UsersModels = [{
   id: '1',
   username: 'username',
   email: 'username@mail.com',
-  password: 'password',
-}, {
-  id: '2',
-  username: 'sarah',
-  email: 'sarah@mail.com',
-  password: 'sarah123',
+  password: hashSync('password'),
 }];
 
-module.exports = users;
+export default username =>
+  Promise.resolve(UsersModels).then(users =>
+    users.find(u => u.username === username),
+  );
