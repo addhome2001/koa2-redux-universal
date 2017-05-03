@@ -6,9 +6,10 @@ import capitalize from 'common/utils/transform';
 
 import Btn from 'common/components/Btn';
 import Alert from 'common/components/Alert';
-import styles from 'common/assets/css/app.css';
 
 import * as Actions from 'common/redux/modules/auth/actions';
+
+import '../assets/css/app.css';
 
 export class Login extends Component {
 
@@ -66,7 +67,7 @@ export class Login extends Component {
 
     return (
       <div>
-        <p className={ styles.mainText }>Login</p>
+        <p styleName="mainText">Login</p>
         {
           failureMessage &&
           <Alert
@@ -74,12 +75,12 @@ export class Login extends Component {
             closeHandler={ this.resetFailureMessage }
           />
         }
-        <section className={ styles.form }>
+        <section styleName="form">
           {
             this.formControllers.map(type =>
               <input
                 key={ `${type}-field` }
-                className={ styles.formGroup }
+                styleName="formGroup"
                 onChange={ this.handleInputChange }
                 name={ type }
                 type={ type }

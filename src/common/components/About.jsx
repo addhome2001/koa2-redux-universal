@@ -1,10 +1,11 @@
 import React from 'react';
 import Btn from 'common/components/Btn';
-import styles from 'common/assets/css/app.css';
+
+import '../assets/css/app.css';
 
 const About = () =>
   <div>
-    <p className={ styles.mainText }>About</p>
+    <p styleName="mainText">About</p>
     <Btn rootLink>Home</Btn>
   </div>;
 

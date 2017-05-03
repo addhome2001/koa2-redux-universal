@@ -5,9 +5,11 @@ const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const cmrhConf = require('../cmrh.conf');
 
+const context = path.resolve(__dirname, '../src/client');
+
 module.exports = {
   entry: {
-    bundle: path.resolve(__dirname, '../dist', 'client'),
+    bundle: context,
   },
   output: {
     path: path.resolve(__dirname, '../dist', 'server/static/js'),
@@ -19,6 +21,7 @@ module.exports = {
       minimize: true,
       debug: false,
       options: {
+        context,
         postcss: [
           precss,
           autoprefixer({ browsers: ['ff >= 3.5', 'Chrome > 3.5', 'iOS < 7', 'ie < 9'] }),
@@ -54,6 +57,26 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js[x]?$/,
+        exclude: /(node_modules)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: [
+                [
+                  'react-css-modules',
+                  {
+                    context,
+                    generateScopedName: cmrhConf.generateScopedName,
+                  },
+                ],
+              ],
+            },
+          },
+        ],
+      },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({

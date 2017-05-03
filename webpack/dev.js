@@ -5,12 +5,14 @@ const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const cmrhConf = require('../cmrh.conf');
 
+const context = path.resolve(__dirname, '../src/client');
+
 module.exports = {
   entry: {
     bundle: [
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?path=/__webpack_hmr',
-      path.resolve(__dirname, '../src', 'client'),
+      context,
     ],
   },
   devtool: 'eval',
@@ -26,6 +28,7 @@ module.exports = {
       minimize: false,
       debug: true,
       options: {
+        context,
         postcss: [
           precss,
           autoprefixer({ browsers: ['ff >= 3.5', 'Chrome > 3.5', 'iOS < 7', 'ie < 9'] }),
@@ -55,6 +58,16 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
+              plugins: [
+                [
+                  'react-css-modules',
+                  {
+                    context,
+                    generateScopedName: cmrhConf.generateScopedName,
+                    webpackHotModuleReloading: true,
+                  },
+                ],
+              ],
             },
           },
         ],

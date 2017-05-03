@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from 'common/assets/css/app.css';
+
+import '../assets/css/app.css';
 
 const Alert = ({ message, closeHandler }) =>
-  <p className={ `${styles.alert} ${styles.alert_danger}` }>
+  <p styleName="alert alert_danger">
     { message }
     <button
       type="button"
       onClick={ closeHandler }
-      className={ styles.close }
+      styleName="close"
       aria-label="Close"
     >
       <span aria-hidden="true">&times;</span>

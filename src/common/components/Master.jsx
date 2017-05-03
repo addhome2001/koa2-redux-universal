@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from 'common/assets/css/app.css';
+
+import '../assets/css/app.css';
 
 const Master = ({ children }) =>
-  <div className={ styles.container }>
-    <div className={ styles.content }>
-      <p className={ styles.title }>Universal Redux</p>
+  <div styleName="container">
+    <div styleName="content">
+      <p styleName="title">Universal Redux</p>
       { children }
     </div>
   </div>;
