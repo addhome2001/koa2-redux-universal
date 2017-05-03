@@ -1,1 +1,1 @@
-# koa2-simple-isomorphic
+# koa2-redux-universal
