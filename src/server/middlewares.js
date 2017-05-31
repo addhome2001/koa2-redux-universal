@@ -9,13 +9,16 @@ import body from 'koa-bodyparser';
 import koaStatic from 'koa-static-server';
 import passport from 'koa-passport';
 import logger from 'koa-logger';
+import redisStore from 'koa-redis';
 import path from 'path';
 import auth from './auth';
 
 module.exports = (app) => {
   // session
   app.keys = ['secret1', 'secret2', 'secret3'];
-  app.use(convert(session()));
+  app.use(convert(session({
+    store: redisStore(),
+  })));
 
   // body parser
   app.use(body());
