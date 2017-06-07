@@ -11,7 +11,9 @@ import passport from 'koa-passport';
 import logger from 'koa-logger';
 import redisStore from 'koa-redis';
 import path from 'path';
-import auth from './auth';
+
+// register auth strategy
+import './auth';
 
 module.exports = (app) => {
   // session
@@ -26,14 +28,13 @@ module.exports = (app) => {
   // passport
   app.use(passport.initialize());
   app.use(passport.session());
-  auth(passport);
 
   // view engine
-  app.use(views(path.resolve(__dirname, 'views'), { extension: 'ejs' }));
+  app.use(views(path.resolve(__dirname, '../views'), { extension: 'ejs' }));
 
   // static
   app.use(koaStatic({
-    rootDir: path.resolve(__dirname, 'static'),
+    rootDir: path.resolve(__dirname, '../static'),
   }));
 
   app.use(conditional());
@@ -44,6 +45,7 @@ module.exports = (app) => {
     await next();
   });
 
+  // enable csrf
   app.use(csrf());
 
   // logger
