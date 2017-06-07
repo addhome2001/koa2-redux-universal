@@ -19,16 +19,18 @@ $fontColor: #fff;
 }
 
 .content {
-    position: relative;
+    position: absolute;
     top: 50%;
     width: 50%;
+    left: 0;
+    right: 0;
     margin: auto;
     transform: translateY(-50%);
     color: $fontColor;
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: lighter;
     margin: 0;
 }
