@@ -15,7 +15,7 @@ module.exports = {
       context,
     ],
   },
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   output: {
     path: path.resolve(__dirname, 'src/server/static'),
     filename: '[name].js',
