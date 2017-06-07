@@ -3,11 +3,12 @@ import Router from 'koa-router';
 const profile = new Router();
 
 profile
-  .get('/', (ctx, next) => {
+  .get('/', async (ctx, next) => {
     if (ctx.isUnauthenticated()) {
-      return ctx.redirect('/');
+      ctx.redirect('/');
+    } else {
+      await next();
     }
-    return next();
   });
 
 export default profile;

@@ -6,8 +6,9 @@ login
   .get('/', async (ctx, next) => {
     if (ctx.isAuthenticated()) {
       ctx.redirect('/profile');
+    } else {
+      await next();
     }
-    await next();
   });
 
 export default login;
