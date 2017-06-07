@@ -53,7 +53,7 @@
       }
     },
     "mocha": {
-      "command": "./node_modules/.bin/mocha --opts ./.mocharc -r ./test/*-spec.js",
+      "command": "./node_modules/.bin/mocha --opts ./test/.mocharc -r ./test/*-spec.js",
       "env": {
         "NODE_ENV": "test"
       }
@@ -69,7 +69,7 @@
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.10",
+    "babel-loader": "^7.0.0",
     "babel-plugin-module-resolver": "^2.7.0",
     "babel-plugin-react-css-modules": "^2.6.1",
     "babel-plugin-transform-runtime": "^6.22.0",
@@ -128,8 +128,8 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-hot-loader": "next",
-    "react-redux": "^4.4.5",
-    "react-router": "^3.0.2",
+    "react-redux": "^5.0.5",
+    "react-router": "^3.0.4",
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
     "redux-async-connect": "^1.0.0-rc4",
