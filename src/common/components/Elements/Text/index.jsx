@@ -7,7 +7,7 @@ const Text = ({ children, level }) =>
   <p styleName={ level }>{ children }</p>;
 
 Text.defaultProps = {
-  level: '',
+  level: 'main',
 };
 
 Text.propTypes = {

@@ -14,7 +14,7 @@ export class Profile extends PureComponent {
     return (
       <div>
         <Text>Profile Page</Text>
-        <Text level="normal">Username： { user.username }</Text>
+        <Text level="normal">{ `Username： ${user.username}` }</Text>
         <Btn rootLink>Home</Btn>
       </div>
     );
