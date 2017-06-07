@@ -104,6 +104,7 @@
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.0.0",
     "koa-bodyparser": "^2.2.0",
+    "koa-compress": "^2.0.0",
     "koa-conditional-get": "^1.0.3",
     "koa-convert": "^1.2.0",
     "koa-csrf": "^2.x",

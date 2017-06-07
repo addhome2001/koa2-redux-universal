@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import Koa from 'koa';
 import 'css-modules-require-hook/preset';
+import compress from 'koa-compress';
 import middlewares from './middlewares';
 import router from './routes';
 import render from './render';
@@ -32,6 +33,9 @@ if (DEV) {
     },
   });
   app.use(devMiddlewares);
+} else {
+  // production middlewares
+  app.use(compress());
 }
 
 // router
