@@ -1,7 +1,7 @@
 import React from 'react';
-import Btn from 'common/components/Btn';
+import Btn from 'common/components/Elements/Btn';
 
-import '../assets/css/app.css';
+import './AuthFields.css';
 
 const AuthFields = () =>
   <div styleName="authFields">

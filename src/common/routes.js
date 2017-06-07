@@ -1,9 +1,12 @@
-import Master from 'common/components/Master';
-import About from 'common/components/About';
-import ErrorPage from 'common/components/ErrorPage';
-import NotFound from 'common/components/NotFound';
+// Layouts
+import Master from 'common/components/Layouts/Master';
 
-// Container
+// Pages
+import About from 'common/components/Pages/About';
+import ErrorPage from 'common/components/Pages/ErrorPage';
+import NotFound from 'common/components/Pages/NotFound';
+
+// Containers
 import Login from 'common/containers/Login';
 import Profile from 'common/containers/Profile';
 import Home from 'common/containers/Home';

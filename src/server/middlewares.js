@@ -17,7 +17,7 @@ module.exports = (app) => {
   // session
   app.keys = ['secret1', 'secret2', 'secret3'];
   app.use(convert(session({
-    store: redisStore(),
+    // store: redisStore(),
   })));
 
   // body parser

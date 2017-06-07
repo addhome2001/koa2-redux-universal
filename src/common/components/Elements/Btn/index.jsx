@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, IndexLink } from 'react-router';
 
-import '../assets/css/app.css';
+import './Btn.css';
 
 const Btn = ({ purpose, children, rootLink }) => {
   if (rootLink) {

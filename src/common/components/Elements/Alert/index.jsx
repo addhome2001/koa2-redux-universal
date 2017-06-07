@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../assets/css/app.css';
+import './Alert.css';
 
 const Alert = ({ message, closeHandler }) =>
   <p styleName="alert alert_danger">
