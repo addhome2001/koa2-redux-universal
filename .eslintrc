@@ -8,7 +8,7 @@
     "import/extensions": [1, { "jsx": "never", "js": "never" }],
     "import/no-named-as-default": "off",
     "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
-    "react/prop-types": [1, { "ignore": ["dispatch", "route"] }],
+    "react/prop-types": [1, { "ignore": ["dispatch", "route"] }]
   },
   "parser": "babel-eslint",
   "settings": {
