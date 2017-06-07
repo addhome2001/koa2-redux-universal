@@ -33,8 +33,13 @@ const routes = {
       component: Login,
     },
     {
-      path: '*',
+      // not yet
+      path: 'register',
       component: NotFound,
+    },
+    {
+      path: '*',
+      onEnter: (nextState, replace) => replace('/'),
     },
   ],
 };
