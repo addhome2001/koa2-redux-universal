@@ -118,6 +118,7 @@
     "koa-static-server": "^1.0.0",
     "koa-views": "^5.0.1",
     "koa-webpack": "^0.3.1",
+    "lru-cache": "^4.1.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "passport-facebook": "^2.1.1",

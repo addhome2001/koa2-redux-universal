@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 
 export default (store, renderProps) => {
   const { auth, csrf } = store.getState();
-  const reactContent = renderToString(
+  const html = renderToString(
     <Provider store={ store }>
       <RouterContext { ...renderProps } />
     </Provider>,
   );
-  return { reactContent, preloadedState: { auth, csrf } };
+  return { html, preloadedState: { auth, csrf } };
 };
