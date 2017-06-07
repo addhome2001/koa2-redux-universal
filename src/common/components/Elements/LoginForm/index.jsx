@@ -4,18 +4,18 @@ import capitalize from 'common/utils/transform';
 
 import './LoginForm.css';
 
-const LoginForm = ({ scopes }) =>
+const LoginForm = ({ scopes, changeHandler, typeValues }) =>
   <section styleName="form">
     {
       scopes.map(type =>
         <input
           key={ `${type}-field` }
           styleName="scope"
-          onChange={ this.handleInputChange }
+          onChange={ changeHandler }
           name={ type }
           type={ type }
           placeholder={ capitalize(type) }
-          value={ this.state[type] || '' }
+          value={ typeValues[type] || '' }
         />,
      )
     }
@@ -23,6 +23,8 @@ const LoginForm = ({ scopes }) =>
 
 LoginForm.propTypes = {
   scopes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  changeHandler: PropTypes.func.isRequired,
+  typeValues: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default LoginForm;

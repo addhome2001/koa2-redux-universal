@@ -26,9 +26,9 @@ export class Login extends Component {
       password: '',
     };
     this.submit = ::this.submit;
-    this.handleInputChange = ::this.handleInputChange;
+    this.changeHandler = ::this.changeHandler;
     this.resetFailureMessage = ::this.resetFailureMessage;
-    this.formScopes = ['username', 'password'];
+    this.formScopes = Object.keys(this.state);
   }
 
   componentWillUnmount() {
@@ -39,7 +39,7 @@ export class Login extends Component {
     this.props.setFailureMessage();
   }
 
-  handleInputChange({ target }) {
+  changeHandler({ target }) {
     const { name, value } = target;
     this.setState({
       [name]: value,
@@ -71,7 +71,11 @@ export class Login extends Component {
             closeHandler={ this.resetFailureMessage }
           />
         }
-        <LoginForm scopes={ this.formScopes } />
+        <LoginForm
+          scopes={ this.formScopes }
+          typeValues={ this.state }
+          changeHandler={ this.changeHandler }
+        />
         <Btn purpose={ this.submit }>Login</Btn>
         <Btn rootLink>Home</Btn>
       </div>
