@@ -51,6 +51,10 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
       __DEV__: true,
     }),
+
+    /**
+     * Webpack will compile the template to src/server/views every time.
+     */
     new HtmlWebpackPlugin({
       template: srcTemplate,
       filename: distTemplate,
