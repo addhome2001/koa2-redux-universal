@@ -1,20 +1,16 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, no-underscore-dangle, no-undef */
 import Koa from 'koa';
-import 'css-modules-require-hook/preset';
-import compress from 'koa-compress';
 import middlewares from './middlewares';
 import router from './routes';
 import render from './render';
 
 const app = new Koa();
-const PORT = process.env.PORT || 8000;
-const DEV = process.env.DEV;
 
 // middlewares
 middlewares(app);
 
 // dev middlewares
-if (DEV) {
+if (__DEV__) {
   const koaWebpack = require('koa-webpack');
   const config = require('../../webpack/dev');
   const devMiddlewares = koaWebpack({
@@ -35,7 +31,7 @@ if (DEV) {
   app.use(devMiddlewares);
 } else {
   // production middlewares
-  app.use(compress());
+  app.use(require('koa-compress')());
 }
 
 // router

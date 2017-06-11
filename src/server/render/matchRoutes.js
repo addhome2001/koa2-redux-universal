@@ -25,11 +25,7 @@ export default function (ctx) {
         ctx.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         try {
-          try {
-            content = renderMarkup(store, renderProps, initialState);
-          } catch (e) {
-            console.log(e);
-          }
+          content = renderMarkup(store, renderProps, initialState);
         } catch (e) {
           ctx.throw(500, e.message);
         }

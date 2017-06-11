@@ -1,3 +1,4 @@
+import path from 'path';
 import csrf from 'koa-csrf';
 import session from 'koa-generic-session';
 import convert from 'koa-convert';
@@ -10,7 +11,6 @@ import koaStatic from 'koa-static-server';
 import passport from 'koa-passport';
 import logger from 'koa-logger';
 import redisStore from 'koa-redis';
-import path from 'path';
 
 // register auth strategy
 import './auth';
