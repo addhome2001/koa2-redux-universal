@@ -1,25 +1,33 @@
+/* eslint-disable no-underscore-dangle */
 const path = require('path');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const cmrhConf = require('../cmrh.conf');
 
-const context = path.resolve(__dirname, '../src/client');
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+const entryPath = path.resolve(__dirname, '../src/client');
+const distPath = path.resolve(__dirname, '../src/server/static/assets');
+const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
+const distTemplate = path.resolve(__dirname, '../src/server/views/index.ejs');
 
 module.exports = {
   entry: {
     bundle: [
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?path=/__webpack_hmr',
-      context,
+      entryPath,
     ],
   },
   devtool: 'eval-source-map',
   output: {
-    path: path.resolve(__dirname, 'src/server/static'),
+    path: distPath,
     filename: '[name].js',
-    publicPath: '/js/',
+    publicPath: '/assets/',
   },
   plugins: [
     new WebpackNotifierPlugin(),
@@ -28,7 +36,7 @@ module.exports = {
       minimize: false,
       debug: true,
       options: {
-        context,
+        context: entryPath,
         postcss: [
           precss,
           autoprefixer({ browsers: ['ff >= 3.5', 'Chrome > 3.5', 'iOS < 7', 'ie < 9'] }),
@@ -40,9 +48,15 @@ module.exports = {
       fetch: 'isomorphic-fetch',
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.DEV': JSON.stringify(process.env.DEV),
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      __DEV__: true,
     }),
+    new HtmlWebpackPlugin({
+      template: srcTemplate,
+      filename: distTemplate,
+      alwaysWriteToDisk: true,
+    }),
+    new HtmlWebpackHarddiskPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -50,6 +64,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.ejs$/,
+        use: 'raw-loader',
+      },
       {
         test: /\.js[x]?$/,
         exclude: /(node_modules)/,
@@ -62,7 +80,7 @@ module.exports = {
                 [
                   'react-css-modules',
                   {
-                    context,
+                    context: entryPath,
                     generateScopedName: cmrhConf.generateScopedName,
                     webpackHotModuleReloading: true,
                   },
