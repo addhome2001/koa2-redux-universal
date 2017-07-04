@@ -12,13 +12,13 @@
     "clear": "rimraf dist",
     "serve": "better-npm-run serve",
     "test": "better-npm-run mocha",
-    "test:watch": "nodemon better-npm-run mocha",
+    "test:watch": "better-npm-run mocha -- -w",
     "lint": "./node_modules/.bin/eslint .",
     "validate": "npm run lint && npm run test"
   },
   "betterScripts": {
     "dev": {
-      "command": "nodemon bin/server --config",
+      "command": "babel-node bin/server",
       "env": {
         "NODE_ENV": "development",
         "PORT": "8000",
@@ -121,7 +121,6 @@
     "koa-webpack": "^0.3.1",
     "lru-cache": "^4.1.0",
     "mocha": "^3.2.0",
-    "nodemon": "^1.11.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
