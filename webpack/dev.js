@@ -14,6 +14,7 @@ const entryPath = path.resolve(__dirname, '../src/client');
 const distPath = path.resolve(__dirname, '../src/server/static/assets');
 const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
 const distTemplate = path.resolve(__dirname, '../src/server/views/index.ejs');
+const favicon = path.resolve(__dirname, '../favicon.ico');
 
 module.exports = {
   entry: {
@@ -59,6 +60,7 @@ module.exports = {
       template: srcTemplate,
       filename: distTemplate,
       alwaysWriteToDisk: true,
+      favicon,
     }),
     new HtmlWebpackHarddiskPlugin(),
   ],

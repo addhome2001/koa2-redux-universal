@@ -12,6 +12,7 @@ const entryPath = path.resolve(__dirname, '../src/client');
 const distPath = path.resolve(__dirname, '../dist/server/static/assets');
 const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
 const distTemplate = path.resolve(__dirname, '../dist/server/views/index.ejs');
+const favicon = path.resolve(__dirname, '../favicon.ico');
 
 module.exports = {
   entry: {
@@ -64,6 +65,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: srcTemplate,
       filename: distTemplate,
+      favicon,
     }),
   ],
   resolve: {
