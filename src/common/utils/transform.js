@@ -1,8 +1,8 @@
 /**
  * capitalize
- * @param  {String} letter [the letter for capitalize]
- * @return {String}        [result]
+ * @param  {String} word [word]
+ * @return {String}      [result]
  */
-export default function capitalize(letter) {
-  return letter.slice(0, 1).toUpperCase() + letter.slice(1);
+export default function capitalize(word) {
+  return word.slice(0, 1).toUpperCase() + word.slice(1);
 }
