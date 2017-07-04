@@ -96,6 +96,7 @@
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.22.1",
     "bcryptjs": "^2.4.3",
+    "chokidar": "^1.7.0",
     "css-loader": "^0.27.3",
     "css-modules-require-hook": "^4.0.6",
     "es6-promise": "^4.0.5",

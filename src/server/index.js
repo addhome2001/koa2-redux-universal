@@ -6,31 +6,16 @@ import render from './render';
 
 const app = new Koa();
 
-// middlewares
+// common middlewares
 middlewares(app);
 
-// dev middlewares
 if (__DEV__) {
-  const koaWebpack = require('koa-webpack');
-  const config = require('../../webpack/dev');
-  const devMiddlewares = koaWebpack({
-    config,
-    dev: {
-      stats: {
-        colors: true,
-      },
-      noInfo: false,
-      quite: false,
-      // serverSideRender: true,
-    },
-    hot: {
-      path: '/__webpack_hmr',
-      reload: true,
-    },
-  });
-  app.use(devMiddlewares);
+  // server hot reload
+  require('./config/watch')(__dirname);
+  // webpack dev middlewares
+  app.use(require('./config/webpack'));
 } else {
-  // production middlewares
+  // enable compress
   app.use(require('koa-compress')());
 }
 
