@@ -1,6 +1,5 @@
+/* eslint-disable no-undef */
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-
-const URL = `${process.env.IP}:${process.env.PORT}`;
 
 const Strategy = new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,

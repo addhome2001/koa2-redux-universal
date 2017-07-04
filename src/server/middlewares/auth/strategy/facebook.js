@@ -1,6 +1,5 @@
+/* eslint-disable no-undef */
 import { Strategy as FacebookStrategy } from 'passport-facebook';
-
-const URL = `${process.env.IP}:${process.env.PORT}`;
 
 const Strategy = new FacebookStrategy({
   clientID: process.env.FACEBOOK_CLIENT_ID,

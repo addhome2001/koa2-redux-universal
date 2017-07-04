@@ -7,6 +7,8 @@ const entryPoint = path.resolve(__dirname, '../', process.env.ENTRY, 'server');
 // setting global constant
 global.__DEV__ = process.env.NODE_ENV !== 'production';
 global.PORT = process.env.PORT || 8000;
+global.IP = process.env.IP || 'localhost';
+global.URL = `${IP}:${PORT}`;
 
 // require hook compiles CSS Modules in runtime
 require('css-modules-require-hook/preset');
