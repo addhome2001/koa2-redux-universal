@@ -1,16 +1,14 @@
 import path from 'path';
 import csrf from 'koa-csrf';
-import session from 'koa-generic-session';
-import convert from 'koa-convert';
+import session from 'koa-session';
 import etag from 'koa-etag';
 import conditional from 'koa-conditional-get';
 import onerror from 'koa-onerror';
 import views from 'koa-views';
 import body from 'koa-bodyparser';
-import koaStatic from 'koa-static-server';
+import serve from 'koa-static';
 import passport from 'koa-passport';
 import logger from 'koa-logger';
-import redisStore from 'koa-redis';
 
 // register auth strategy
 import './auth';
@@ -18,9 +16,7 @@ import './auth';
 module.exports = (app) => {
   // session
   app.keys = ['secret1', 'secret2', 'secret3'];
-  app.use(convert(session({
-    // store: redisStore(),
-  })));
+  app.use(session(app));
 
   // body parser
   app.use(body());
@@ -33,9 +29,7 @@ module.exports = (app) => {
   app.use(views(path.resolve(__dirname, '../views'), { extension: 'ejs' }));
 
   // static
-  app.use(koaStatic({
-    rootDir: path.resolve(__dirname, '../static'),
-  }));
+  app.use(serve(path.resolve(__dirname, '../static')));
 
   app.use(conditional());
   app.use(etag());
