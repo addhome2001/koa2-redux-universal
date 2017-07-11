@@ -1,46 +1,33 @@
-const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin');
 const InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html-webpack-plugin');
 const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
-const cmrhConf = require('../cmrh.conf');
+const defConf = require('./default');
 
-const entryPath = path.resolve(__dirname, '../src/client');
-const distPath = path.resolve(__dirname, '../dist/server/static/assets');
-const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
-const distTemplate = path.resolve(__dirname, '../dist/server/views/index.ejs');
-const favicon = path.resolve(__dirname, '../favicon.ico');
+const { entry, output, plugins, resolve, loaders } = defConf('dist', false);
 
 module.exports = {
-  entry: {
-    bundle: entryPath,
-  },
-  output: {
-    path: distPath,
-    publicPath: '/assets/',
+  devtool: 'cheap-source-map',
+  entry: entry(),
+  output: output({
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].chunk.js',
-  },
-  devtool: 'cheap-source-map',
-  plugins: [
-    new webpack.ProvidePlugin({
-      Promise: 'es6-promise',
-      fetch: 'isomorphic-fetch',
+  }),
+  plugins: plugins.core.concat([
+    plugins.loadersOptions({
+      minimize: true,
+      debug: false,
+    }),
+    plugins.env({ NODE_ENV: 'production' }),
+    plugins.html({
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+      },
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production',
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-      options: {
-        context: entryPath,
-      },
-    }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
@@ -53,15 +40,6 @@ module.exports = {
       },
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new HtmlWebpackPlugin({
-      template: srcTemplate,
-      filename: distTemplate,
-      favicon,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-      },
-    }),
 
     // *** Manifest Section ***
     new ChunkManifestPlugin(),
@@ -85,56 +63,17 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'css/[name].[contenthash:8].css',
     }),
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    modules: ['node_modules'],
-  },
+  ]),
+  resolve,
   module: {
-    rules: [
-      {
-        test: /\.ejs$/,
-        use: 'raw-loader',
-      },
-      {
-        test: /\.js[x]?$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              plugins: [
-                [
-                  'react-css-modules',
-                  {
-                    context: entryPath,
-                    generateScopedName: cmrhConf.generateScopedName,
-                  },
-                ],
-              ],
-            },
-          },
-        ],
-      },
+    rules: loaders.core.concat([
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                localIdentName: cmrhConf.generateScopedName,
-                autoprefixer: false,
-              },
-            },
-            {
-              loader: 'postcss-loader',
-            },
-          ],
+          use: loaders.css,
         }),
       },
-    ],
+    ]),
   },
 };

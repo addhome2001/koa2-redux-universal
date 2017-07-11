@@ -1,110 +1,44 @@
 /* eslint-disable no-underscore-dangle */
-const path = require('path');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
-const cmrhConf = require('../cmrh.conf');
+const defConf = require('./default');
 
-const entryPath = path.resolve(__dirname, '../src/client');
-const distPath = path.resolve(__dirname, '../src/server/static/assets');
-const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
-const distTemplate = path.resolve(__dirname, '../src/server/views/index.ejs');
-const favicon = path.resolve(__dirname, '../favicon.ico');
+const { entry, output, plugins, resolve, loaders } = defConf('dist', false);
 
 module.exports = {
-  entry: {
-    bundle: [
-      'react-hot-loader/patch',
-      'webpack-hot-middleware/client?path=/__webpack_hmr',
-      entryPath,
-    ],
-  },
-  output: {
-    path: distPath,
+  entry: entry([
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client?path=/__webpack_hmr',
+  ]),
+  output: output({
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: '/assets/',
-  },
-  plugins: [
-    new WebpackNotifierPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: entryPath,
-      },
-    }),
-    new webpack.ProvidePlugin({
-      Promise: 'es6-promise',
-      fetch: 'isomorphic-fetch',
-    }),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-      __DEV__: true,
-    }),
+  }),
+  plugins: plugins.core.concat([
+    plugins.loadersOptions(),
+    plugins.env({ NODE_ENV: 'development' }),
+    plugins.html(),
     /**
      * Webpack will compile the template to src/server/views every time.
      */
-    new HtmlWebpackPlugin({
-      template: srcTemplate,
-      filename: distTemplate,
-      alwaysWriteToDisk: true,
-      favicon,
-    }),
     new HtmlWebpackHarddiskPlugin(),
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    modules: ['node_modules'],
-  },
+    new WebpackNotifierPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ]),
+  resolve,
   module: {
-    rules: [
-      {
-        test: /\.ejs$/,
-        use: 'raw-loader',
-      },
-      {
-        test: /\.js[x]?$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-              plugins: [
-                [
-                  'react-css-modules',
-                  {
-                    context: entryPath,
-                    generateScopedName: cmrhConf.generateScopedName,
-                    webpackHotModuleReloading: true,
-                  },
-                ],
-              ],
-            },
-          },
-        ],
-      },
+    rules: loaders.core.concat([
       {
         test: /\.css$/,
-        exclude: /(node_modules)/,
         use: [
           {
             loader: 'style-loader',
           },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: cmrhConf.generateScopedName,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-          },
+          ...loaders.css,
         ],
       },
-    ],
+    ]),
   },
 };

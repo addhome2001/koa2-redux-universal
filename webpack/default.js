@@ -1,12 +1,101 @@
-export default {
-  modulesRules: [
-    {
-      test: /\.ejs$/,
-      use: 'raw-loader',
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const cmrhConf = require('../cmrh.conf');
+
+module.exports = (dest, __DEV__ = true) => {
+  const entryPath = path.resolve(__dirname, '../src/client');
+  const distPath = path.resolve(__dirname, `../${dest}/server/static/assets`);
+  const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
+  const distTemplate = path.resolve(__dirname, `../${dest}/server/views/index.ejs`);
+  const favicon = path.resolve(__dirname, '../favicon.ico');
+
+  return {
+    entry(externals = []) {
+      return {
+        bundle: externals.concat(entryPath),
+      };
     },
-  ],
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    modules: ['node_modules'],
-  },
+    output(externals = {}) {
+      return Object.assign({
+        path: distPath,
+        publicPath: '/assets/',
+      }, externals);
+    },
+    plugins: {
+      env(options = {}) {
+        return new webpack.EnvironmentPlugin(Object.assign({
+          __DEV__,
+        }, options));
+      },
+      html(options = {}) {
+        return new HtmlWebpackPlugin(Object.assign({
+          template: srcTemplate,
+          filename: distTemplate,
+          favicon,
+        }, options));
+      },
+      loadersOptions(externals = {}) {
+        return new webpack.LoaderOptionsPlugin(Object.assign({
+          options: {
+            context: entryPath,
+          },
+        }, externals));
+      },
+      core: [
+        new webpack.ProvidePlugin({
+          Promise: 'es6-promise',
+          fetch: 'isomorphic-fetch',
+        }),
+      ],
+    },
+    resolve: {
+      extensions: ['.js', '.jsx'],
+      modules: ['node_modules'],
+    },
+    loaders: {
+      css: [
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            localIdentName: cmrhConf.generateScopedName,
+            autoprefixer: __DEV__,
+          },
+        },
+        {
+          loader: 'postcss-loader',
+        },
+      ],
+      core: [
+        {
+          test: /\.ejs$/,
+          use: 'raw-loader',
+        },
+        {
+          test: /\.js[x]?$/,
+          exclude: /(node_modules)/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true,
+                plugins: [
+                  [
+                    'react-css-modules',
+                    {
+                      context: entryPath,
+                      generateScopedName: cmrhConf.generateScopedName,
+                      webpackHotModuleReloading: __DEV__,
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+  };
 };
