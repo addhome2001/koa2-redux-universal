@@ -5,7 +5,7 @@ import cache from './cache';
 
 export default async function (ctx) {
   try {
-    const { code = 404, payload = 'Somthing is wrong.' } = await cache(ctx, matchRoutes);
+    const { code, payload } = await cache(ctx, matchRoutes);
 
     if (code >= 200 && code < 300) {
       await ctx.render('index', payload);

@@ -6,7 +6,7 @@ import routes from 'common/routes';
 import renderMarkup from './renderMarkup';
 
 export default function (ctx) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const initialState = {
       csrf: ctx.csrf,
       auth: { user: ctx.state.user || {} },
@@ -32,6 +32,8 @@ export default function (ctx) {
             code: 200,
             payload: renderMarkup(store, renderProps, initialState),
           });
+        } else {
+          throw new Error('Somthing is wrong.');
         }
       });
   });
