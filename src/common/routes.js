@@ -1,14 +1,7 @@
 // Layouts
 import Master from 'common/components/Layouts/Master';
 
-// Pages
-import About from 'common/components/Pages/About';
-import ErrorPage from 'common/components/Pages/ErrorPage';
-import NotFound from 'common/components/Pages/NotFound';
-
 // Containers
-import Login from 'common/containers/Login';
-import Profile from 'common/containers/Profile';
 import Home from 'common/containers/Home';
 
 const routes = {
@@ -18,24 +11,44 @@ const routes = {
   childRoutes: [
     {
       path: 'about',
-      component: About,
+      getComponent(nextState, cb) {
+        import(/* webpackChunkName: 'about' */'./components/Pages/About').then(about =>
+          cb(null, about.default),
+        );
+      },
     },
     {
       path: 'error',
-      component: ErrorPage,
+      getComponent(nextState, cb) {
+        import(/* webpackChunkName: 'errorPage' */'./components/Pages/ErrorPage').then(errorPage =>
+          cb(null, errorPage.default),
+        );
+      },
     },
     {
       path: 'profile',
-      component: Profile,
+      getComponent(nextState, cb) {
+        import(/* webpackChunkName: 'profile' */'./containers/Profile').then(profile =>
+          cb(null, profile.default),
+        );
+      },
     },
     {
       path: 'login',
-      component: Login,
+      getComponent(nextState, cb) {
+        import(/* webpackChunkName: 'login' */'./containers/Login').then(login =>
+          cb(null, login.default),
+        );
+      },
     },
     {
       // not yet
       path: 'register',
-      component: NotFound,
+      getComponent(nextState, cb) {
+        import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound').then(notFound =>
+          cb(null, notFound.default),
+        );
+      },
     },
     {
       path: '*',

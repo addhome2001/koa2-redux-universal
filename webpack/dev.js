@@ -8,8 +8,6 @@ const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const cmrhConf = require('../cmrh.conf');
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
-
 const entryPath = path.resolve(__dirname, '../src/client');
 const distPath = path.resolve(__dirname, '../src/server/static/assets');
 const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
@@ -24,18 +22,17 @@ module.exports = {
       entryPath,
     ],
   },
-  devtool: 'eval-source-map',
   output: {
     path: distPath,
     filename: '[name].js',
+    chunkFilename: '[name].js',
     publicPath: '/assets/',
   },
   plugins: [
     new WebpackNotifierPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
-      minimize: false,
-      debug: true,
       options: {
         context: entryPath,
         postcss: [
@@ -48,11 +45,10 @@ module.exports = {
       Promise: 'es6-promise',
       fetch: 'isomorphic-fetch',
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
       __DEV__: true,
     }),
-
     /**
      * Webpack will compile the template to src/server/views every time.
      */

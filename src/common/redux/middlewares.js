@@ -5,7 +5,7 @@ import { routerMiddleware } from 'react-router-redux';
 
 const devMiddlewares = [];
 
-if (__DEV__) {
+if (process.env.__DEV__) {
   devMiddlewares.push(require('redux-logger')());
 }
 

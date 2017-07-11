@@ -9,8 +9,6 @@ const InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html
 const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
 const cmrhConf = require('../cmrh.conf');
 
-const NODE_ENV = process.env.NODE_ENV || 'production';
-
 const entryPath = path.resolve(__dirname, '../src/client');
 const distPath = path.resolve(__dirname, '../dist/server/static/assets');
 const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
@@ -23,8 +21,9 @@ module.exports = {
   },
   output: {
     path: distPath,
-    filename: '[name].[chunkhash:8].js',
     publicPath: '/assets/',
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
   },
   devtool: 'cheap-source-map',
   plugins: [
@@ -76,9 +75,21 @@ module.exports = {
     new InlineChunkWebpackPlugin({
       inlineChunks: ['manifest'],
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-      __DEV__: false,
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks(module) {
+        const context = module.context;
+        return context && context.indexOf('node_modules') >= 0;
+      },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity,
+    }),
+
+    new ExtractTextPlugin({
+      filename: 'css/[name].[contenthash:8].css',
     }),
   ],
   resolve: {

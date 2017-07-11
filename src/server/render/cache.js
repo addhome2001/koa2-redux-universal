@@ -23,6 +23,8 @@ export default function (ctx, matchRoutes) {
     console.log('Render cached.');
     return ssrCache.get(key);
   }
+
   console.log('View cached.');
-  return setCacheKey(key, matchRoutes(ctx));
+  const content = await matchRoutes(ctx);
+  return setCacheKey(key, content);
 }
