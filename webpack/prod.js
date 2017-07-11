@@ -4,6 +4,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
+const ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin');
+const InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html-webpack-plugin');
+const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
 const cmrhConf = require('../cmrh.conf');
 
 const NODE_ENV = process.env.NODE_ENV || 'production';
@@ -25,8 +28,15 @@ module.exports = {
   },
   devtool: 'cheap-source-map',
   plugins: [
+    new webpack.ProvidePlugin({
+      Promise: 'es6-promise',
+      fetch: 'isomorphic-fetch',
+    }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'production',
+    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
@@ -37,17 +47,6 @@ module.exports = {
           autoprefixer({ browsers: ['ff >= 3.5', 'Chrome > 3.5', 'iOS < 7', 'ie < 9'] }),
         ],
       },
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-      __DEV__: false,
-    }),
-    new webpack.ProvidePlugin({
-      Promise: 'es6-promise',
-      fetch: 'isomorphic-fetch',
-    }),
-    new ExtractTextPlugin({
-      filename: 'css/[name].[contenthash:8].css',
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
@@ -61,11 +60,25 @@ module.exports = {
       },
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: srcTemplate,
       filename: distTemplate,
       favicon,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+      },
+    }),
+
+    // *** Manifest Section ***
+    new ChunkManifestPlugin(),
+    new InlineChunkManifestHtmlWebpackPlugin(),
+    new InlineChunkWebpackPlugin({
+      inlineChunks: ['manifest'],
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      __DEV__: false,
     }),
   ],
   resolve: {
