@@ -6,7 +6,7 @@ import routes from 'common/routes';
 import renderMarkup from './renderMarkup';
 
 export default function (ctx) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const initialState = {
       csrf: ctx.csrf,
       auth: { user: ctx.state.user || {} },
