@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const precss = require('precss');
-const autoprefixer = require('autoprefixer');
 const ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin');
 const InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html-webpack-plugin');
 const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
@@ -41,10 +39,6 @@ module.exports = {
       debug: false,
       options: {
         context: entryPath,
-        postcss: [
-          precss,
-          autoprefixer({ browsers: ['ff >= 3.5', 'Chrome > 3.5', 'iOS < 7', 'ie < 9'] }),
-        ],
       },
     }),
     new webpack.optimize.UglifyJsPlugin({

@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
-const precss = require('precss');
-const autoprefixer = require('autoprefixer');
 const cmrhConf = require('../cmrh.conf');
 
 const entryPath = path.resolve(__dirname, '../src/client');
@@ -35,10 +33,6 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         context: entryPath,
-        postcss: [
-          precss,
-          autoprefixer({ browsers: ['ff >= 3.5', 'Chrome > 3.5', 'iOS < 7', 'ie < 9'] }),
-        ],
       },
     }),
     new webpack.ProvidePlugin({
