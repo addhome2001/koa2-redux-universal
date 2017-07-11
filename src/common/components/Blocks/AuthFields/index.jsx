@@ -6,12 +6,8 @@ import './AuthFields.css';
 const AuthFields = () =>
   <div styleName="authFields">
     <Btn purpose="/login">Login</Btn>
-    <a href="/auth/google" styleName="btn">
-      Google
-    </a>
-    <a href="/auth/facebook" styleName="btn">
-      Facebook
-    </a>
+    <Btn purpose="/auth/google" external>Google</Btn>
+    <Btn purpose="/auth/facebook" external>Facebook</Btn>
     <Btn purpose="/register">Register</Btn>
   </div>;
 
