@@ -16,7 +16,7 @@ export function setCacheKey(key, content) {
   return content;
 }
 
-export default function (ctx, matchRoutes) {
+export default async function (ctx, matchRoutes) {
   const key = getCacheKey(ctx);
 
   if (ssrCache.has(key)) {
