@@ -9,7 +9,7 @@
 - [Redux](http://redux.js.org)
 - [PostCSS](http://postcss.org/)
 - [Passport](http://passportjs.org/)
-- [React-css-modules](https://github.com/gajus/babel-plugin-react-css-modules)
+- [React-CSS-modules](https://github.com/gajus/babel-plugin-react-css-modules)
 - [PostCSS](http://postcss.org/)
 - [ESLint](http://eslint.org/)
 - [Mocah](https://github.com/avajs/ava)
