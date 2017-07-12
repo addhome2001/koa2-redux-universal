@@ -15,11 +15,15 @@
 - [Mocah](https://github.com/avajs/ava)
 
 ## Features
-- HMR(Client)
-- Code-Splitting(lazy load)
-- Manifest cache
-- CSS-module
-- React-Redux-Universal
+- Client
+  - HMR(Client)
+  - Code-Splitting(lazy load)
+  - Manifest cache
+  - CSS-module
+  - React-Redux-Universal
+- Server
+  - CSRF
+  - Passport
 
 ## Requirements
 Make sure your system has the correct Node and Npm versions.
