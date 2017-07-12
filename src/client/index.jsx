@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle, no-undef */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
@@ -15,9 +17,13 @@ const render = (Root) => {
 
 render(App);
 
-if (module.hot) {
-  module.hot.accept('./app', () => {
-    const NextApp = require('./app').default;
-    render(NextApp);
-  });
+if (process.env.__DEV__) {
+  window.Perf = require('react-addons-perf');
+
+  if (module.hot) {
+    module.hot.accept('./app', () => {
+      const NextApp = require('./app').default;
+      render(NextApp);
+    });
+  }
 }

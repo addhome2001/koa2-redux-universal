@@ -67,7 +67,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^7.1.2",    
+    "autoprefixer": "^7.1.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -96,7 +96,7 @@
     "mocha": "^3.4.2",
     "passport": "^0.3.2",
     "postcss-loader": "^2.0.6",
-    "precss": "^2.0.0",    
+    "precss": "^2.0.0",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2"
@@ -135,6 +135,7 @@
     "passport-local": "^1.0.0",
     "prop-types": "^15.5.8",
     "react": "^15.6.1",
+    "react-addons-perf": "^15.4.2",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
     "react-redux": "^5.0.5",
