@@ -17,7 +17,6 @@ export class Login extends Component {
   static propTypes = {
     submitForm: PropTypes.func.isRequired,
     setFailureMessage: PropTypes.func.isRequired,
-    csrf: PropTypes.string.isRequired,
     failureMessage: PropTypes.string,
     loading: PropTypes.bool,
   }
@@ -30,15 +29,10 @@ export class Login extends Component {
     };
     this.submit = ::this.submit;
     this.changeHandler = ::this.changeHandler;
-    this.resetFailureMessage = ::this.resetFailureMessage;
     this.formScopes = Object.keys(this.state);
   }
 
   componentWillUnmount() {
-    this.resetFailureMessage();
-  }
-
-  resetFailureMessage() {
     this.props.setFailureMessage();
   }
 
@@ -51,26 +45,21 @@ export class Login extends Component {
 
   submit(e) {
     const { username, password } = this.state;
-    const { csrf, setFailureMessage, loading } = this.props;
+    const { setFailureMessage, loading } = this.props;
 
     e.preventDefault();
 
     if (loading) return;
 
-    if (!csrf) throw new Error('csrf token was not found.');
-
     if (username.length > 0 && password.length > 0) {
-      this.props.submitForm({
-        account: this.state,
-        csrf,
-      });
+      this.props.submitForm(this.state);
     } else {
       setFailureMessage({ message: 'Invalid username or password.' });
     }
   }
 
   render() {
-    const { failureMessage, loading } = this.props;
+    const { failureMessage, loading, setFailureMessage } = this.props;
 
     return (
       <div>
@@ -79,7 +68,7 @@ export class Login extends Component {
           failureMessage &&
           <Alert
             message={ failureMessage }
-            closeHandler={ this.resetFailureMessage }
+            closeHandler={ setFailureMessage }
           />
         }
         <LoginForm

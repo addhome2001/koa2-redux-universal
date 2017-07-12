@@ -9,39 +9,24 @@ import Btn from 'common/components/Elements/Btn';
 export class Home extends Component {
 
   static propTypes = {
-    userId: PropTypes.string,
+    isAuth: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
     loading: PropTypes.bool,
     failureMessage: PropTypes.string,
-    setFailureMessage: PropTypes.func.isRequired,
+    resetFailureMessage: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
-    userId: '',
     loading: false,
     failureMessage: '',
   }
 
-  constructor(props) {
-    super(props);
-    this.logout = ::this.logout;
-    this.resetFailureMessage = ::this.resetFailureMessage;
-  }
-
   componentWillUnmount() {
-    this.resetFailureMessage();
-  }
-
-  resetFailureMessage() {
-    this.props.setFailureMessage();
-  }
-
-  logout() {
-    this.props.logout();
+    this.props.resetFailureMessage();
   }
 
   render() {
-    const { userId, loading, failureMessage } = this.props;
+    const { isAuth, loading, logout, failureMessage, resetFailureMessage } = this.props;
 
     return (
       <div>
@@ -49,13 +34,13 @@ export class Home extends Component {
           failureMessage &&
           <Alert
             message={ failureMessage }
-            closeHandler={ this.resetFailureMessage }
+            closeHandler={ resetFailureMessage }
           />
         }
-        { userId ?
+        { isAuth ?
           <div>
             <Btn purpose="/profile">Profile</Btn>
-            <Btn purpose={ this.logout } disabled={ loading }>Logout</Btn>
+            <Btn purpose={ logout } disabled={ loading }>Logout</Btn>
           </div> :
           <AuthFields />
         }
