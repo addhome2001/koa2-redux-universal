@@ -4,7 +4,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const defConf = require('./default');
 
-const { entry, output, plugins, resolve, loaders } = defConf('dist', false);
+const { entry, output, plugins, resolve, loaders } = defConf('src');
 
 module.exports = {
   entry: entry([
