@@ -30,6 +30,7 @@ Make sure your system has the correct Node and Npm versions.
 ## Usage
 - Changing source code in `/src` and click save.
 - open `http:localhost:8000`.
+- Modified the content of env.sample and assign a new name to .env.
 
 ## Install
 ```
