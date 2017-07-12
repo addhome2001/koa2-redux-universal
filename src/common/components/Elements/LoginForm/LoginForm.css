@@ -2,6 +2,11 @@
     overflow: hidden;
     width: 75%;
     margin: auto;
+
+}
+
+.disabled > input {
+    color: #72b8d7;
 }
 
 .scope {

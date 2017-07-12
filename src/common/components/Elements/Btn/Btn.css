@@ -8,12 +8,19 @@
     transition: all 500ms;
     background: transparent;
     border: none;
+    outline: none;    
     font-size: 1rem;
     cursor: pointer;
-    &:focus {
-        outline: none;
-    }
+    &:focus {}
     &:hover {
         background: rgba(255, 255, 255, 0.2);
     }
 };
+
+button.disabled {
+    color: #72b8d7;
+
+    &:hover {
+        background: transparent;
+    }
+}

@@ -11,12 +11,15 @@ export class Login extends Component {
 
   static defaultProps = {
     failureMessage: '',
+    loading: false,
   }
 
   static propTypes = {
     submitForm: PropTypes.func.isRequired,
     setFailureMessage: PropTypes.func.isRequired,
+    csrf: PropTypes.string.isRequired,
     failureMessage: PropTypes.string,
+    loading: PropTypes.bool,
   }
 
   constructor(props) {
@@ -48,18 +51,26 @@ export class Login extends Component {
 
   submit(e) {
     const { username, password } = this.state;
+    const { csrf, setFailureMessage, loading } = this.props;
+
     e.preventDefault();
+
+    if (loading) return;
+
+    if (!csrf) throw new Error('csrf token was not found.');
+
     if (username.length > 0 && password.length > 0) {
       this.props.submitForm({
         account: this.state,
+        csrf,
       });
     } else {
-      this.props.setFailureMessage({ message: 'Invalid username or password.' });
+      setFailureMessage({ message: 'Invalid username or password.' });
     }
   }
 
   render() {
-    const { failureMessage } = this.props;
+    const { failureMessage, loading } = this.props;
 
     return (
       <div>
@@ -75,9 +86,10 @@ export class Login extends Component {
           scopes={ this.formScopes }
           typeValues={ this.state }
           changeHandler={ this.changeHandler }
+          disabled={ loading }
         />
-        <Btn purpose={ this.submit }>Login</Btn>
-        <Btn rootLink>Home</Btn>
+        <Btn purpose={ this.submit } disabled={ loading }>Login</Btn>
+        <Btn rootLink disabled={ loading }>Home</Btn>
       </div>
     );
   }

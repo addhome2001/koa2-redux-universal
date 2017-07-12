@@ -4,23 +4,26 @@ import { Link, IndexLink } from 'react-router';
 
 import './Btn.css';
 
-const Btn = ({ purpose, children, rootLink, external }) => {
+const Btn = ({ purpose, children, rootLink, external, disabled }) => {
+  const btnStatus = `btn ${disabled ? 'disabled' : ''}`;
+
   if (rootLink) {
-    return <IndexLink styleName="btn" to="/">{ children }</IndexLink>;
+    return <IndexLink styleName={ btnStatus } to="/">{ children }</IndexLink>;
   }
   if (typeof purpose === 'string') {
     if (external) {
-      return <a href={ purpose } styleName="btn">{ children }</a>;
+      return <a href={ purpose } styleName={ btnStatus }>{ children }</a>;
     }
-    return <Link to={ purpose } styleName="btn">{ children }</Link>;
+    return <Link to={ purpose } styleName={ btnStatus }>{ children }</Link>;
   }
-  return <button onClick={ purpose } styleName="btn">{ children }</button>;
+  return <button onClick={ purpose } styleName={ btnStatus }>{ children }</button>;
 };
 
 Btn.defaultProps = {
   rootLink: false,
   purpose: '/',
   external: false,
+  disabled: false,
 };
 
 Btn.propTypes = {
@@ -31,6 +34,7 @@ Btn.propTypes = {
   children: PropTypes.string.isRequired,
   rootLink: PropTypes.bool,
   external: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default Btn;

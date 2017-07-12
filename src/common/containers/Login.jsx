@@ -9,6 +9,8 @@ import * as Actions from 'common/redux/modules/auth/actions';
 export default connect(
   state => ({
     failureMessage: state.auth.failureMessage,
+    csrf: state.csrf,
+    loading: state.auth.loading,
   }),
   dispatch => ({
     submitForm: bindActionCreators(Actions.loginAsync, dispatch),
