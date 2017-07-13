@@ -39,7 +39,7 @@
       }
     },
     "compile": {
-      "command": "babel src -d dist --ignore client --copy-files --plugins dynamic-import-node",
+      "command": "babel src -d dist --ignore [\/\\]client[\/\\] --copy-files --plugins dynamic-import-node",
       "env": {
         "NODE_ENV": "production"
       }
