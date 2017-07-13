@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  koa2-redux-universal:
+    image: koa2-redux-universal
+    build:
+      context: .
+      args:
+        PORT: 8000
+    volumes:
+      - .:/usr/www/app
+      - node_modules:/usr/www/app/node_modules
+    ports:
+      - 8000:8000
+
+volumes:
+  node_modules:

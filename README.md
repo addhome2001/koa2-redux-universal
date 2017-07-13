@@ -35,6 +35,16 @@ Make sure your system has the correct Node and Npm versions.
 - open `http:localhost:8000`.
 - Modified the content of env.sample and assign a new name to .env.
 
+## Docker-Compose
+Development
+```
+docker-compose up
+```
+Production
+```
+docker-compose -f docker-compose.prod.yml up
+```
+
 ## Install
 ```
 npm install
