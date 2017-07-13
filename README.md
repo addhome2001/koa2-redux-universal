@@ -12,6 +12,7 @@
 - [React-CSS-modules](https://github.com/gajus/babel-plugin-react-css-modules)
 - [ESLint](http://eslint.org/)
 - [Mocah](https://github.com/avajs/ava)
+- [Docker](https://docs.docker.com)
 
 ## Features
 - Client
