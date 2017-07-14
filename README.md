@@ -11,7 +11,7 @@
 - [Passport](http://passportjs.org/)
 - [React-CSS-modules](https://github.com/gajus/babel-plugin-react-css-modules)
 - [ESLint](http://eslint.org/)
-- [Mocah](https://github.com/avajs/ava)
+- [Mocha](https://mochajs.org/)
 - [Docker](https://docs.docker.com)
 
 ## Features
