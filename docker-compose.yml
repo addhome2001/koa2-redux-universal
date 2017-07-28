@@ -3,8 +3,6 @@ version: '2.1'
 services:
   web:
     image: node:7.6.0-alpine
-    depends_on:
-      - redis
     build:
       context: .
       args:

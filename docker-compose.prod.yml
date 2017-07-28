@@ -1,11 +1,16 @@
 version: '2.1'
 
 services:
-  koa2-redux-universal:
+  web:
     extends:
       file: docker-compose.yml
-      service: koa2-redux-universal
+      service: web
     command: npm run build:prod && npm run serve
+
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
 
 volumes:
   node_modules:
