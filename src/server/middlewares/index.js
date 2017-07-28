@@ -9,6 +9,7 @@ import body from 'koa-bodyparser';
 import serve from 'koa-static';
 import passport from 'koa-passport';
 import logger from 'koa-logger';
+import redisStore from 'koa-redis';
 
 // register auth strategy
 import './auth';
@@ -16,7 +17,12 @@ import './auth';
 module.exports = (app) => {
   // session
   app.keys = ['secret1', 'secret2', 'secret3'];
-  app.use(session(app));
+  app.use(session({
+    store: redisStore({
+      host: 'redis',
+      port: 6379,
+    }),
+  }, app));
 
   // body parser
   app.use(body());
