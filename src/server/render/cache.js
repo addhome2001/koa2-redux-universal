@@ -16,15 +16,15 @@ export function setCacheKey(key, content) {
   return content;
 }
 
-export default async function (ctx, matchRoutes) {
+export default async function (ctx, render) {
   const key = getCacheKey(ctx);
 
   if (ssrCache.has(key)) {
-    console.log('Render cached.');
+    console.log(`Render from cached: ${ctx.url}`);
     return ssrCache.get(key);
   }
 
-  console.log('View cached.');
-  const content = await matchRoutes(ctx);
+  console.log(`Cached: ${ctx.url}`);
+  const content = await render(ctx);
   return setCacheKey(key, content);
 }

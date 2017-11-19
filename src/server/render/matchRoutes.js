@@ -30,7 +30,7 @@ export default function (ctx) {
         } else if (renderProps) {
           resolve({
             code: 200,
-            payload: renderMarkup(store, renderProps, initialState),
+            payload: renderMarkup(store, renderProps),
           });
         } else {
           throw new Error('Somthing is wrong.');
