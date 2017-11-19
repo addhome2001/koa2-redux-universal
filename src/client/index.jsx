@@ -18,7 +18,8 @@ const render = (Root) => {
 render(App);
 
 if (process.env.__DEV__) {
-  window.Perf = require('react-addons-perf');
+  // Waiting for React16
+  // window.Perf = require('react-addons-perf');
 
   if (module.hot) {
     module.hot.accept('./app', () => {
