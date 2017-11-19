@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import path from 'path';
 import csrf from 'koa-csrf';
 import session from 'koa-session';
@@ -17,11 +18,10 @@ import './auth';
 module.exports = (app) => {
   // session
   app.keys = ['secret1', 'secret2', 'secret3'];
-  app.use(session({
-    store: redisStore({
-      host: 'redis',
-      port: 6379,
-    }),
+
+  // store session in redis or memory
+  app.use(session(__SESSION_STORE__ && {
+    store: redisStore(__SESSION_STORE__),
   }, app));
 
   // body parser

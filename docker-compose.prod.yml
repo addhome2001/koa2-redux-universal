@@ -5,7 +5,7 @@ services:
     extends:
       file: docker-compose.yml
       service: web
-    command: npm run build:prod && npm run serve
+    command: npm run build:prod && npm run serve:docker
 
   redis:
     extends:
