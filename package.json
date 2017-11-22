@@ -13,7 +13,7 @@
     "clear:prod": "rimraf dist",
     "clear:client": "rimraf dist/server/static",
     "serve": "better-npm-run serve",
-    "serve:docker": "better-npm-run docker:serve",    
+    "serve:docker": "better-npm-run docker:serve",
     "test": "better-npm-run mocha",
     "test:watch": "better-npm-run mocha -- -w",
     "lint": "./node_modules/.bin/eslint .",
@@ -21,7 +21,7 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "babel-node --plugins dynamic-import-node bin/server",
+      "command": "babel-node bin/server",
       "env": {
         "NODE_ENV": "development",
         "PORT": "8000",
@@ -90,7 +90,6 @@
     "babel-loader": "^7.1.1",
     "babel-plugin-dynamic-import-node": "^1.0.2",
     "babel-plugin-module-resolver": "^2.7.1",
-    "babel-plugin-react-css-modules": "^3.0.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
@@ -118,11 +117,12 @@
     "style-loader": "^0.18.2"
   },
   "dependencies": {
+    "babel-plugin-react-css-modules": "^3.3.2",
     "bcryptjs": "^2.4.3",
     "better-npm-run": "^0.0.14",
     "chokidar": "^1.7.0",
     "chunk-manifest-webpack2-plugin": "^1.0.1",
-    "css-modules-require-hook": "^4.0.6",
+    "css-modules-require-hook": "^4.2.2",
     "es6-promise": "^4.1.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-harddisk-plugin": "^0.1.0",
