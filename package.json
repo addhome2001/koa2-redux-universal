@@ -41,7 +41,7 @@
       }
     },
     "compile": {
-      "command": "babel src -d dist --ignore [/\\]client[/\\] --copy-files --plugins dynamic-import-node",
+      "command": "babel src -d dist --copy-files --plugins dynamic-import-node,react-css-modules",
       "env": {
         "NODE_ENV": "production"
       }

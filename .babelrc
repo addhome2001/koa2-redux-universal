@@ -13,6 +13,10 @@
       "polyfill": false,
       "regenerator": true
     }],
+    ["react-css-modules", {
+      "context": "./src/client",
+      "generateScopedName": "[name]__[local]___[hash:base64:5]"
+    }],
     "react-hot-loader/babel"
   ],
   "env": {
