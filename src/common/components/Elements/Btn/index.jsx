@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import './Btn.css';
 
@@ -8,7 +8,7 @@ const Btn = ({ purpose, children, rootLink, external, disabled }) => {
   const btnStatus = `btn ${disabled ? 'disabled' : ''}`;
 
   if (rootLink) {
-    return <IndexLink styleName={ btnStatus } to="/">{ children }</IndexLink>;
+    return <Link exact="true" styleName={ btnStatus } to="/">{ children }</Link>;
   }
   if (typeof purpose === 'string') {
     if (external) {

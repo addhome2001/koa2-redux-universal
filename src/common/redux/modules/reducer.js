@@ -6,5 +6,6 @@ import auth from './auth/reducers';
 export default combineReducers({
   auth,
   csrf: (state = '') => state,
+  data: (state = []) => state,
   routing: routerReducer,
 });

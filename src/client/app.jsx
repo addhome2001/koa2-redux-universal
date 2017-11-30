@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { renderRoutes } from 'react-router-config';
+import { ConnectedRouter } from 'react-router-redux';
 
 import routes from 'common/routes';
-import { store, history } from './store';
+import store, { history } from './store';
 
 export default class Root extends Component {
   render() {
@@ -13,7 +14,9 @@ export default class Root extends Component {
 
     return (
       <Provider store={ store }>
-        <Router history={ history } routes={ this.routeConfig } />
+        <ConnectedRouter history={ history }>
+          { renderRoutes(routes) }
+        </ConnectedRouter>
       </Provider>
     );
   }
