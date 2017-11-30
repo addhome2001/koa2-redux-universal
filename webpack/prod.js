@@ -8,6 +8,7 @@ const defConf = require('./default');
 const { entry, output, plugins, resolve, loaders } = defConf('dist', false);
 
 module.exports = {
+  target: 'web',
   devtool: 'cheap-source-map',
   entry: entry(),
   output: output({
