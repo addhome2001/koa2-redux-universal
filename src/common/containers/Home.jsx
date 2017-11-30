@@ -14,10 +14,16 @@ function selectorFactory(dispatch) {
 
   return (nextState) => {
     const { user: { id }, loading, failureMessage } = nextState.auth;
-    const nextResult = { isAuth: !!id, loading, failureMessage };
+    const nextResult = {
+      isAuth: !!id,
+      loading,
+      failureMessage,
+    };
+
     if (JSON.stringify(nextResult) !== result) {
       result = Object.assign({}, result, nextResult);
     }
+
     return result;
   };
 }
