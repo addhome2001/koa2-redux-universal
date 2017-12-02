@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import './Master.css';
 
-const Master = ({ children }) =>
+const Master = ({ children }) => (
   <div styleName="wrapper">
+    <p styleName="title">Universal Redux</p>
     <div styleName="content">
-      <p styleName="title">Universal Redux</p>
       { children }
     </div>
-  </div>;
+  </div>
+);
 
 Master.propTypes = {
   children: PropTypes.element.isRequired,

@@ -1,40 +1,44 @@
-import { match, createMemoryHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import createHistory from 'history/createMemoryHistory';
+import { renderRoutes, matchRoutes } from 'react-router-config';
 
 import createStore from 'common/redux/createStore';
 import routes from 'common/routes';
 import renderMarkup from './renderMarkup';
 
 export default function (ctx) {
-  return new Promise((resolve) => {
-    const initialState = {
-      csrf: ctx.csrf,
-      auth: { user: ctx.state.user || {} },
-    };
-    const memoryHistory = createMemoryHistory(ctx.url);
-    const store = createStore(memoryHistory, initialState);
-    const history = syncHistoryWithStore(memoryHistory, store);
+  const initialState = {
+    csrf: ctx.csrf,
+    auth: { user: ctx.state.user || {} },
+  };
+  const location = ctx.url;
+  const history = createHistory(location);
+  const store = createStore(history, initialState);
+  const state = store.getState();
+  const view = renderRoutes(routes);
 
-    match({ history, routes, location: ctx.url },
-      (error, redirectLocation, renderProps) => {
-        if (error) {
-          resolve({
-            code: 500,
-            payload: error.message,
-          });
-        } else if (redirectLocation) {
-          resolve({
-            code: 302,
-            payload: redirectLocation.pathname + redirectLocation.search,
-          });
-        } else if (renderProps) {
-          resolve({
-            code: 200,
-            payload: renderMarkup(store, renderProps),
-          });
-        } else {
-          throw new Error('Somthing is wrong.');
-        }
-      });
+  const branchs = matchRoutes(routes, location);
+  const promises = branchs.reduce((acc, { route }) => {
+    const fetchData = route.component.fetchData;
+
+    if (fetchData instanceof Function) {
+      return acc.concat(fetchData(state));
+    }
+
+    return acc;
+  }, []);
+
+  return Promise.all(promises).then((data = []) => {
+    const context = {};
+    const { auth, csrf } = state;
+    const html = renderMarkup(view, store, location, context);
+
+    return {
+      code: context.status,
+      url: context.url,
+      payload: {
+        html,
+        preloadedState: { auth, csrf, data },
+      },
+    };
   });
 }

@@ -33,7 +33,8 @@ export class Login extends Component {
   }
 
   componentWillUnmount() {
-    this.props.setFailureMessage();
+    const { failureMessage, setFailureMessage } = this.props;
+    return failureMessage && setFailureMessage();
   }
 
   changeHandler({ target }) {

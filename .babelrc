@@ -12,12 +12,31 @@
       "polyfill": false,
       "regenerator": true
     }],
-    "react-hot-loader/babel",
-    "syntax-dynamic-import"
+    ["system-import-transformer", {
+      "commonJS": {
+        "useRequireEnsure": true
+      }
+    }],
+    "react-hot-loader/babel"
   ],
   "env": {
+    "development": {
+      "plugins": [
+        ["react-css-modules", {
+          "context": "src/client",
+          "generateScopedName": "[name]__[local]___[hash:base64:5]",
+          "webpackHotModuleReloading": true
+        }]
+      ]
+    },
     "production": {
-      "presets": ["react-optimize"]
+      "presets": ["react-optimize"],
+      "plugins": [
+        ["react-css-modules", {
+          "context": "dist/client",
+          "generateScopedName": "[name]__[local]___[hash:base64:5]"
+        }]
+      ]
     }
   }
 }

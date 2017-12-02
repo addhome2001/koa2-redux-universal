@@ -2,13 +2,17 @@
 import chokidar from 'chokidar';
 
 module.exports = function watch(path) {
-  const watcher = chokidar.watch(path);
+  const watcher = chokidar.watch(path, {
+    ignored: /[\/\\]views[\/\\]/,
+  });
 
   watcher.on('ready', () => {
-    watcher.on('all', (e, source) => {
-      console.log(`${source} had been changed.`);
+    watcher.on('all', () => {
       Object.keys(require.cache).forEach((id) => {
-        if (/entryPoint/.test(id)) delete require.cache[id];
+        if (/[\/\\]server[\/\\]/.test(id)) {
+          console.log(`Clearing ${id} module cache`);
+          delete require.cache[id];
+        }
       });
     });
   });

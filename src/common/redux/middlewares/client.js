@@ -16,10 +16,7 @@ export default function ({ api, checkStatus }) {
 
       return client(api)
         .then(checkStatus)
-        .then((result) => {
-          if (callback) callback();
-          next({ type: SUCCESS, result, ...rest });
-        })
+        .then(result => next({ type: SUCCESS, result, ...rest }))
         .catch((error) => {
           next({
             type: FAILURE,

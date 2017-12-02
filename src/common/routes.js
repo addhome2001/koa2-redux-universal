@@ -1,60 +1,66 @@
 // Layouts
 import Master from 'common/components/Layouts/Master';
 
+// Components
+import Loadable from 'common/components/Loadable';
+
 // Containers
 import Home from 'common/containers/Home';
+import RouteRender from 'common/components/RouteRender';
 
-const routes = {
-  path: '/',
-  component: Master,
-  indexRoute: { component: Home },
-  childRoutes: [
-    {
-      path: 'about',
-      getComponent(nextState, cb) {
-        import(/* webpackChunkName: 'about' */'./components/Pages/About').then(about =>
-          cb(null, about.default),
-        );
+const routes = [
+  {
+    component: RouteRender(Master),
+    routes: [
+      {
+        path: '/',
+        exact: true,
+        component: RouteRender(Home),
       },
-    },
-    {
-      path: 'error',
-      getComponent(nextState, cb) {
-        import(/* webpackChunkName: 'errorPage' */'./components/Pages/ErrorPage').then(errorPage =>
-          cb(null, errorPage.default),
-        );
+      {
+        path: '/about',
+        exact: true,
+        component: Loadable(
+          () => import(/* webpackChunkName: 'about' */'./components/Pages/About'),
+        ),
       },
-    },
-    {
-      path: 'profile',
-      getComponent(nextState, cb) {
-        import(/* webpackChunkName: 'profile' */'./containers/Profile').then(profile =>
-          cb(null, profile.default),
-        );
+      {
+        path: '/error',
+        exact: true,
+        component: Loadable(
+          () => import(/* webpackChunkName: 'errorPage' */'./components/Pages/ErrorPage'),
+        ),
       },
-    },
-    {
-      path: 'login',
-      getComponent(nextState, cb) {
-        import(/* webpackChunkName: 'login' */'./containers/Login').then(login =>
-          cb(null, login.default),
-        );
+      {
+        path: '/profile',
+        exact: true,
+        component: Loadable(
+          () => import(/* webpackChunkName: 'profile' */'./containers/Profile'),
+        ),
       },
-    },
-    {
-      // not yet
-      path: 'register',
-      getComponent(nextState, cb) {
-        import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound').then(notFound =>
-          cb(null, notFound.default),
-        );
+      {
+        path: '/login',
+        exact: true,
+        component: Loadable(
+          () => import(/* webpackChunkName: 'login' */'./containers/Login'),
+        ),
       },
-    },
-    {
-      path: '*',
-      onEnter: (nextState, replace) => replace('/'),
-    },
-  ],
-};
+      {
+        // not yet
+        path: '/register',
+        exact: true,
+        component: Loadable(
+          () => import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound'),
+        ),
+      },
+      {
+        path: '*',
+        component: Loadable(
+          () => import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound'),
+        ),
+      },
+    ],
+  },
+];
 
 export default routes;

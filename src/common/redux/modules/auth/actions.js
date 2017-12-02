@@ -1,23 +1,35 @@
 import { push, replace } from 'react-router-redux';
 import Constants from './constants';
 
-export function loginAsync(userInfo) {
+export function redirectAction({ client, location }) {
   return dispatch => dispatch({
-    types: [Constants.LOADING, Constants.SET_USER_INFO, Constants.FAILURE_MESSAGE],
+    types: [
+      Constants.LOADING,
+      Constants.SET_USER_INFO,
+      Constants.FAILURE_MESSAGE,
+    ],
+    client: api => client(api).then((response) => {
+      setTimeout(() => dispatch(location), 100);
+      return response;
+    }),
+  });
+}
+
+export function loginAsync(userInfo) {
+  return redirectAction({
     client: api => api.auth.login(userInfo),
-    callback: () => dispatch(push('/profile')),
+    location: push('/profile'),
   });
 }
 
 export function logoutAsync() {
-  return dispatch => dispatch({
-    types: [Constants.LOADING, Constants.SET_USER_INFO, Constants.FAILURE_MESSAGE],
+  return redirectAction({
     client: api => api.auth.logout(),
-    callback: () => dispatch(replace('/')),
+    location: replace('/'),
   });
 }
 
-export function setFailureMessage({ message } = { message: '' }) {
+export function setFailureMessage({ message = '' } = {}) {
   return {
     type: Constants.FAILURE_MESSAGE,
     message,
