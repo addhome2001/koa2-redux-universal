@@ -37,6 +37,10 @@ Make sure your system has the correct Node and Npm versions.
 - Modified the content of env.sample and assign a new name to .env.
 
 ## Docker-Compose
+build
+```
+docker-compose build
+```
 Development
 ```
 docker-compose up
