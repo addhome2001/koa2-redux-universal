@@ -22,11 +22,18 @@ export class Home extends Component {
   }
 
   componentWillUnmount() {
-    this.props.resetFailureMessage();
+    const { failureMessage, resetFailureMessage } = this.props;
+    return failureMessage && resetFailureMessage();
   }
 
   render() {
-    const { isAuth, loading, logout, failureMessage, resetFailureMessage } = this.props;
+    const {
+      isAuth,
+      loading,
+      logout,
+      failureMessage,
+      resetFailureMessage,
+    } = this.props;
 
     return (
       <div>

@@ -1,14 +1,13 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
+import StaticRouter from 'react-router-dom/StaticRouter';
 
-export default (store, renderProps) => {
-  const { auth, csrf } = store.getState();
-  const html = renderToString(
+export default (view, store, location, context) =>
+  renderToString(
     <Provider store={ store }>
-      <RouterContext { ...renderProps } />
+      <StaticRouter location={ location } context={ context }>
+        { view }
+      </StaticRouter>
     </Provider>,
   );
-  return { html, preloadedState: { auth, csrf } };
-};

@@ -2,10 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const cmrhConf = require('../cmrh.conf');
-
 module.exports = (dest, __DEV__ = true) => {
-  const entryPath = path.resolve(__dirname, '../src/client');
+  const entryPath = path.resolve(__dirname, `../${dest}/client`);
   const distPath = path.resolve(__dirname, `../${dest}/server/static/assets`);
   const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
   const distTemplate = path.resolve(__dirname, `../${dest}/server/views/index.ejs`);
@@ -60,7 +58,7 @@ module.exports = (dest, __DEV__ = true) => {
           loader: 'css-loader',
           options: {
             modules: true,
-            localIdentName: cmrhConf.generateScopedName,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
             autoprefixer: __DEV__,
           },
         },
@@ -81,16 +79,6 @@ module.exports = (dest, __DEV__ = true) => {
               loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
-                plugins: [
-                  [
-                    'react-css-modules',
-                    {
-                      context: entryPath,
-                      generateScopedName: cmrhConf.generateScopedName,
-                      webpackHotModuleReloading: __DEV__,
-                    },
-                  ],
-                ],
               },
             },
           ],
