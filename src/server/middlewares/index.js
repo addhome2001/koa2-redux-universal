@@ -12,6 +12,8 @@ import passport from 'koa-passport';
 import logger from 'koa-logger';
 import redisStore from 'koa-redis';
 
+import config from '../config';
+
 // register auth strategy
 import './auth';
 
@@ -20,8 +22,8 @@ module.exports = (app) => {
   app.keys = ['secret1', 'secret2', 'secret3'];
 
   // store session in redis or memory
-  app.use(session(__SESSION_STORE__ && {
-    store: redisStore(__SESSION_STORE__),
+  app.use(session(config.SESSION_STORE && {
+    store: redisStore(config.SESSION_STORE),
   }, app));
 
   // body parser
