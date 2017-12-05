@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import path from 'path';
 import csrf from 'koa-csrf';
 import session from 'koa-session';

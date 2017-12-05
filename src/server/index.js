@@ -1,4 +1,4 @@
-/* eslint-disable no-console, no-underscore-dangle, no-undef */
+/* eslint-disable no-console */
 import Koa from 'koa';
 import middlewares from './middlewares';
 import router from './routes';

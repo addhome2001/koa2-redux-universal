@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle, no-undef, import/no-dynamic-require */
+/* eslint-disable import/no-dynamic-require */
 const path = require('path');
 
 // resolve server entry point
