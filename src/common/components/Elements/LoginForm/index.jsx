@@ -4,10 +4,10 @@ import { capitalize } from 'common/utils';
 
 import './LoginForm.css';
 
-const LoginForm = ({ scopes, changeHandler, typeValues, disabled }) =>
+const LoginForm = ({ scopes, changeHandler, typeValues, disabled }) => (
   <section styleName={ `form ${disabled ? 'disabled' : ''}` }>
     {
-      scopes.map(type =>
+      scopes.map(type => (
         <input
           key={ `${type}-field` }
           styleName="scope"
@@ -17,10 +17,11 @@ const LoginForm = ({ scopes, changeHandler, typeValues, disabled }) =>
           placeholder={ capitalize(type) }
           value={ typeValues[type] || '' }
           disabled={ disabled }
-        />,
-     )
+        />
+      ))
     }
-  </section>;
+  </section>
+);
 
 LoginForm.propTypes = {
   scopes: PropTypes.arrayOf(PropTypes.string).isRequired,
