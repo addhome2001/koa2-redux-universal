@@ -47,11 +47,11 @@ export class Home extends Component {
         { isAuth ?
           <div>
             <Btn purpose="/profile">Profile</Btn>
+            <Btn purpose="/about">About</Btn>
             <Btn purpose={ logout } disabled={ loading }>Logout</Btn>
           </div> :
           <AuthFields />
         }
-        <Btn purpose="/about">About</Btn>
       </div>
     );
   }
