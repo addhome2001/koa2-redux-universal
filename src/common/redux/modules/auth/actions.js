@@ -1,4 +1,4 @@
-import { push, replace } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 import Constants from './constants';
 
 export function redirectAction({ client, redirect }) {
@@ -19,7 +19,7 @@ export function redirectAction({ client, redirect }) {
 export function loginAsync(userInfo) {
   return redirectAction({
     client: api => api.auth.login(userInfo),
-    redirect: push('/profile'),
+    redirect: replace('/'),
   });
 }
 

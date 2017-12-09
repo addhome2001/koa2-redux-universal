@@ -5,7 +5,7 @@ const login = new Router();
 login
   .get('/', async (ctx, next) => {
     if (ctx.isAuthenticated()) {
-      ctx.redirect('/profile');
+      ctx.redirect('/');
     } else {
       await next();
     }

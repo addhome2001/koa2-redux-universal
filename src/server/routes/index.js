@@ -10,11 +10,7 @@ const router = new Router();
 
 router
   .get('/', async (ctx, next) => {
-    if (ctx.isAuthenticated()) {
-      ctx.redirect('/profile');
-    } else {
-      await next();
-    }
+    await next();
   })
 
   .use('/auth', auth.routes(), auth.allowedMethods())
