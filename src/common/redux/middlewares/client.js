@@ -1,28 +1,26 @@
 export default function ({ api, checkStatus }) {
-  return ({ dispatch, getState }) =>
-    next => (action) => {
-      if (typeof action === 'function') {
-        return action(dispatch, getState);
-      }
+  return () => next => (action) => {
+    const { types, client, successful, ...rest } = action;
 
-      const { types, client, callback, ...rest } = action;
+    if (!client) {
+      return next(action);
+    }
 
-      if (!client) {
-        return next(action);
-      }
+    const [REQUEST, SUCCESS, FAILURE] = types;
+    next({ type: REQUEST, ...rest });
 
-      const [REQUEST, SUCCESS, FAILURE] = types;
-      next({ type: REQUEST, ...rest });
-
-      return client(api)
-        .then(checkStatus)
-        .then(result => next({ type: SUCCESS, result, ...rest }))
-        .catch((error) => {
-          next({
-            type: FAILURE,
-            message: typeof error === 'string' ? error : 'Connection failure.',
-            ...rest,
-          });
+    return client(api)
+      .then(checkStatus)
+      .then((result) => {
+        next({ type: SUCCESS, result, ...rest });
+        successful(result);
+      })
+      .catch((error) => {
+        next({
+          type: FAILURE,
+          message: typeof error === 'string' ? error : 'Connection failure.',
+          ...rest,
         });
-    };
+      });
+  };
 }
