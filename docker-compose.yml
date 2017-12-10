@@ -12,6 +12,9 @@ services:
       - node_modules:/usr/www/app/node_modules
     ports:
       - 8000:8000
+    depends_on:
+      - redis
+      - db
 
   redis:
     image: redis:3.2.9-alpine
