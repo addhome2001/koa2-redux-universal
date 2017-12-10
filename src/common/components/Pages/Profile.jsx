@@ -8,7 +8,10 @@ export class Profile extends PureComponent {
   static propTypes = {
     user: PropTypes.shape({
       username: PropTypes.string,
-      id: PropTypes.number,
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
     }).isRequired,
   }
 
