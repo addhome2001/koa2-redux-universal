@@ -61,18 +61,10 @@
       }
     },
     "docker:dev": {
-      "command": "better-npm-run dev",
-      "env": {
-        "SESSION_STORE": "redis",
-        "SESSION_STORE_PORT": 6379
-      }
+      "command": "better-npm-run dev"
     },
     "docker:serve": {
-      "command": "better-npm-run serve",
-      "env": {
-        "SESSION_STORE": "redis",
-        "SESSION_STORE_PORT": 6379
-      }
+      "command": "better-npm-run serve"
     }
   },
   "engines": {
