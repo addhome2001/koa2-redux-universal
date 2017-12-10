@@ -1,20 +1,18 @@
-/* eslint-disable consistent-return */
 import Router from 'koa-router';
 import passport from 'koa-passport';
 
-const local = new Router();
+const register = new Router();
 
-local
+register
   .post('/', (ctx, next) => {
     if (ctx.assertCSRF(ctx.body)) {
-      return passport.authenticate('local-login', {
+      return passport.authenticate('local-register', {
         failWithError: true,
-      }, async (err, user) => {
+      }, (err, user) => {
         if (err) {
           ctx.status = 403;
           ctx.body = { message: err.message };
         } else {
-          await ctx.login(user);
           ctx.body = user;
         }
       })(ctx, next);
@@ -23,4 +21,4 @@ local
     ctx.body = { message: 'Wrong csrf token.' };
   });
 
-export default local;
+export default register;
