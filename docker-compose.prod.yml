@@ -12,5 +12,11 @@ services:
       file: docker-compose.yml
       service: redis
 
+  db:
+    extends:
+      file: docker-compose.yml
+      service: db
+
 volumes:
   node_modules:
+  db:
