@@ -7,10 +7,13 @@ import * as Actions from 'common/redux/modules/auth/actions';
 import Home from 'common/components/Pages/Home';
 
 function selectorFactory(dispatch) {
-  let result = {
-    logout: bindActionCreators(Actions.logoutAsync, dispatch),
-    resetFailureMessage: bindActionCreators(Actions.setFailureMessage, dispatch),
+  const logoutAction = bindActionCreators(Actions.logoutAsync, dispatch);
+  const resetFailureMessageAction = bindActionCreators(Actions.setFailureMessage, dispatch);
+  const actions = {
+    logout: logoutAction,
+    resetFailureMessage: resetFailureMessageAction,
   };
+  let result = {};
 
   return (nextState) => {
     const { user: { id }, loading, failureMessage } = nextState.auth;
@@ -18,9 +21,10 @@ function selectorFactory(dispatch) {
       isAuth: !!id,
       loading,
       failureMessage,
+      ...actions,
     };
 
-    if (JSON.stringify(nextResult) !== result) {
+    if (JSON.stringify(result) !== JSON.stringify(nextResult)) {
       result = Object.assign({}, result, nextResult);
     }
 

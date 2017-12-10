@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 
 // Components
 import Btn from 'common/components/Elements/Btn';
@@ -13,7 +12,6 @@ export class Login extends Component {
   static defaultProps = {
     failureMessage: '',
     loading: false,
-    isAuth: false,
   }
 
   static propTypes = {
@@ -21,7 +19,6 @@ export class Login extends Component {
     setFailureMessage: PropTypes.func.isRequired,
     failureMessage: PropTypes.string,
     loading: PropTypes.bool,
-    isAuth: PropTypes.bool,
   }
 
   constructor(props) {
@@ -61,11 +58,7 @@ export class Login extends Component {
   }
 
   render() {
-    const { failureMessage, loading, setFailureMessage, isAuth } = this.props;
-
-    if (isAuth) {
-      return <Redirect to="/" />;
-    }
+    const { failureMessage, loading, setFailureMessage } = this.props;
 
     return (
       <div>

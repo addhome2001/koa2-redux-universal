@@ -8,20 +8,20 @@ import Login from 'common/components/Pages/Login';
 
 function selectorFactory(dispatch) {
   const submitFormAction = bindActionCreators(Actions.loginAsync, dispatch);
-  let csrfCache;
-  let result = {};
+  const setFailureMessageAction = bindActionCreators(Actions.setFailureMessage, dispatch);
   const actions = {
     submitForm: csrf => (account) => {
       if (!csrf) throw new Error('csrf token was not found.');
       submitFormAction({ csrf, account });
     },
-    setFailureMessage: bindActionCreators(Actions.setFailureMessage, dispatch),
+    setFailureMessage: setFailureMessageAction,
   };
+  let csrfCache;
+  let result = {};
 
   return (nextState) => {
     const { auth, csrf } = nextState;
-    const { user: { id }, loading, failureMessage } = auth;
-    const isAuth = !!id;
+    const { loading = false, failureMessage = '' } = auth;
 
     if (!csrfCache) {
       csrfCache = csrf;
@@ -31,7 +31,6 @@ function selectorFactory(dispatch) {
     const nextResult = {
       loading,
       failureMessage,
-      isAuth,
       ...actions,
     };
 

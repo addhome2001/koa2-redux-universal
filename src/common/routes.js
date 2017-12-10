@@ -3,10 +3,11 @@ import Master from 'common/components/Layouts/Master';
 
 // Components
 import Loadable from 'common/components/Loadable';
+import RouteRender from 'common/components/RouteRender';
 
 // Containers
 import Home from 'common/containers/Home';
-import RouteRender from 'common/components/RouteRender';
+import isAuthHOC from 'common/containers/isAuthHOC';
 
 const routes = [
   {
@@ -20,9 +21,9 @@ const routes = [
       {
         path: '/about',
         exact: true,
-        component: Loadable(
+        component: isAuthHOC(Loadable(
           () => import(/* webpackChunkName: 'about' */'./components/Pages/About'),
-        ),
+        ), true),
       },
       {
         path: '/error',
@@ -34,24 +35,24 @@ const routes = [
       {
         path: '/profile',
         exact: true,
-        component: Loadable(
+        component: isAuthHOC(Loadable(
           () => import(/* webpackChunkName: 'profile' */'./containers/Profile'),
-        ),
+        ), true),
       },
       {
         path: '/login',
         exact: true,
-        component: Loadable(
+        component: isAuthHOC(Loadable(
           () => import(/* webpackChunkName: 'login' */'./containers/Login'),
-        ),
+        ), false),
       },
       {
         // not yet
         path: '/register',
         exact: true,
-        component: Loadable(
+        component: isAuthHOC(Loadable(
           () => import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound'),
-        ),
+        ), false),
       },
       {
         path: '*',

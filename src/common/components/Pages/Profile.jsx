@@ -6,7 +6,10 @@ import Text from 'common/components/Elements/Text';
 export class Profile extends PureComponent {
 
   static propTypes = {
-    user: PropTypes.objectOf(PropTypes.string).isRequired,
+    user: PropTypes.shape({
+      username: PropTypes.string,
+      id: PropTypes.number,
+    }).isRequired,
   }
 
   render() {
