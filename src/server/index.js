@@ -4,11 +4,22 @@ import middlewares from './middlewares';
 import router from './routes';
 import render from './render';
 import config from './config';
+import models from './models';
+
+import resgisterPassport from './config/passport';
+import connectDB from './config/connectDB';
 
 const app = new Koa();
+const dbInstance = models(config.DB);
 
 // common middlewares
-middlewares(app);
+middlewares(app, config);
+
+// register passport
+resgisterPassport(dbInstance.User);
+
+// connect to Database
+connectDB(dbInstance);
 
 if (config.DEV) {
   // server hot reload
