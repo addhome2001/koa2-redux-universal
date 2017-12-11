@@ -1,8 +1,8 @@
 const config = {
   development: {
     PORT: process.env.PORT || 8000,
-    HOST: process.env.IP || 'localhost',
-    SESSION_STORE: process.env.SESSION_STORE && {
+    HOST: process.env.HOST || 'localhost',
+    SESSION_STORE: {
       host: process.env.SESSION_STORE,
       port: process.env.SESSION_STORE_PORT,
     },
@@ -25,8 +25,8 @@ const config = {
 
   production: {
     PORT: process.env.PORT || 8000,
-    HOST: process.env.IP || 'localhost',
-    SESSION_STORE: process.env.SESSION_STORE && {
+    HOST: process.env.HOST || 'localhost',
+    SESSION_STORE: {
       host: process.env.SESSION_STORE,
       port: process.env.SESSION_STORE_PORT,
     },
