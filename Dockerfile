@@ -18,7 +18,7 @@ RUN yarn \
 
 EXPOSE $PORT
 
-CMD [ "npm", "run", "dev:docker" ]
+CMD [ "npm", "run", "dev" ]
 
 
- 
+

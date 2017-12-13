@@ -5,7 +5,6 @@
   "main": "./dist/server",
   "scripts": {
     "dev": "better-npm-run dev",
-    "dev:docker": "better-npm-run docker:dev",
     "debug": "better-npm-run debug",
     "compile": "better-npm-run compile",
     "build:client": "npm run clear:client && better-npm-run build:client",
@@ -13,7 +12,6 @@
     "clear:prod": "rimraf dist",
     "clear:client": "rimraf dist/server/static",
     "serve": "better-npm-run serve",
-    "serve:docker": "better-npm-run docker:serve",
     "test": "better-npm-run mocha",
     "test:watch": "better-npm-run mocha -- -w",
     "lint": "./node_modules/.bin/eslint .",
@@ -61,12 +59,6 @@
       "env": {
         "NODE_ENV": "test"
       }
-    },
-    "docker:dev": {
-      "command": "better-npm-run dev"
-    },
-    "docker:serve": {
-      "command": "better-npm-run serve"
     }
   },
   "engines": {
