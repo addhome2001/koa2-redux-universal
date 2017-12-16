@@ -51,7 +51,7 @@ const routes = [
         path: '/register',
         exact: true,
         component: isAuthHOC(Loadable(
-          () => import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound'),
+          () => import(/* webpackChunkName: 'register' */'./containers/Register'),
         ), false),
       },
       {
