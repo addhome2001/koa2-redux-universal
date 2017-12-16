@@ -1,4 +1,4 @@
 import { compareSync } from 'bcryptjs';
 
-export default (source, target) =>
+export const isValidUser = (source, target) =>
   compareSync(source, target);

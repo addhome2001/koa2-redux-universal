@@ -1,6 +1,6 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 
-import isValidUser from '../isValidUser';
+import { isValidUser } from '../utils';
 
 const Strategy = User =>
   new LocalStrategy({
@@ -14,6 +14,12 @@ const Strategy = User =>
 
       if (user && isValidUser(password, user.password)) {
         const { email, id } = user.get();
+
+        await User.update({
+          last_login: new Date(),
+        }, {
+          where: { username },
+        });
 
         return done(null, {
           id,

@@ -24,5 +24,6 @@ module.exports = (sequelize, Sequelize) =>
     },
     last_login: {
       type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
     },
   });
