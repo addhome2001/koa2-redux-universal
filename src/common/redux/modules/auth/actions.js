@@ -37,9 +37,9 @@ export function registerAsync(userInfo) {
   });
 }
 
-export function setFailureMessage({ message = '' } = {}) {
+export function setFailureMessage(message) {
   return {
     type: Constants.FAILURE_MESSAGE,
-    message,
+    message: typeof message === 'string' ? message : '',
   };
 }

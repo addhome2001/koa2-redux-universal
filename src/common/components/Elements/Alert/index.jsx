@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Alert.css';
 
-const Alert = ({ message, closeHandler }) =>
+const Alert = ({ message, closeHandler }) => (
   <p styleName="alert alert_danger">
     { message }
     <button
@@ -14,7 +14,8 @@ const Alert = ({ message, closeHandler }) =>
     >
       <span aria-hidden="true">&times;</span>
     </button>
-  </p>;
+  </p>
+);
 
 Alert.propTypes = {
   message: PropTypes.string.isRequired,
