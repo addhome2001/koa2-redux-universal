@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Btn from 'common/components/Elements/Btn';
 import Alert from 'common/components/Elements/Alert';
 import Text from 'common/components/Elements/Text';
-import LoginForm from 'common/components/Elements/LoginForm';
+import Form from 'common/components/Elements/Form';
 
 export class Login extends Component {
 
@@ -50,7 +50,7 @@ export class Login extends Component {
 
     if (loading) return;
 
-    if (username.length > 0 && password.length > 0) {
+    if (username && password) {
       this.props.submitForm(this.state);
     } else {
       setFailureMessage({ message: 'Invalid username or password.' });
@@ -70,7 +70,7 @@ export class Login extends Component {
             closeHandler={ setFailureMessage }
           />
         }
-        <LoginForm
+        <Form
           scopes={ this.formScopes }
           typeValues={ this.state }
           changeHandler={ this.changeHandler }
