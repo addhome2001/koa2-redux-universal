@@ -13,18 +13,19 @@ const Strategy = User =>
       });
 
       if (!user) {
+        const { email } = ctx.body;
         const userInfo = {
+          email,
           username,
           password: hashSync(password),
-          email: ctx.body.email,
         };
-        const newUser = await User.create(userInfo);
+        const { id } = await User.create(userInfo);
 
-        if (newUser) {
-          return done(null, newUser);
-        }
-
-        return done(null, userInfo);
+        return done(null, {
+          id,
+          username,
+          email,
+        });
       }
       return done(new Error('The username is already taken.'), false);
     } catch (e) {

@@ -13,10 +13,11 @@ const Strategy = User =>
       });
 
       if (user && isValidUser(password, user.password)) {
-        const { username: name, email, id } = user.get();
+        const { email, id } = user.get();
+
         return done(null, {
           id,
-          username: name,
+          username,
           email,
         });
       }

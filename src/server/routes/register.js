@@ -1,24 +1,14 @@
 import Router from 'koa-router';
-import passport from 'koa-passport';
 
 const register = new Router();
 
 register
-  .post('/', (ctx, next) => {
-    if (ctx.assertCSRF(ctx.body)) {
-      return passport.authenticate('local-register', {
-        failWithError: true,
-      }, (err, user) => {
-        if (err) {
-          ctx.status = 403;
-          ctx.body = { message: err.message };
-        } else {
-          ctx.body = user;
-        }
-      })(ctx, next);
+  .get('/', async (ctx, next) => {
+    if (ctx.isAuthenticated()) {
+      ctx.redirect('/');
+    } else {
+      await next();
     }
-    ctx.status = 401;
-    ctx.body = { message: 'Wrong csrf token.' };
   });
 
 export default register;
