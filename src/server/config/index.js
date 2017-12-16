@@ -3,7 +3,7 @@ const config = {
     PORT: process.env.PORT || 8000,
     HOST: process.env.HOST || 'localhost',
     SESSION_STORE: {
-      host: process.env.SESSION_STORE,
+      host: process.env.SESSION_STORE_HOST,
       port: process.env.SESSION_STORE_PORT,
     },
 
@@ -27,7 +27,7 @@ const config = {
     PORT: process.env.PORT || 8000,
     HOST: process.env.HOST || 'localhost',
     SESSION_STORE: {
-      host: process.env.SESSION_STORE,
+      host: process.env.SESSION_STORE_HOST,
       port: process.env.SESSION_STORE_PORT,
     },
 

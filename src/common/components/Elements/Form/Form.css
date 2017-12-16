@@ -2,15 +2,18 @@
     overflow: hidden;
     width: 75%;
     margin: auto;
+    text-align: left;
+}
 
+.form-group {
+    margin: 3rem 0;
 }
 
 .disabled > input {
     color: #72b8d7;
 }
 
-.scope {
-    margin: 1rem 0;
+.form-control {
     border: none;
     font-size: 1rem;
     font-weight: 100;
@@ -21,15 +24,16 @@
     width: 100%;
     text-indent: .7rem;
 
-  &:-webkit-autofill {
-      box-shadow: 0 0 0 1000px white inset !important;
-  }
+    &:-webkit-autofill {
+        box-shadow: 0 0 0 1000px white inset !important;
+    }
 
-  &:focus {
-      outline: none;
-  }
+    &:focus {
+        outline: none;
+        border-bottom-color: #fff;
+    }
 
-  &::placeholder {
-      color: rgba(255, 255, 255, 0.4);
-  }
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
 }

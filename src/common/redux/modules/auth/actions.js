@@ -30,6 +30,13 @@ export function logoutAsync() {
   });
 }
 
+export function registerAsync(userInfo) {
+  return redirectAction({
+    client: api => api.auth.register(userInfo),
+    redirect: replace('/'),
+  });
+}
+
 export function setFailureMessage({ message = '' } = {}) {
   return {
     type: Constants.FAILURE_MESSAGE,

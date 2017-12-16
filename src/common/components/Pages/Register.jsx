@@ -7,7 +7,7 @@ import Alert from 'common/components/Elements/Alert';
 import Text from 'common/components/Elements/Text';
 import Form from 'common/components/Elements/Form';
 
-export class Login extends Component {
+export class Register extends Component {
 
   static defaultProps = {
     failureMessage: '',
@@ -24,6 +24,7 @@ export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: '',
       username: '',
       password: '',
     };
@@ -43,17 +44,17 @@ export class Login extends Component {
   }
 
   submit(e) {
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
     const { setFailureMessage, loading } = this.props;
 
     e.preventDefault();
 
     if (loading) return;
 
-    if (username && password) {
+    if (username && password && email) {
       this.props.submitForm(this.state);
     } else {
-      setFailureMessage({ message: 'Invalid username or password.' });
+      setFailureMessage({ message: 'Maybe you\'re missing something.' });
     }
   }
 
@@ -62,7 +63,7 @@ export class Login extends Component {
 
     return (
       <div>
-        <Text>Login</Text>
+        <Text>Register</Text>
         {
           failureMessage &&
           <Alert
@@ -76,11 +77,11 @@ export class Login extends Component {
           changeHandler={ this.changeHandler }
           disabled={ loading }
         />
-        <Btn purpose={ this.submit } disabled={ loading }>Login</Btn>
+        <Btn purpose={ this.submit } disabled={ loading }>Submit</Btn>
         <Btn rootLink disabled={ loading }>Home</Btn>
       </div>
     );
   }
 }
 
-export default Login;
+export default Register;

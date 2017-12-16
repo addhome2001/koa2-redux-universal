@@ -1,12 +1,12 @@
 // Components
-import Login from 'common/components/Pages/Login';
+import Register from 'common/components/Pages/Register';
 
 import * as Actions from 'common/redux/modules/auth/actions';
 
 import SubmitController from './SubmitController';
 
 export default SubmitController(
-  Actions.loginAsync,
+  Actions.registerAsync,
   Actions.setFailureMessage,
-  Login,
+  Register,
 );
