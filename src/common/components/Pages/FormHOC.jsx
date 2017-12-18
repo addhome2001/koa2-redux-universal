@@ -7,7 +7,7 @@ import Alert from 'common/components/Elements/Alert';
 import Text from 'common/components/Elements/Text';
 import Form from 'common/components/Elements/Form';
 
-export default function ({ page, initialState, errorMessage }) {
+export default function ({ initialState, errorMessage }) {
   return class FormHOC extends PureComponent {
     static defaultProps = {
       failureMessage: '',
@@ -53,6 +53,7 @@ export default function ({ page, initialState, errorMessage }) {
 
     render() {
       const { failureMessage, loading, setFailureMessage } = this.props;
+      const { page } = this.state;
 
       return (
         <div>
@@ -75,5 +76,5 @@ export default function ({ page, initialState, errorMessage }) {
         </div>
       );
     }
-  }
+  };
 }

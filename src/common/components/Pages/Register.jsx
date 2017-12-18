@@ -1,11 +1,11 @@
 import FormHOC from './FormHOC';
 
 export default FormHOC({
-  page: 'Register',
   initialState: {
     email: '',
     username: '',
     password: '',
+    page: 'Register',
   },
   errorMessage: 'Maybe you\'re missing something.',
 });

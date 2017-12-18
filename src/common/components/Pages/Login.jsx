@@ -1,10 +1,10 @@
 import FormHOC from './FormHOC';
 
 export default FormHOC({
-  page: 'Login',
   initialState: {
     username: '',
     password: '',
+    page: 'Login',
   },
   errorMessage: 'Invalid username or password.',
 });
