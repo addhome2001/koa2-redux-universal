@@ -17,8 +17,7 @@
       "commonJS": {
         "useRequireEnsure": true
       }
-    }],
-    "react-hot-loader/babel"
+    }]
   ],
   "env": {
     "development": {
@@ -27,7 +26,8 @@
           "context": "src/client",
           "generateScopedName": "[name]__[local]___[hash:base64:5]",
           "webpackHotModuleReloading": true
-        }]
+        }],
+        "react-hot-loader/babel"
       ]
     },
     "production": {
