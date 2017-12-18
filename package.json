@@ -5,13 +5,12 @@
   "main": "./dist/server",
   "scripts": {
     "dev": "better-npm-run dev",
-    "debug": "better-npm-run debug",
     "compile": "better-npm-run compile",
     "build:client": "npm run clear:client && better-npm-run build:client",
     "build:prod": "npm run clear:prod && npm run compile && npm run build:client",
     "clear:prod": "rimraf dist",
     "clear:client": "rimraf dist/server/static",
-    "serve": "better-npm-run serve",
+    "serve": "pm2-docker start pm2.json --env production",
     "test": "better-npm-run mocha",
     "test:watch": "better-npm-run mocha -- -w",
     "lint": "./node_modules/.bin/eslint .",
@@ -27,12 +26,6 @@
         "ENTRY": "src"
       }
     },
-    "debug": {
-      "command": "npm run dev",
-      "env": {
-        "DEBUG": "*"
-      }
-    },
     "build:client": {
       "command": "webpack --profile --colors --progress --config ./webpack/prod.js",
       "env": {
@@ -43,15 +36,6 @@
       "command": "babel src -d dist --ignore '/client/' --copy-files && cp -r src/client dist",
       "env": {
         "NODE_ENV": "production"
-      }
-    },
-    "serve": {
-      "command": "node bin/server",
-      "env": {
-        "NODE_ENV": "production",
-        "HOST": "localhost",
-        "PORT": "8000",
-        "ENTRY": "dist"
       }
     },
     "mocha": {

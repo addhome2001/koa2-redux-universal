@@ -1,23 +1,25 @@
-FROM node:7.6.0-alpine
+FROM keymetrics/pm2-docker-alpine:7
 
-ENV APP="/usr/www/app"
+ENV APP="/usr/web/home/app"
 ARG PORT=8000
 
-RUN addgroup -g 1200 f2e \
-    && adduser -u 1200 -G f2e -D f2e \
-    && apk add --no-cache curl \
-    # create app directory
-    && mkdir -p $APP
+# create app directory
+RUN mkdir -p $APP \
+    && getent group web || addgroup -g 1200 web \
+    && getent passwd web || adduser -u 1200 -G web -s /bin/sh -D -h ${APP} web \
+    && apk add --no-cache curl
 
-# change directory to /usr/www/app
+# change directory to $APP
 WORKDIR $APP
 
-# copy source code to /usr/www/app
+# copy source code to $APP
 COPY . $APP
 
 # install dependencies
 RUN yarn \
     && yarn cache clean
+
+USER web
 
 # health check
 HEALTHCHECK --timeout=20s --retries=5 \
@@ -25,7 +27,4 @@ HEALTHCHECK --timeout=20s --retries=5 \
 
 EXPOSE $PORT
 
-CMD [ "npm", "run", "dev" ]
-
-
-
+CMD [ "yarn", "dev" ]

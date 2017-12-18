@@ -6,6 +6,9 @@ services:
       file: docker-compose.yml
       service: web
     command: npm run build:prod && npm run serve
+    depends_on:
+      - redis
+      - db
 
   redis:
     extends:
