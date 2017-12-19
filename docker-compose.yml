@@ -8,8 +8,8 @@ services:
       args:
         PORT: 8000
     volumes:
-      - .:/usr/www/app
-      - node_modules:/usr/www/app/node_modules
+      - .:/usr/web/home/app
+      - node_modules:/usr/web/home/app/node_modules
     ports:
       - 8000:8000
 
