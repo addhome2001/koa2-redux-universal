@@ -5,7 +5,6 @@
     "react"
   ],
   "plugins": [
-    "syntax-dynamic-import",
     ["module-resolver", {
       "root": ["./src"]
     }],
