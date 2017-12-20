@@ -6,3 +6,5 @@ npm-debug.log
 dist
 src/server/views
 .pm2
+.ash_history
+.babel.json
