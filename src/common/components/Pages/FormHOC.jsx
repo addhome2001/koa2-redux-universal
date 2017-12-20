@@ -7,7 +7,7 @@ import Alert from 'common/components/Elements/Alert';
 import Text from 'common/components/Elements/Text';
 import Form from 'common/components/Elements/Form';
 
-export default function ({ initialState, errorMessage }) {
+export default function ({ initialState, page, errorMessage }) {
   return class FormHOC extends PureComponent {
     static defaultProps = {
       failureMessage: '',
@@ -27,6 +27,7 @@ export default function ({ initialState, errorMessage }) {
       this.submit = ::this.submit;
       this.changeHandler = ::this.changeHandler;
       this.formScopes = Object.keys(this.state);
+      this.page = page;
     }
 
     componentWillUnmount() {
@@ -53,11 +54,10 @@ export default function ({ initialState, errorMessage }) {
 
     render() {
       const { failureMessage, loading, setFailureMessage } = this.props;
-      const { page } = this.state;
 
       return (
         <div>
-          <Text>{ page }</Text>
+          <Text>{ this.page }</Text>
           {
             failureMessage &&
             <Alert
@@ -71,7 +71,7 @@ export default function ({ initialState, errorMessage }) {
             changeHandler={ this.changeHandler }
             disabled={ loading }
           />
-          <Btn purpose={ this.submit } disabled={ loading }>{ page }</Btn>
+          <Btn purpose={ this.submit } disabled={ loading }>{ this.page }</Btn>
           <Btn rootLink disabled={ loading }>Home</Btn>
         </div>
       );

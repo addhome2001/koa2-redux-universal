@@ -4,7 +4,7 @@ export default FormHOC({
   initialState: {
     username: '',
     password: '',
-    page: 'Login',
   },
+  page: 'Login',
   errorMessage: 'Invalid username or password.',
 });

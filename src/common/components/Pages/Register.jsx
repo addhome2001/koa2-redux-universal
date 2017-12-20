@@ -5,7 +5,7 @@ export default FormHOC({
     email: '',
     username: '',
     password: '',
-    page: 'Register',
   },
+  page: 'Register',
   errorMessage: 'Maybe you\'re missing something.',
 });
