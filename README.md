@@ -7,6 +7,7 @@
 - [Babel 6](https://babeljs.io/)
 - [React](https://facebook.github.io/react)
 - [Redux](http://redux.js.org)
+- [React-Router 4](https://reacttraining.com/react-router/)
 - [PostCSS](http://postcss.org/)
 - [Passport](http://passportjs.org/)
 - [React-CSS-modules](https://github.com/gajus/babel-plugin-react-css-modules)
