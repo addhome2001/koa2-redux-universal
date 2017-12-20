@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+  web:
+    build: .
+
+  redis:
+    image: redis:3.2.9-alpine
+
+  db:
+    image: mysql:5.7

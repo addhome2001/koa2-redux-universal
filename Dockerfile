@@ -21,10 +21,6 @@ RUN yarn \
 
 USER web
 
-# health check
-HEALTHCHECK --timeout=20s --retries=5 \
-    CMD curl -fs localhost:${PORT} || exit 1
-
 EXPOSE $PORT
 
 CMD [ "yarn", "dev" ]

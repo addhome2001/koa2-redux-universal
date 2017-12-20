@@ -2,24 +2,29 @@ version: '2.1'
 
 services:
   web:
-    image: node:7.6.0-alpine
-    build:
-      context: .
-      args:
-        PORT: 8000
+    extends:
+      file: docker-common.yml
+      service: web
     volumes:
       - .:/usr/web/home/app
       - node_modules:/usr/web/home/app/node_modules
     ports:
       - 8000:8000
+    depends_on:
+      - redis
+      - db
 
   redis:
-    image: redis:3.2.9-alpine
+    extends:
+      file: docker-common.yml
+      service: redis
     ports:
       - 6379:6379
 
   db:
-    image: mysql:5.7
+    extends:
+      file: docker-common.yml
+      service: db
     volumes:
       - db:/var/lib/mysql
     ports:
