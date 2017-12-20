@@ -50,31 +50,6 @@ Production
 docker-compose -f docker-compose.prod.yml up
 ```
 
-## Install
-```
-npm install
-```
-or if already have yarn
-```
-yarn
-```
-
-## Development
-```
-npm run dev
-```
-
-## Bundle
-Bundling client and compiling server.
-```
-npm run build:prod
-```
-
-## Serve
-```
-npm run serve
-```
-
 LICENSE
 =======
 
