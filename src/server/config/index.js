@@ -1,3 +1,5 @@
+import database from './database';
+
 const config = {
   development: {
     PORT: process.env.PORT || 8000,
@@ -5,14 +7,6 @@ const config = {
     SESSION_STORE: {
       host: process.env.SESSION_STORE_HOST,
       port: process.env.SESSION_STORE_PORT,
-    },
-
-    DB: {
-      host: process.env.DB_HOST,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      dialect: 'mysql',
     },
 
     FACEBOOK_CLIENT_ID: process.env.FACEBOOK_CLIENT_ID,
@@ -31,14 +25,6 @@ const config = {
       port: process.env.SESSION_STORE_PORT,
     },
 
-    DB: {
-      host: process.env.DB_HOST,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      dialect: 'mysql',
-    },
-
     FACEBOOK_CLIENT_ID: process.env.FACEBOOK_CLIENT_ID,
     FACEBOOK_SECRET: process.env.FACEBOOK_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
@@ -48,4 +34,7 @@ const config = {
   test: {},
 };
 
-export default config[process.env.NODE_ENV];
+export default {
+  DB: database[process.env.NODE_ENV],
+  ...config[process.env.NODE_ENV],
+};

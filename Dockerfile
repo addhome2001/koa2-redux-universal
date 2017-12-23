@@ -17,6 +17,7 @@ COPY . $APP
 
 # install dependencies
 RUN yarn \
+    && yarn global add sequelize-cli \
     && yarn cache clean
 
 USER web
