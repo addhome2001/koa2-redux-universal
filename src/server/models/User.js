@@ -1,5 +1,7 @@
-module.exports = (sequelize, Sequelize) =>
-  sequelize.define('User', {
+import { hash, isValidUser } from '../utils/bcrypt';
+
+module.exports = (sequelize, Sequelize) => {
+  const User = sequelize.define('User', {
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -27,3 +29,14 @@ module.exports = (sequelize, Sequelize) =>
       defaultValue: Sequelize.NOW,
     },
   });
+
+  User.preSave = ({ password, ...rest }) => ({
+    ...rest,
+    password: hash(password),
+  });
+
+  User.prototype.verify = password =>
+    isValidUser(password, this.password);
+
+  return User;
+};

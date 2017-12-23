@@ -1,5 +1,4 @@
 import { Strategy as LocalStrategy } from 'passport-local';
-import { hashSync } from 'bcryptjs';
 
 const Strategy = User =>
   new LocalStrategy({
@@ -14,11 +13,11 @@ const Strategy = User =>
 
       if (!user) {
         const { email } = ctx.body;
-        const userInfo = {
+        const userInfo = User.preSave({
           email,
           username,
-          password: hashSync(password),
-        };
+          password,
+        });
         const { id } = await User.create(userInfo);
 
         return done(null, {
