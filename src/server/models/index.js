@@ -1,14 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
+import config from '../config';
 
-export default (config) => {
+export default ((DB) => {
   const sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
+    DB.database,
+    DB.username,
+    DB.password,
     {
-      ...config,
+      ...DB,
       operatorsAliases: Sequelize.Op,
       pool: {
         max: 5,
@@ -37,4 +38,4 @@ export default (config) => {
   db.Sequelize = Sequelize;
 
   return db;
-};
+})(config.DB);
