@@ -10,3 +10,4 @@ src/server/views
 .babel.json
 .config
 .cache
+.v8flags.**
