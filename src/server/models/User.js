@@ -24,6 +24,12 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    resetPasswordToken: {
+      type: Sequelize.STRING,
+    },
+    resetPasswordExpires: {
+      type: Sequelize.DATE,
+    },
     last_login: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW,
