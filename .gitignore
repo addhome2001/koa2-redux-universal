@@ -8,3 +8,5 @@ src/server/views
 .pm2
 .ash_history
 .babel.json
+.config
+.cache
