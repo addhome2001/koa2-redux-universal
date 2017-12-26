@@ -15,7 +15,7 @@ export default function (submitAction, failureAction, component) {
     let csrfCache;
     let result = {};
 
-    return (nextState) => {
+    return (nextState, nextOwnProps) => {
       const { auth, csrf } = nextState;
       const { loading = false, failureMessage = '' } = auth;
 
@@ -28,6 +28,7 @@ export default function (submitAction, failureAction, component) {
         loading,
         failureMessage,
         ...actions,
+        ...nextOwnProps,
       };
 
       if (JSON.stringify(result) !== JSON.stringify(nextResult)) {
