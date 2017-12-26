@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import Btn from 'common/components/Elements/Btn';
 import Alert from 'common/components/Elements/Alert';
 import Text from 'common/components/Elements/Text';
 import Form from 'common/components/Elements/Form';
@@ -19,6 +18,7 @@ export default function ({ initialState, page, errorMessage }) {
       setFailureMessage: PropTypes.func.isRequired,
       failureMessage: PropTypes.string,
       loading: PropTypes.bool,
+      children: PropTypes.func.isRequired,
     }
 
     constructor(props) {
@@ -53,7 +53,12 @@ export default function ({ initialState, page, errorMessage }) {
     }
 
     render() {
-      const { failureMessage, loading, setFailureMessage } = this.props;
+      const {
+        failureMessage,
+        loading,
+        setFailureMessage,
+        children,
+      } = this.props;
 
       return (
         <div>
@@ -71,8 +76,7 @@ export default function ({ initialState, page, errorMessage }) {
             changeHandler={ this.changeHandler }
             disabled={ loading }
           />
-          <Btn purpose={ this.submit } disabled={ loading }>{ this.page }</Btn>
-          <Btn rootLink disabled={ loading }>Home</Btn>
+          { children({ submit: this.submit, loading }) }
         </div>
       );
     }
