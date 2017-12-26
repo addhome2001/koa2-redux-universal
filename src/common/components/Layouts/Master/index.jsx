@@ -5,7 +5,7 @@ import './Master.css';
 
 const Master = ({ children }) => (
   <div styleName="wrapper">
-    <p styleName="title">Universal Redux</p>
+    <h2 styleName="title">Universal Redux</h2>
     <div styleName="content">
       { children }
     </div>
