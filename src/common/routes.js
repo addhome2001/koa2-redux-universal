@@ -36,22 +36,21 @@ const routes = [
         path: '/profile',
         exact: true,
         component: isAuthHOC(Loadable(
-          () => import(/* webpackChunkName: 'profile' */'./containers/Profile'),
+          () => import(/* webpackChunkName: 'profile' */'./components/Pages/Profile'),
         ), true),
       },
       {
         path: '/login',
         exact: true,
         component: isAuthHOC(Loadable(
-          () => import(/* webpackChunkName: 'login' */'./containers/Login'),
+          () => import(/* webpackChunkName: 'login' */'./components/Pages/Login'),
         ), false),
       },
       {
-        // not yet
         path: '/register',
         exact: true,
         component: isAuthHOC(Loadable(
-          () => import(/* webpackChunkName: 'register' */'./containers/Register'),
+          () => import(/* webpackChunkName: 'register' */'./components/Pages/Register'),
         ), false),
       },
       {
