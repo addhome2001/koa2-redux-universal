@@ -1,6 +1,6 @@
 FROM keymetrics/pm2-docker-alpine:7
 
-ENV APP="/usr/web/home/app"
+ENV APP="/srv/www/app"
 ARG PORT=8000
 
 # create app directory

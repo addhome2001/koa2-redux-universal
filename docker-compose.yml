@@ -6,8 +6,8 @@ services:
       file: docker-common.yml
       service: web
     volumes:
-      - .:/usr/web/home/app
-      - node_modules:/usr/web/home/app/node_modules
+      - .:/srv/www/app
+      - node_modules:/srv/www/app/node_modules
     ports:
       - 8000:8000
     depends_on:
