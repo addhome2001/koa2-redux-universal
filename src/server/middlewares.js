@@ -10,6 +10,7 @@ import serve from 'koa-static';
 import passport from 'koa-passport';
 import logger from 'koa-logger';
 import redisStore from 'koa-redis';
+import helmet from 'koa-helmet';
 
 module.exports = (app, config) => {
   // session
@@ -22,6 +23,9 @@ module.exports = (app, config) => {
 
   // body parser
   app.use(body());
+
+  // helmet
+  app.use(helmet());
 
   // passport
   app.use(passport.initialize());
