@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Redirect, withRouter } from 'react-router-dom';
 
-export default function (ProtectedComponent, conditionAuth = true) {
-  class isAuthComponent extends PureComponent {
+export default function (ProtectedComponent, expectedStatus = true) {
+  class AuthWrapper extends PureComponent {
     static defaultProps = {
       isAuth: false,
       location: {
@@ -29,7 +29,7 @@ export default function (ProtectedComponent, conditionAuth = true) {
     render() {
       const { from: url } = this.props.location.state || { from: { pathname: '/' } };
 
-      if (this.props.isAuth !== conditionAuth) {
+      if (this.props.isAuth !== expectedStatus) {
         return <Redirect to={ url } />;
       }
 
@@ -42,5 +42,5 @@ export default function (ProtectedComponent, conditionAuth = true) {
     connect(state => ({
       isAuth: !!state.auth.user.id,
     })),
-  )(isAuthComponent);
+  )(AuthWrapper);
 }

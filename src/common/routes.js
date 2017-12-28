@@ -7,7 +7,7 @@ import RouteRender from 'common/components/RouteRender';
 
 // Containers
 import Home from 'common/containers/Home';
-import isAuthHOC from 'common/containers/isAuthHOC';
+import AuthWrapper from 'common/containers/AuthWrapper';
 
 const routes = [
   {
@@ -21,7 +21,7 @@ const routes = [
       {
         path: '/about',
         exact: true,
-        component: isAuthHOC(Loadable(
+        component: AuthWrapper(Loadable(
           () => import(/* webpackChunkName: 'about' */'./components/Pages/About'),
         ), true),
       },
@@ -35,21 +35,21 @@ const routes = [
       {
         path: '/profile',
         exact: true,
-        component: isAuthHOC(Loadable(
+        component: AuthWrapper(Loadable(
           () => import(/* webpackChunkName: 'profile' */'./components/Pages/Profile'),
         ), true),
       },
       {
         path: '/login',
         exact: true,
-        component: isAuthHOC(Loadable(
+        component: AuthWrapper(Loadable(
           () => import(/* webpackChunkName: 'login' */'./components/Pages/Login'),
         ), false),
       },
       {
         path: '/register',
         exact: true,
-        component: isAuthHOC(Loadable(
+        component: AuthWrapper(Loadable(
           () => import(/* webpackChunkName: 'register' */'./components/Pages/Register'),
         ), false),
       },
