@@ -6,9 +6,9 @@ export default function (submitAction, failureAction, component) {
     const submitFormAction = bindActionCreators(submitAction, dispatch);
     const setFailureMessageAction = bindActionCreators(failureAction, dispatch);
     const actions = {
-      submitForm: csrf => (account) => {
+      submitForm: csrf => (fields) => {
         if (!csrf) throw new Error('csrf token was not found.');
-        submitFormAction({ csrf, account });
+        submitFormAction({ csrf, ...fields });
       },
       setFailureMessage: setFailureMessageAction,
     };
