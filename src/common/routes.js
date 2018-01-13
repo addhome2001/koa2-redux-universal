@@ -5,8 +5,10 @@ import Master from 'common/components/Layouts/Master';
 import Loadable from 'common/components/Loadable';
 import RouteRender from 'common/components/RouteRender';
 
+// Pages
+import Home from 'common/components/Pages/Home';
+
 // Containers
-import Home from 'common/containers/Home';
 import AuthWrapper from 'common/containers/AuthWrapper';
 
 const routes = [

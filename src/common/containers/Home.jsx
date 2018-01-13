@@ -3,9 +3,6 @@ import { connectAdvanced } from 'react-redux';
 
 import * as Actions from 'common/redux/modules/auth/actions';
 
-// Components
-import Home from 'common/components/Pages/Home';
-
 function selectorFactory(dispatch) {
   const logoutAction = bindActionCreators(Actions.logoutAsync, dispatch);
   const resetFailureMessageAction = bindActionCreators(Actions.setFailureMessage, dispatch);
@@ -32,4 +29,4 @@ function selectorFactory(dispatch) {
   };
 }
 
-export default connectAdvanced(selectorFactory)(Home);
+export default connectAdvanced(selectorFactory);
