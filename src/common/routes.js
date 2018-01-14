@@ -56,6 +56,12 @@ const routes = [
         ), false),
       },
       {
+        path: '/forgot',
+        component: AuthWrapper(Loadable(
+          () => import(/* webpackChunkName: 'forgot' */'./components/Pages/ForgotPassword'),
+        ), false),
+      },
+      {
         path: '*',
         component: Loadable(
           () => import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound'),

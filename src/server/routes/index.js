@@ -6,6 +6,7 @@ import login from './login';
 import logout from './logout';
 import profile from './profile';
 import register from './register';
+import forgot from './forgot';
 
 const router = new Router();
 
@@ -18,6 +19,7 @@ router
   .use('/login', login.routes(), login.allowedMethods())
   .use('/logout', logout.routes(), logout.allowedMethods())
   .use('/profile', profile.routes(), profile.allowedMethods())
-  .use('/register', register.routes(), register.allowedMethods());
+  .use('/register', register.routes(), register.allowedMethods())
+  .use('/forgot', forgot.routes(), forgot.allowedMethods())
 
 export default router;
