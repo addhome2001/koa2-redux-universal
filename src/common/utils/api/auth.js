@@ -40,4 +40,16 @@ export default {
       body: JSON.stringify(rest),
     });
   },
+
+  resetPassword({ csrf, ...rest }) {
+    return fetch('/reset', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-csrf-token': csrf,
+      },
+      body: JSON.stringify(rest),
+    });
+  },
 };

@@ -48,6 +48,22 @@ export function forgotPasswordAsync(info) {
   });
 }
 
+export function resetPasswordAsync(info) {
+  return (dispatch, getState) => {
+    const { routing: { location: { pathname } } } = getState();
+    const [token] = pathname.split('/').reverse();
+
+    dispatch(redirectAction({
+      client: api => api.auth.resetPassword({
+        token,
+        ...info,
+      }),
+      successfulConstant: Constants.LOADED,
+      redirect: replace('/'),
+    }));
+  };
+}
+
 export function setFailureMessage(message) {
   return {
     type: Constants.FAILURE_MESSAGE,
