@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './Master.css';
 
 const Master = ({ children }) => (
   <div styleName="wrapper">
-    <h2 styleName="title">Universal Redux</h2>
+    <Link styleName="logo" to="/">Universal Redux</Link>
     <div styleName="content">
       { children }
     </div>
