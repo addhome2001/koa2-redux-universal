@@ -14,6 +14,9 @@ const config = {
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_SECRET: process.env.GOOGLE_SECRET,
 
+    MAILER_USER: process.env.MAILER_USER,
+    MAILER_PASSWORD: process.env.MAILER_PASSWORD,
+
     DEV: true,
   },
 
@@ -29,6 +32,9 @@ const config = {
     FACEBOOK_SECRET: process.env.FACEBOOK_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_SECRET: process.env.GOOGLE_SECRET,
+
+    MAILER_USER: process.env.MAILER_USER,
+    MAILER_PASSWORD: process.env.MAILER_PASSWORD,
   },
 
   test: {},

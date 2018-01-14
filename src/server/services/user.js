@@ -1,7 +1,9 @@
+import Sequelize from 'sequelize';
 import Models from '../models';
 import { hash, isValidUser } from '../utils/bcrypt';
 
 const { User } = Models;
+const { Op } = Sequelize;
 
 export default {
   login: async (username, password) => {
@@ -31,6 +33,59 @@ export default {
       const newUser = await User.create(userInfo);
 
       return newUser;
+    }
+
+    return null;
+  },
+
+  forgot: async (username, token) => {
+    const user = await User.findOne({
+      where: { username },
+    });
+
+    if (user) {
+      await user.update({
+        resetPasswordToken: token,
+        resetPasswordExpires: Date.now() + 3600000,
+      });
+      return user;
+    }
+
+    return null;
+  },
+
+  checkResetToken: async (token) => {
+    const user = await User.findOne({
+      where: {
+        resetPasswordToken: token,
+        resetPasswordExpires: {
+          [Op.gt]: Date.now(),
+        },
+      },
+    });
+
+    if (user) return user;
+
+    return null;
+  },
+
+  resetPassword: async (password, token) => {
+    const user = await User.findOne({
+      where: {
+        resetPasswordToken: token,
+        resetPasswordExpires: {
+          [Op.gt]: Date.now(),
+        },
+      },
+    });
+
+    if (user) {
+      await user.update({
+        resetPasswordToken: null,
+        resetPasswordExpires: null,
+        password: hash(password),
+      });
+      return user;
     }
 
     return null;

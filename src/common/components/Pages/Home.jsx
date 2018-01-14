@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'common/components/Elements/Alert';
 
+// Container
+import HomeContainer from 'common/containers/Home';
+
 // Components
 import AuthFields from 'common/components/Blocks/AuthFields';
 import Btn from 'common/components/Elements/Btn';
 
-export class Home extends Component {
+class Home extends Component {
 
   static propTypes = {
     isAuth: PropTypes.bool.isRequired,
@@ -57,4 +60,4 @@ export class Home extends Component {
   }
 }
 
-export default Home;
+export default HomeContainer(Home);

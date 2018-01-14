@@ -5,7 +5,7 @@ import { capitalize } from 'common/utils';
 import './Form.css';
 
 const Form = ({ scopes, changeHandler, typeValues, disabled }) => (
-  <form styleName={ `form ${disabled ? 'disabled' : ''}` }>
+  <section styleName={ `form ${disabled ? 'disabled' : ''}` }>
     {
       scopes.map(type => (
         <div styleName="form-group" key={ `${type}-form` }>
@@ -23,7 +23,7 @@ const Form = ({ scopes, changeHandler, typeValues, disabled }) => (
         </div>
       ))
     }
-  </form>
+  </section>
 );
 
 Form.propTypes = {

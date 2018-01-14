@@ -7,10 +7,9 @@ logout
     if (ctx.isAuthenticated()) {
       await ctx.logout();
       ctx.status = 200;
-      ctx.body = { message: 'logout sucessful' };
+      ctx.body = { message: 'Logout sucessfully.' };
     } else {
       ctx.status = 401;
-      ctx.body = { message: '' };
     }
   });
 

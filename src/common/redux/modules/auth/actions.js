@@ -1,11 +1,11 @@
 import { replace } from 'react-router-redux';
 import Constants from './constants';
 
-export function redirectAction({ client, redirect }) {
+export function redirectAction({ client, successfulConstant, redirect }) {
   return dispatch => dispatch({
     types: [
       Constants.LOADING,
-      Constants.SET_USER_INFO,
+      successfulConstant,
       Constants.FAILURE_MESSAGE,
     ],
     client,
@@ -19,6 +19,7 @@ export function redirectAction({ client, redirect }) {
 export function loginAsync(userInfo) {
   return redirectAction({
     client: api => api.auth.login(userInfo),
+    successfulConstant: Constants.SET_USER_INFO,
     redirect: replace('/'),
   });
 }
@@ -26,6 +27,7 @@ export function loginAsync(userInfo) {
 export function logoutAsync() {
   return redirectAction({
     client: api => api.auth.logout(),
+    successfulConstant: Constants.SET_USER_INFO,
     redirect: replace('/'),
   });
 }
@@ -33,8 +35,33 @@ export function logoutAsync() {
 export function registerAsync(userInfo) {
   return redirectAction({
     client: api => api.auth.register(userInfo),
+    successfulConstant: Constants.SET_USER_INFO,
     redirect: replace('/'),
   });
+}
+
+export function forgotPasswordAsync(info) {
+  return redirectAction({
+    client: api => api.auth.forgotPassword(info),
+    successfulConstant: Constants.LOADED,
+    redirect: replace('/forgot/mailed'),
+  });
+}
+
+export function resetPasswordAsync(info) {
+  return (dispatch, getState) => {
+    const { routing: { location: { pathname } } } = getState();
+    const [token] = pathname.split('/').reverse();
+
+    dispatch(redirectAction({
+      client: api => api.auth.resetPassword({
+        token,
+        ...info,
+      }),
+      successfulConstant: Constants.LOADED,
+      redirect: replace('/'),
+    }));
+  };
 }
 
 export function setFailureMessage(message) {

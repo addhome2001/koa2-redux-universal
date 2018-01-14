@@ -6,7 +6,7 @@ import Alert from 'common/components/Elements/Alert';
 import Text from 'common/components/Elements/Text';
 import Form from 'common/components/Elements/Form';
 
-export default function ({ initialState, page, errorMessage }) {
+export default function ({ initialState, page = '', subTitle = '', errorMessage }) {
   return class FormHOC extends PureComponent {
     static defaultProps = {
       failureMessage: '',
@@ -28,6 +28,7 @@ export default function ({ initialState, page, errorMessage }) {
       this.changeHandler = ::this.changeHandler;
       this.formScopes = Object.keys(this.state);
       this.page = page;
+      this.subTitle = subTitle;
     }
 
     componentWillUnmount() {
@@ -63,6 +64,7 @@ export default function ({ initialState, page, errorMessage }) {
       return (
         <div>
           <Text>{ this.page }</Text>
+          <Text level="normal">{ this.subTitle }</Text>
           {
             failureMessage &&
             <Alert

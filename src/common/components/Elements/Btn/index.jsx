@@ -16,7 +16,14 @@ const Btn = ({ purpose, children, rootLink, external, disabled }) => {
     }
     return <Link to={ purpose } styleName={ btnStatus }>{ children }</Link>;
   }
-  return <button onClick={ purpose } styleName={ btnStatus }>{ children }</button>;
+  return (
+    <button
+      onClick={ e => !disabled && purpose(e) }
+      styleName={ btnStatus }
+    >
+      { children }
+    </button>
+  );
 };
 
 Btn.defaultProps = {

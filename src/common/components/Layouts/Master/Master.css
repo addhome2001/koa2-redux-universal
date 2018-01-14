@@ -28,3 +28,12 @@ $fontColor: #fff;
     padding: 2rem 0;
     margin: 0;
 }
+
+.logo {
+    font-size: 3rem;
+    display: inline-block;
+    margin: 20px auto;
+    font-weight: lighter;
+    text-decoration: none;
+    color: #fff;
+}
