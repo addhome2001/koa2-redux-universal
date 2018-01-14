@@ -120,6 +120,8 @@
     "koa-webpack": "^0.6.0",
     "lru-cache": "^4.1.1",
     "mysql2": "^1.5.1",
+    "nodemailer": "^4.4.1",
+    "nodemailer-smtp-transport": "^2.7.4",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
