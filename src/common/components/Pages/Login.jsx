@@ -18,7 +18,7 @@ export default () => (
     {
       ({ submit, loading }) => (
         <Buttons direction="column">
-          <Btn purpose={ submit } disabled={ loading }>Logn</Btn>
+          <Btn purpose={ submit } disabled={ loading }>Login</Btn>
           <Btn purpose="/auth/facebook" external>Facebook</Btn>
           <Btn purpose="/auth/google" external>Google</Btn>
           <Btn purpose="/forgot" disabled={ loading }>Forgot Password</Btn>
