@@ -53,4 +53,41 @@ export default {
 
     return null;
   },
+
+  checkResetToken: async (token) => {
+    const user = await User.findOne({
+      where: {
+        resetPasswordToken: token,
+        resetPasswordExpires: {
+          [Op.gt]: Date.now(),
+        },
+      },
+    });
+
+    if (user) return user;
+
+    return null;
+  },
+
+  resetPassword: async (password, token) => {
+    const user = await User.findOne({
+      where: {
+        resetPasswordToken: token,
+        resetPasswordExpires: {
+          [Op.gt]: Date.now(),
+        },
+      },
+    });
+
+    if (user) {
+      await user.update({
+        resetPasswordToken: null,
+        resetPasswordExpires: null,
+        password: hash(password),
+      });
+      return user;
+    }
+
+    return null;
+  },
 };

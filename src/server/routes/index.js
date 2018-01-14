@@ -7,6 +7,7 @@ import logout from './logout';
 import profile from './profile';
 import register from './register';
 import forgot from './forgot';
+import reset from './reset';
 
 const router = new Router();
 
@@ -21,5 +22,6 @@ router
   .use('/profile', profile.routes(), profile.allowedMethods())
   .use('/register', register.routes(), register.allowedMethods())
   .use('/forgot', forgot.routes(), forgot.allowedMethods())
+  .use('/reset', reset.routes(), reset.allowedMethods());
 
 export default router;

@@ -62,6 +62,13 @@ const routes = [
         ), false),
       },
       {
+        path: '/reset/:token',
+        exact: true,
+        component: AuthWrapper(Loadable(
+          () => import(/* webpackChunkName: 'forgot' */'./components/Pages/ResetPassword'),
+        ), false),
+      },
+      {
         path: '*',
         component: Loadable(
           () => import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound'),
