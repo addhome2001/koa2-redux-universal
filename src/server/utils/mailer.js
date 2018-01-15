@@ -2,8 +2,6 @@ import nodemailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
 import config from '../config';
 
-console.log(JSON.stringify(config.MAILER_USER), JSON.stringify('addhome2000'));
-
 export default {
   sendTokenMailer(host, email, token) {
     const transport = nodemailer.createTransport(smtpTransport({
