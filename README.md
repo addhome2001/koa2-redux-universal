@@ -14,6 +14,7 @@
 - [ESLint](http://eslint.org/)
 - [Mocha](https://mochajs.org/)
 - [Docker](https://docs.docker.com)
+- [Prettier](https://prettier.io/)
 
 ## Features
 - Client
