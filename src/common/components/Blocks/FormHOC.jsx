@@ -6,12 +6,17 @@ import Alert from 'common/components/Elements/Alert';
 import Text from 'common/components/Elements/Text';
 import Form from 'common/components/Elements/Form';
 
-export default function ({ initialState, page = '', subTitle = '', errorMessage }) {
+export default function({
+  initialState,
+  page = '',
+  subTitle = '',
+  errorMessage,
+}) {
   return class FormHOC extends PureComponent {
     static defaultProps = {
       failureMessage: '',
       loading: false,
-    }
+    };
 
     static propTypes = {
       submitForm: PropTypes.func.isRequired,
@@ -19,7 +24,7 @@ export default function ({ initialState, page = '', subTitle = '', errorMessage 
       failureMessage: PropTypes.string,
       loading: PropTypes.bool,
       children: PropTypes.func.isRequired,
-    }
+    };
 
     constructor(props) {
       super(props);
@@ -46,7 +51,7 @@ export default function ({ initialState, page = '', subTitle = '', errorMessage 
 
       e.preventDefault();
 
-      if (this.formScopes.every(scope => !!this.state[scope])) {
+      if (this.formScopes.every((scope) => !!this.state[scope])) {
         this.props.submitForm(this.state);
       } else {
         setFailureMessage(errorMessage);
@@ -63,22 +68,18 @@ export default function ({ initialState, page = '', subTitle = '', errorMessage 
 
       return (
         <div>
-          <Text>{ this.page }</Text>
-          <Text level="normal">{ this.subTitle }</Text>
-          {
-            failureMessage &&
-            <Alert
-              message={ failureMessage }
-              closeHandler={ setFailureMessage }
-            />
-          }
+          <Text>{this.page}</Text>
+          <Text level="normal">{this.subTitle}</Text>
+          {failureMessage && (
+            <Alert message={failureMessage} closeHandler={setFailureMessage} />
+          )}
           <Form
-            scopes={ this.formScopes }
-            typeValues={ this.state }
-            changeHandler={ this.changeHandler }
-            disabled={ loading }
+            scopes={this.formScopes}
+            typeValues={this.state}
+            changeHandler={this.changeHandler}
+            disabled={loading}
           />
-          { children({ submit: this.submit, loading }) }
+          {children({ submit: this.submit, loading })}
         </div>
       );
     }

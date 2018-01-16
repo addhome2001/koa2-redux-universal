@@ -5,16 +5,12 @@ import PropTypes from 'prop-types';
 import './Buttons.css';
 
 const Buttons = ({ direction, children }) => (
-  <div styleName={ `btns ${direction}` }>
-    { children }
-  </div>
+  <div styleName={`btns ${direction}`}>{children}</div>
 );
 
 Buttons.propTypes = {
   direction: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(
-    PropTypes.element,
-  ).isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 Buttons.defaultProps = {

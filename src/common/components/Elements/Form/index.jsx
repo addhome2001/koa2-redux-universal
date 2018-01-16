@@ -5,24 +5,22 @@ import { capitalize } from 'common/utils';
 import './Form.css';
 
 const Form = ({ scopes, changeHandler, typeValues, disabled }) => (
-  <section styleName={ `form ${disabled ? 'disabled' : ''}` }>
-    {
-      scopes.map(type => (
-        <div styleName="form-group" key={ `${type}-form` }>
-          <input
-            key={ `${type}-field` }
-            id={ type }
-            styleName="form-control"
-            onChange={ changeHandler }
-            name={ type }
-            type={ type }
-            placeholder={ capitalize(type) }
-            value={ typeValues[type] || '' }
-            disabled={ disabled }
-          />
-        </div>
-      ))
-    }
+  <section styleName={`form ${disabled ? 'disabled' : ''}`}>
+    {scopes.map((type) => (
+      <div styleName="form-group" key={`${type}-form`}>
+        <input
+          key={`${type}-field`}
+          id={type}
+          styleName="form-control"
+          onChange={changeHandler}
+          name={type}
+          type={type}
+          placeholder={capitalize(type)}
+          value={typeValues[type] || ''}
+          disabled={disabled}
+        />
+      </div>
+    ))}
   </section>
 );
 

@@ -1,0 +1,6 @@
+dist/
+.cache/
+.pm2/
+.vscode/
+
+package.json

@@ -17,9 +17,14 @@ module.exports = (app, config) => {
   app.keys = ['secret1', 'secret2', 'secret3'];
 
   // store session in redis or memory
-  app.use(session({
-    store: redisStore(config.SESSION_STORE),
-  }, app));
+  app.use(
+    session(
+      {
+        store: redisStore(config.SESSION_STORE),
+      },
+      app,
+    ),
+  );
 
   // body parser
   app.use(body());

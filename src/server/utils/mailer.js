@@ -4,13 +4,15 @@ import config from '../config';
 
 export default {
   sendTokenMailer(host, email, token) {
-    const transport = nodemailer.createTransport(smtpTransport({
-      service: 'gmail',
-      auth: {
-        user: config.MAILER_USER,
-        pass: config.MAILER_PASSWORD,
-      },
-    }));
+    const transport = nodemailer.createTransport(
+      smtpTransport({
+        service: 'gmail',
+        auth: {
+          user: config.MAILER_USER,
+          pass: config.MAILER_PASSWORD,
+        },
+      }),
+    );
 
     const mailOptions = {
       to: email,
@@ -36,13 +38,15 @@ export default {
   },
 
   resetPasswordSuccessfully(username, email) {
-    const transport = nodemailer.createTransport(smtpTransport({
-      service: 'gmail',
-      auth: {
-        user: config.MAILER_USER,
-        pass: config.MAILER_PASSWORD,
-      },
-    }));
+    const transport = nodemailer.createTransport(
+      smtpTransport({
+        service: 'gmail',
+        auth: {
+          user: config.MAILER_USER,
+          pass: config.MAILER_PASSWORD,
+        },
+      }),
+    );
 
     const mailOptions = {
       to: email,

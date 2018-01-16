@@ -14,7 +14,14 @@
     "test": "better-npm-run mocha",
     "test:watch": "better-npm-run mocha -- -w",
     "lint": "./node_modules/.bin/eslint .",
-    "validate": "npm run lint && npm run test"
+    "validate": "npm run lint && npm run test",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "betterScripts": {
     "dev": {
@@ -77,12 +84,16 @@
     "eslint-import-resolver-babel-module": "^3.0.0",
     "eslint-plugin-import": "^2.6.1",
     "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.5.0",
     "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
     "mkdirp": "^0.5.1",
     "mocha": "^3.4.2",
     "passport": "^0.3.2",
     "postcss-loader": "^2.0.6",
     "precss": "^2.0.0",
+    "prettier": "^1.10.2",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2"

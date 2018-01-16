@@ -1,7 +1,7 @@
 import Loadable from 'react-loadable';
 import Loading from './Loading';
 
-export default loader =>
+export default (loader) =>
   Loadable({
     loader,
     delay: 2000,

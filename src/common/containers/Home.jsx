@@ -5,7 +5,10 @@ import * as Actions from 'common/redux/modules/auth/actions';
 
 function selectorFactory(dispatch) {
   const logoutAction = bindActionCreators(Actions.logoutAsync, dispatch);
-  const resetFailureMessageAction = bindActionCreators(Actions.setFailureMessage, dispatch);
+  const resetFailureMessageAction = bindActionCreators(
+    Actions.setFailureMessage,
+    dispatch,
+  );
   const actions = {
     logout: logoutAction,
     resetFailureMessage: resetFailureMessageAction,

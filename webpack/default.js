@@ -6,7 +6,10 @@ module.exports = (dest, __DEV__ = true) => {
   const entryPath = path.resolve(__dirname, `../${dest}/client`);
   const distPath = path.resolve(__dirname, `../${dest}/server/static/assets`);
   const srcTemplate = path.resolve(__dirname, '../templates/index.ejs');
-  const distTemplate = path.resolve(__dirname, `../${dest}/server/views/index.ejs`);
+  const distTemplate = path.resolve(
+    __dirname,
+    `../${dest}/server/views/index.ejs`,
+  );
   const favicon = path.resolve(__dirname, '../favicon.ico');
 
   return {
@@ -16,30 +19,48 @@ module.exports = (dest, __DEV__ = true) => {
       };
     },
     output(externals = {}) {
-      return Object.assign({
-        path: distPath,
-        publicPath: '/assets/',
-      }, externals);
+      return Object.assign(
+        {
+          path: distPath,
+          publicPath: '/assets/',
+        },
+        externals,
+      );
     },
     plugins: {
       env(options = {}) {
-        return new webpack.EnvironmentPlugin(Object.assign({
-          __DEV__,
-        }, options));
+        return new webpack.EnvironmentPlugin(
+          Object.assign(
+            {
+              __DEV__,
+            },
+            options,
+          ),
+        );
       },
       html(options = {}) {
-        return new HtmlWebpackPlugin(Object.assign({
-          template: srcTemplate,
-          filename: distTemplate,
-          favicon,
-        }, options));
+        return new HtmlWebpackPlugin(
+          Object.assign(
+            {
+              template: srcTemplate,
+              filename: distTemplate,
+              favicon,
+            },
+            options,
+          ),
+        );
       },
       loadersOptions(externals = {}) {
-        return new webpack.LoaderOptionsPlugin(Object.assign({
-          options: {
-            context: entryPath,
-          },
-        }, externals));
+        return new webpack.LoaderOptionsPlugin(
+          Object.assign(
+            {
+              options: {
+                context: entryPath,
+              },
+            },
+            externals,
+          ),
+        );
       },
       core: [
         new webpack.ProvidePlugin({
