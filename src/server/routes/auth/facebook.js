@@ -12,17 +12,21 @@ facebook
   })
 
   .get('/callback', (ctx, next) =>
-    passport.authenticate('facebook', {
-      failureRedirect: '/error',
-    }, async (err, user) => {
-      if (err) {
-        ctx.status = 403;
-        ctx.body = { message: 'Invalid username or password.' };
-      } else {
-        await ctx.login(user);
-        ctx.redirect('/profile');
-      }
-    })(ctx, next),
+    passport.authenticate(
+      'facebook',
+      {
+        failureRedirect: '/error',
+      },
+      async (err, user) => {
+        if (err) {
+          ctx.status = 403;
+          ctx.body = { message: 'Invalid username or password.' };
+        } else {
+          await ctx.login(user);
+          ctx.redirect('/profile');
+        }
+      },
+    )(ctx, next),
   );
 
 export default facebook;

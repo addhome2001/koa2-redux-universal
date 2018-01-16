@@ -5,7 +5,7 @@ import createStore from 'common/redux/createStore';
 import routes from 'common/routes';
 import renderMarkup from './renderMarkup';
 
-export default function (ctx) {
+export default function(ctx) {
   const initialState = {
     csrf: ctx.csrf,
     auth: { user: ctx.state.user || {} },

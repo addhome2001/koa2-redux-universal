@@ -6,10 +6,10 @@ import './Master.css';
 
 const Master = ({ children }) => (
   <div styleName="wrapper">
-    <Link styleName="logo" to="/">Universal Redux</Link>
-    <div styleName="content">
-      { children }
-    </div>
+    <Link styleName="logo" to="/">
+      Universal Redux
+    </Link>
+    <div styleName="content">{children}</div>
   </div>
 );
 

@@ -3,13 +3,9 @@
 import matchRoutes from './matchRoutes';
 import cache from './cache';
 
-export default async function (ctx) {
+export default async function(ctx) {
   try {
-    const {
-      code = 200,
-      url = '/',
-      payload,
-    } = await cache(ctx, matchRoutes);
+    const { code = 200, url = '/', payload } = await cache(ctx, matchRoutes);
 
     ctx.status = code;
 

@@ -23,55 +23,73 @@ const routes = [
       {
         path: '/about',
         exact: true,
-        component: AuthWrapper(Loadable(
-          () => import(/* webpackChunkName: 'about' */'./components/Pages/About'),
-        ), true),
+        component: AuthWrapper(
+          Loadable(() =>
+            import(/* webpackChunkName: 'about' */ './components/Pages/About'),
+          ),
+          true,
+        ),
       },
       {
         path: '/error',
         exact: true,
-        component: Loadable(
-          () => import(/* webpackChunkName: 'errorPage' */'./components/Pages/ErrorPage'),
+        component: Loadable(() =>
+          import(/* webpackChunkName: 'errorPage' */ './components/Pages/ErrorPage'),
         ),
       },
       {
         path: '/profile',
         exact: true,
-        component: AuthWrapper(Loadable(
-          () => import(/* webpackChunkName: 'profile' */'./components/Pages/Profile'),
-        ), true),
+        component: AuthWrapper(
+          Loadable(() =>
+            import(/* webpackChunkName: 'profile' */ './components/Pages/Profile'),
+          ),
+          true,
+        ),
       },
       {
         path: '/login',
         exact: true,
-        component: AuthWrapper(Loadable(
-          () => import(/* webpackChunkName: 'login' */'./components/Pages/Login'),
-        ), false),
+        component: AuthWrapper(
+          Loadable(() =>
+            import(/* webpackChunkName: 'login' */ './components/Pages/Login'),
+          ),
+          false,
+        ),
       },
       {
         path: '/register',
         exact: true,
-        component: AuthWrapper(Loadable(
-          () => import(/* webpackChunkName: 'register' */'./components/Pages/Register'),
-        ), false),
+        component: AuthWrapper(
+          Loadable(() =>
+            import(/* webpackChunkName: 'register' */ './components/Pages/Register'),
+          ),
+          false,
+        ),
       },
       {
         path: '/forgot',
-        component: AuthWrapper(Loadable(
-          () => import(/* webpackChunkName: 'forgot' */'./components/Pages/ForgotPassword'),
-        ), false),
+        component: AuthWrapper(
+          Loadable(() =>
+            import(/* webpackChunkName: 'forgot' */ './components/Pages/ForgotPassword'),
+          ),
+          false,
+        ),
       },
       {
         path: '/reset/:token',
         exact: true,
-        component: AuthWrapper(Loadable(
-          () => import(/* webpackChunkName: 'forgot' */'./components/Pages/ResetPassword'),
-        ), false),
+        component: AuthWrapper(
+          Loadable(() =>
+            import(/* webpackChunkName: 'forgot' */ './components/Pages/ResetPassword'),
+          ),
+          false,
+        ),
       },
       {
         path: '*',
-        component: Loadable(
-          () => import(/* webpackChunkName: 'notFound' */'./components/Pages/NotFound'),
+        component: Loadable(() =>
+          import(/* webpackChunkName: 'notFound' */ './components/Pages/NotFound'),
         ),
       },
     ],

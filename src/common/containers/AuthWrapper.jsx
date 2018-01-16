@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Redirect, withRouter } from 'react-router-dom';
 
-export default function (ProtectedComponent, expectedStatus = true) {
+export default function(ProtectedComponent, expectedStatus = true) {
   class AuthWrapper extends PureComponent {
     static defaultProps = {
       isAuth: false,
@@ -13,7 +13,7 @@ export default function (ProtectedComponent, expectedStatus = true) {
           from: { pathname: '/' },
         },
       },
-    }
+    };
 
     static propTypes = {
       isAuth: PropTypes.bool.isRequired,
@@ -24,13 +24,15 @@ export default function (ProtectedComponent, expectedStatus = true) {
           }),
         }),
       }),
-    }
+    };
 
     render() {
-      const { from: url } = this.props.location.state || { from: { pathname: '/' } };
+      const { from: url } = this.props.location.state || {
+        from: { pathname: '/' },
+      };
 
       if (this.props.isAuth !== expectedStatus) {
-        return <Redirect to={ url } />;
+        return <Redirect to={url} />;
       }
 
       return <ProtectedComponent />;
@@ -39,7 +41,7 @@ export default function (ProtectedComponent, expectedStatus = true) {
 
   return compose(
     withRouter,
-    connect(state => ({
+    connect((state) => ({
       isAuth: !!state.auth.user.id,
     })),
   )(AuthWrapper);

@@ -1,12 +1,12 @@
 import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 
-export default function (submitAction, failureAction, component) {
+export default function(submitAction, failureAction, component) {
   function selectorFactory(dispatch) {
     const submitFormAction = bindActionCreators(submitAction, dispatch);
     const setFailureMessageAction = bindActionCreators(failureAction, dispatch);
     const actions = {
-      submitForm: csrf => (fields) => {
+      submitForm: (csrf) => (fields) => {
         if (!csrf) throw new Error('csrf token was not found.');
         submitFormAction({ csrf, ...fields });
       },

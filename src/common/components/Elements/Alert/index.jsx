@@ -5,10 +5,10 @@ import './Alert.css';
 
 const Alert = ({ message, closeHandler }) => (
   <p styleName="alert alert_danger">
-    { message }
+    {message}
     <button
       type="button"
-      onClick={ closeHandler }
+      onClick={closeHandler}
       styleName="close"
       aria-label="Close"
     >

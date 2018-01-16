@@ -1,5 +1,5 @@
-export default function ({ api, checkStatus }) {
-  return () => next => (action) => {
+export default function({ api, checkStatus }) {
+  return () => (next) => (action) => {
     const { types, client, successful, ...rest } = action;
 
     if (!client) {
