@@ -38,7 +38,7 @@ Make sure your system has the correct Node and Npm versions.
 - open `http:localhost:8000`.
 - Modified the content of env.sample and assign a new name to .env.
 
-## install
+## Install
 ```
 yarn
 ```
