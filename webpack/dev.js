@@ -9,10 +9,7 @@ const { entry, output, plugins, resolve, loaders } = defConf('src');
 module.exports = {
   target: 'web',
   devtool: 'eval',
-  entry: entry([
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client?path=/__webpack_hmr',
-  ]),
+  entry: entry(['webpack-hot-middleware/client?path=/__webpack_hmr']),
   output: output({
     filename: '[name].js',
     chunkFilename: '[name].js',

@@ -13,9 +13,7 @@
     "serve": "pm2-docker start pm2.json --env production",
     "test": "better-npm-run mocha",
     "test:watch": "better-npm-run mocha -- -w",
-    "lint": "./node_modules/.bin/eslint .",
-    "validate": "npm run lint && npm run test",
-    "precommit": "lint-staged"
+    "precommit": "yarn test && lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx}": [

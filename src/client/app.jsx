@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import { ConnectedRouter } from 'react-router-redux';
+import { hot } from 'react-hot-loader';
 
 import routes from 'common/routes';
 import store, { history } from './store';
 
-export default class Root extends Component {
+class App extends Component {
   render() {
     if (!this.routeConfig) {
       this.routeConfig = routes;
@@ -15,9 +16,11 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          {renderRoutes(routes)}
+          {renderRoutes(this.routeConfig)}
         </ConnectedRouter>
       </Provider>
     );
   }
 }
+
+export default hot(module)(App);
