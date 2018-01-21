@@ -30,8 +30,7 @@
 ## Requirements
 Make sure your system has the correct Node and Npm versions.
 
-- Node 7.6.x
-- Npm 4.1.x
+- Node 8
 
 ## Usage
 - Changing source code in `/src` and click save.

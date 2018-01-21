@@ -1,4 +1,4 @@
-FROM keymetrics/pm2-docker-alpine:7
+FROM keymetrics/pm2:8-alpine
 
 ENV APP="/srv/www/app"
 ARG PORT=8000
