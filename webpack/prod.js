@@ -3,6 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin');
 const InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html-webpack-plugin');
 const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const defConf = require('./default');
 
 const { entry, output, plugins, resolve, loaders } = defConf('dist', false);
@@ -63,6 +64,9 @@ module.exports = {
 
     new ExtractTextPlugin({
       filename: 'css/[name].[contenthash:8].css',
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'prefetch',
     }),
   ]),
   resolve,
