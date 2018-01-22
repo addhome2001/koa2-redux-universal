@@ -18,7 +18,7 @@
 
 ## Features
 - Client
-  - HMR(Client)
+  - HMR(Port: 8081)
   - Code-Splitting(lazy load)
   - Manifest cache
   - CSS-module

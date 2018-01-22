@@ -9,10 +9,8 @@ module.exports = koaWebpack({
     },
     noInfo: false,
     quite: false,
-    // serverSideRender: true,
   },
   hot: {
-    path: '/__webpack_hmr',
-    reload: true,
+    host: '0.0.0.0',
   },
 });

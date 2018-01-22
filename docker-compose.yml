@@ -10,6 +10,7 @@ services:
       - node_modules:/srv/www/app/node_modules
     ports:
       - 8000:8000
+      - 8081:8081
     depends_on:
       - redis
       - db
