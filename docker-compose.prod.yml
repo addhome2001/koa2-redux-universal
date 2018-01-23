@@ -5,6 +5,7 @@ services:
     extends:
       file: docker-common.yml
       service: web
+    restart: always
     command: npm run build:prod && npm run serve
     volumes:
       - .:/srv/www/app
