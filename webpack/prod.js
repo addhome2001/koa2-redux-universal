@@ -40,6 +40,8 @@ module.exports = {
       output: {
         comments: false,
       },
+      parallel: true,
+      cache: true,
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
 
