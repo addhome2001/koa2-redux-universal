@@ -7,3 +7,4 @@ dist
 .gitignore
 README.md
 .vscode
+.npm

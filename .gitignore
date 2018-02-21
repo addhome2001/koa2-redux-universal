@@ -16,3 +16,6 @@ npm-debug.log
 .ash_history
 .babel.json
 .v8flags.**
+.config
+.cache
+.npm
