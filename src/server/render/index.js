@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
-
 import matchRoutes from './matchRoutes';
 import cache from './cache';
+import { viewsLogger } from '../utils/loggers';
 
 export default async function(ctx) {
   try {
@@ -19,6 +18,6 @@ export default async function(ctx) {
       await ctx.redirect('/error');
     }
   } catch (e) {
-    console.log(e);
+    viewsLogger.error('Something went wrong when SSR.', e);
   }
 }

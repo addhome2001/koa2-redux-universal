@@ -1,5 +1,6 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 import User from '../../../services/user';
+import { authLogger } from '../../../utils/loggers';
 
 const Strategy = new LocalStrategy(
   {
@@ -21,8 +22,11 @@ const Strategy = new LocalStrategy(
       }
       return done(new Error('The username is already taken.'), false);
     } catch (e) {
-      console.error(e);
-      return done(new Error('Something went wrong with your Signin'), false);
+      authLogger.error('Something went wrong with registration', e);
+      return done(
+        new Error('Something went wrong with your registration'),
+        false,
+      );
     }
   },
 );

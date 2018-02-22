@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
 import config from '../config';
+import { authLogger } from '../utils/loggers';
 
 export default {
   sendTokenMailer(host, email, token) {
@@ -29,7 +30,7 @@ export default {
     return new Promise((resolve, reject) => {
       transport.sendMail(mailOptions, (err) => {
         if (err) {
-          console.error(err);
+          authLogger.error('Sent token mailer was failed.', err);
           reject(err);
         }
         resolve();
@@ -61,7 +62,7 @@ export default {
     return new Promise((resolve, reject) => {
       transport.sendMail(mailOptions, (err) => {
         if (err) {
-          console.error(err);
+          authLogger.error('Sent reset password mailer was failed.', err);
           reject(err);
         }
         resolve();

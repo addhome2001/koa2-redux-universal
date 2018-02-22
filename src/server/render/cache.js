@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
 import LRUCache from 'lru-cache';
+import { viewsLogger } from '../utils/loggers';
 
 const ssrCache = new LRUCache({
   max: 100,
@@ -20,11 +20,11 @@ export default async function(ctx, render) {
   const key = getCacheKey(ctx);
 
   if (ssrCache.has(key)) {
-    console.log(`Render from cached: ${ctx.url}`);
+    viewsLogger.info(`Rendering from cached: ${ctx.url}`);
     return ssrCache.get(key);
   }
 
-  console.log(`Cached: ${ctx.url}`);
+  viewsLogger.info(`Cached: ${ctx.url}`);
   const content = await render(ctx);
   return setCacheKey(key, content);
 }

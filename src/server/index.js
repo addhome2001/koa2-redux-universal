@@ -1,10 +1,10 @@
-/* eslint-disable no-console */
 import Koa from 'koa';
 import middlewares from './middlewares';
 import router from './routes';
 import render from './render';
 import config from './config';
 import dbInstance from './models';
+import { initLogger } from './utils/loggers';
 
 // register passport
 import './config/passport';
@@ -34,7 +34,7 @@ app.use(render);
 // connect to Database
 connectDB(dbInstance).then(() => {
   app.listen(config.PORT, () => {
-    console.log(`Server is running at ${config.PORT}!`);
+    initLogger.info(`Server is running at ${config.PORT}!`);
   });
 });
 
