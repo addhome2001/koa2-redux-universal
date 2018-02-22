@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
 import chokidar from 'chokidar';
+import { configLogger } from '../utils/loggers';
 
 module.exports = function watch(path) {
   const watcher = chokidar.watch(path, {
@@ -10,7 +10,7 @@ module.exports = function watch(path) {
     watcher.on('all', () => {
       Object.keys(require.cache).forEach((id) => {
         if (/[\/\\]server[\/\\]/.test(id)) {
-          console.log(`Clearing ${id} module cache`);
+          configLogger.info(`Clearing ${id} module cache`);
           delete require.cache[id];
         }
       });

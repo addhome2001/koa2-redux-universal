@@ -1,8 +1,10 @@
+import { initLogger } from '../utils/loggers';
+
 export default async (db) => {
   try {
     await db.sequelize.sync();
-    await console.log('Nice! Database looks fine');
+    await initLogger.info('Nice! Database looks fine');
   } catch (e) {
-    console.log(e, 'Something went wrong with the Database Update!');
+    initLogger.error('Something went wrong with the Database!', e);
   }
 };
