@@ -4,15 +4,15 @@ import { authLogger } from '../../../utils/loggers';
 
 const Strategy = new LocalStrategy(
   {
-    usernameField: 'username',
+    usernameField: 'email',
     passwordField: 'password',
   },
-  async (username, password, done) => {
+  async (email, password, done) => {
     try {
-      const user = await User.login(username, password);
+      const user = await User.login(email, password);
 
       if (user) {
-        const { email, id } = user.get();
+        const { id, username } = user.get();
         return done(null, {
           id,
           username,
@@ -20,7 +20,7 @@ const Strategy = new LocalStrategy(
         });
       }
 
-      return done(new Error('User or password is invalid.'), false);
+      return done(new Error('Email or password is invalid.'), false);
     } catch (e) {
       authLogger.error('Something went wrong with Login', e);
       return done(new Error('Something went wrong with your Signing'), false);
