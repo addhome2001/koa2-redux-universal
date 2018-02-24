@@ -8,14 +8,14 @@ import ForgotForm from 'common/containers/ForgotForm';
 const Form = ForgotForm(
   FormHOC({
     initialState: {
-      username: '',
+      email: '',
     },
     page: 'Forgot Password',
     subTitle: `
-    Please enter the username you use to sign in
-    and check your inbox for a password reset email.
+    Please enter the email you use to sign in
+    and check your inbox for a password reset.
   `,
-    errorMessage: 'Maybe the username field was empty.',
+    errorMessage: 'Maybe the email field was empty.',
   }),
 );
 
