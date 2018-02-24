@@ -7,6 +7,10 @@ export default ((DB) => {
   const sequelize = new Sequelize(DB.database, DB.username, DB.password, {
     ...DB,
     operatorsAliases: Sequelize.Op,
+    define: {
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
+    },
     pool: {
       max: 5,
       min: 0,
