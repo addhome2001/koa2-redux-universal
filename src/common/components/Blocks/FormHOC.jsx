@@ -67,7 +67,7 @@ export default function({
       } = this.props;
 
       return (
-        <div>
+        <React.Fragment>
           <Text>{this.page}</Text>
           <Text level="normal">{this.subTitle}</Text>
           {failureMessage && (
@@ -80,7 +80,7 @@ export default function({
             disabled={loading}
           />
           {children({ submit: this.submit, loading })}
-        </div>
+        </React.Fragment>
       );
     }
   };

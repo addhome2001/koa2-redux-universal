@@ -38,22 +38,22 @@ class Home extends Component {
     } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         {failureMessage && (
           <Alert message={failureMessage} closeHandler={resetFailureMessage} />
         )}
         {isAuth ? (
-          <div>
+          <React.Fragment>
             <Btn purpose="/profile">Profile</Btn>
             <Btn purpose="/about">About</Btn>
             <Btn purpose={logout} disabled={loading}>
               Logout
             </Btn>
-          </div>
+          </React.Fragment>
         ) : (
           <AuthFields />
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

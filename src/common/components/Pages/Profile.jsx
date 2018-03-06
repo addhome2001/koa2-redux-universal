@@ -3,8 +3,8 @@ import ProfileField from 'common/containers/ProfileField';
 import Btn from 'common/components/Elements/Btn';
 
 export default () => (
-  <div>
+  <React.Fragment>
     <ProfileField />
     <Btn rootLink>Home</Btn>
-  </div>
+  </React.Fragment>
 );

@@ -27,9 +27,12 @@ export default () => (
       render={() => (
         <Form>
           {({ submit, loading }) => (
-            <Btn purpose={submit} disabled={loading}>
-              Send
-            </Btn>
+            <React.Fragment>
+              <Btn purpose={submit} disabled={loading}>
+                Send
+              </Btn>
+              <Btn rootLink>Home</Btn>
+            </React.Fragment>
           )}
         </Form>
       )}
@@ -37,12 +40,12 @@ export default () => (
     <Route
       path="/forgot/mailed"
       render={() => (
-        <section>
+        <React.Fragment>
           <Text level="normal">
             The password reset email has been sent successfully.
           </Text>
           <Btn rootLink>Home</Btn>
-        </section>
+        </React.Fragment>
       )}
     />
     <Redirect from="/forgot" to="/" />

@@ -3,10 +3,10 @@ import Btn from 'common/components/Elements/Btn';
 import Text from 'common/components/Elements/Text';
 
 const About = () => (
-  <div>
+  <React.Fragment>
     <Text>About</Text>
     <Btn rootLink>Home</Btn>
-  </div>
+  </React.Fragment>
 );
 
 export default About;

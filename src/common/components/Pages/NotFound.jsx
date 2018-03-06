@@ -9,10 +9,10 @@ const NotFound = ({ staticContext }) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <Text>Page Not Found</Text>
       <Btn rootLink>Home</Btn>
-    </div>
+    </React.Fragment>
   );
 };
 

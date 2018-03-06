@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Text from 'common/components/Elements/Text';
 
 const ProfileField = ({ user }) => (
-  <div>
+  <React.Fragment>
     <Text>Profile Page</Text>
     <Text level="normal">{`Username： ${user.username}`}</Text>
-  </div>
+  </React.Fragment>
 );
 
 ProfileField.propTypes = {
