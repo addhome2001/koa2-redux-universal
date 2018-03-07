@@ -42,9 +42,6 @@ export default {
     const user = await User.findOne({
       where: { email },
     });
-    // TODO:
-    // 如果已經存在這個會員，但用oauth註冊，或相反
-    // 存在oauth會員，但是現有會員知道id登入，或相反
 
     if (!user) {
       const userInfo = {
