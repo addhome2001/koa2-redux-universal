@@ -7,11 +7,11 @@ import Btn from 'common/components/Elements/Btn';
 const Form = LoginForm(
   FormHOC({
     initialState: {
-      username: '',
+      email: '',
       password: '',
     },
     page: 'Login',
-    errorMessage: 'Invalid username or password.',
+    errorMessage: 'Invalid email or password.',
   }),
 );
 

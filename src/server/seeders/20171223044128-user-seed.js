@@ -8,7 +8,7 @@ module.exports = {
           about: 'I am basic user.',
           email: 'username@mail.com',
           password: 'password',
-          last_login: new Date(),
+          lastLogin: new Date(),
         },
       ],
       {},

@@ -8,7 +8,13 @@ google
     if (ctx.isAuthenticated()) {
       ctx.redirect('/profile');
     }
-    return passport.authenticate('google', { scope: ['profile'] })(ctx, next);
+
+    return passport.authenticate('google', {
+      scope: [
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email',
+      ],
+    })(ctx, next);
   })
 
   .get('/callback', (ctx, next) =>
@@ -19,8 +25,11 @@ google
       },
       async (err, user) => {
         if (err) {
-          ctx.status = 403;
-          ctx.body = { message: 'Invalid username or password.' };
+          if (Array.isArray(err)) {
+            ctx.redirect(`/error/${err.join('/')}`);
+          } else {
+            ctx.redirect('/error');
+          }
         } else {
           await ctx.login(user);
           ctx.redirect('/profile');

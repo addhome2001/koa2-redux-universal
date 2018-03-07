@@ -8,13 +8,14 @@ module.exports = {
       },
       username: {
         type: Sequelize.STRING,
-        notEmpty: true,
+        allowNull: false,
       },
       about: {
         type: Sequelize.TEXT,
       },
       email: {
         type: Sequelize.STRING,
+        allowNull: false,
         validate: {
           isEmail: true,
         },
@@ -23,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      last_login: {
+      lastLogin: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
       },

@@ -15,7 +15,7 @@ forgot
   })
   .post('/', async (ctx) => {
     const token = crypto.randomBytes(20).toString('hex');
-    const user = await User.forgot(ctx.body.username, token);
+    const user = await User.forgot(ctx.body.email, token);
 
     if (user) {
       await mailer.sendTokenMailer(ctx.host, user.email, token);
@@ -23,7 +23,7 @@ forgot
       ctx.body = { message: 'The email has been sent sucessfully.' };
     } else {
       ctx.status = 501;
-      ctx.body = { message: 'The username was not found.' };
+      ctx.body = { message: 'The email was not found.' };
     }
   });
 

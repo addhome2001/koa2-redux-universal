@@ -8,14 +8,14 @@ import ForgotForm from 'common/containers/ForgotForm';
 const Form = ForgotForm(
   FormHOC({
     initialState: {
-      username: '',
+      email: '',
     },
     page: 'Forgot Password',
     subTitle: `
-    Please enter the username you use to sign in
-    and check your inbox for a password reset email.
+    Please enter the email you use to sign in
+    and check your inbox for a password reset.
   `,
-    errorMessage: 'Maybe the username field was empty.',
+    errorMessage: 'Maybe the email field was empty.',
   }),
 );
 
@@ -27,9 +27,12 @@ export default () => (
       render={() => (
         <Form>
           {({ submit, loading }) => (
-            <Btn purpose={submit} disabled={loading}>
-              Send
-            </Btn>
+            <React.Fragment>
+              <Btn purpose={submit} disabled={loading}>
+                Send
+              </Btn>
+              <Btn rootLink>Home</Btn>
+            </React.Fragment>
           )}
         </Form>
       )}
@@ -37,12 +40,12 @@ export default () => (
     <Route
       path="/forgot/mailed"
       render={() => (
-        <section>
+        <React.Fragment>
           <Text level="normal">
             The password reset email has been sent successfully.
           </Text>
           <Btn rootLink>Home</Btn>
-        </section>
+        </React.Fragment>
       )}
     />
     <Redirect from="/forgot" to="/" />

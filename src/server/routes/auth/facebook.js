@@ -8,7 +8,10 @@ facebook
     if (ctx.isAuthenticated()) {
       ctx.redirect('/profile');
     }
-    return passport.authenticate('facebook')(ctx, next);
+
+    return passport.authenticate('facebook', {
+      scope: ['email'],
+    })(ctx, next);
   })
 
   .get('/callback', (ctx, next) =>
@@ -19,8 +22,11 @@ facebook
       },
       async (err, user) => {
         if (err) {
-          ctx.status = 403;
-          ctx.body = { message: 'Invalid username or password.' };
+          if (Array.isArray(err)) {
+            ctx.redirect(`/error/${err.join('/')}`);
+          } else {
+            ctx.redirect('/error');
+          }
         } else {
           await ctx.login(user);
           ctx.redirect('/profile');

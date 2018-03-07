@@ -32,7 +32,6 @@ const routes = [
       },
       {
         path: '/error',
-        exact: true,
         component: Loadable(() =>
           import(/* webpackChunkName: 'errorPage' */ './components/Pages/ErrorPage'),
         ),

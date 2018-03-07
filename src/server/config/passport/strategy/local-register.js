@@ -11,7 +11,7 @@ const Strategy = new LocalStrategy(
   async (ctx, username, password, done) => {
     try {
       const { email } = ctx.body;
-      const user = await User.register(username, password, email);
+      const user = await User.register(username, email, password);
 
       if (user) {
         return done(null, {
@@ -20,9 +20,11 @@ const Strategy = new LocalStrategy(
           email,
         });
       }
-      return done(new Error('The username is already taken.'), false);
+
+      return done(new Error('This email has been took.'), false);
     } catch (e) {
       authLogger.error('Something went wrong with registration', e);
+
       return done(
         new Error('Something went wrong with your registration'),
         false,
