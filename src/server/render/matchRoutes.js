@@ -6,9 +6,12 @@ import routes from 'common/routes';
 import renderMarkup from './renderMarkup';
 
 export default function(ctx) {
+  const { user = {} } = ctx.state;
   const initialState = {
     csrf: ctx.csrf,
-    auth: { user: ctx.state.user || {} },
+    auth: {
+      user,
+    },
   };
   const location = ctx.url;
   const history = createHistory(location);
