@@ -7,13 +7,14 @@ module.exports = (sequelize, Sequelize) =>
     },
     username: {
       type: Sequelize.STRING,
-      notEmpty: true,
+      allowNull: false,
     },
     about: {
       type: Sequelize.TEXT,
     },
     email: {
       type: Sequelize.STRING,
+      allowNull: false,
       validate: {
         isEmail: true,
       },
@@ -22,13 +23,16 @@ module.exports = (sequelize, Sequelize) =>
       type: Sequelize.STRING,
       allowNull: false,
     },
+    OAuthProvider: {
+      type: Sequelize.STRING,
+    },
     resetPasswordToken: {
       type: Sequelize.STRING,
     },
     resetPasswordExpires: {
       type: Sequelize.DATE,
     },
-    last_login: {
+    lastLogin: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW,
     },
