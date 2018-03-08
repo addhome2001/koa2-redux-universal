@@ -1,6 +1,5 @@
 import auth from './auth';
 
-// proxy
 function checkStatus(response) {
   return Promise.all([response.ok, response.json()]).then(([ok, result]) => {
     if (ok) return result;
