@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const defConf = require('./default');
 
 const { entry, output, plugins, resolve, loaders } = defConf('src');
@@ -15,13 +14,9 @@ module.exports = {
     chunkFilename: '[name].js',
   }),
   plugins: plugins.core.concat([
-    plugins.loadersOptions(),
-    plugins.env({ NODE_ENV: 'development' }),
-    plugins.html(),
-    /**
-     * Webpack will compile the template to src/server/views every time.
-     */
-    new HtmlWebpackHarddiskPlugin(),
+    ...plugins.loadersOptions(),
+    ...plugins.env({ NODE_ENV: 'development' }),
+    ...plugins.html(),
     new WebpackNotifierPlugin(),
     new webpack.NamedModulesPlugin(),
   ]),

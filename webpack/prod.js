@@ -17,12 +17,12 @@ module.exports = {
     chunkFilename: '[name].[chunkhash:8].chunk.js',
   }),
   plugins: plugins.core.concat([
-    plugins.loadersOptions({
+    ...plugins.loadersOptions({
       minimize: true,
       debug: false,
     }),
-    plugins.env({ NODE_ENV: 'production' }),
-    plugins.html({
+    ...plugins.env({ NODE_ENV: 'production' }),
+    ...plugins.html({
       minify: {
         removeComments: true,
         collapseWhitespace: true,
