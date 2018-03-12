@@ -2,8 +2,6 @@
 import thunk from 'redux-thunk';
 import { applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import clientMiddleware from 'common/redux/middlewares/client';
-import api from 'common/utils/api';
 
 const devMiddlewares = [];
 
@@ -12,11 +10,6 @@ if (process.env.__DEV__) {
 }
 
 export default (history) => {
-  const middlewares = [
-    thunk,
-    routerMiddleware(history),
-    clientMiddleware(api),
-    ...devMiddlewares,
-  ];
+  const middlewares = [thunk, routerMiddleware(history), ...devMiddlewares];
   return applyMiddleware(...middlewares);
 };

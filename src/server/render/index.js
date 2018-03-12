@@ -1,10 +1,9 @@
 import matchRoutes from './matchRoutes';
-import cache from './cache';
 import { viewsLogger } from '../utils/loggers';
 
 export default async function(ctx) {
   try {
-    const { code = 200, url = '/', payload } = await cache(ctx, matchRoutes);
+    const { code = 200, url = '/', payload } = await matchRoutes(ctx);
 
     ctx.status = code;
 

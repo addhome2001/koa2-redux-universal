@@ -8,9 +8,6 @@ import RouteRender from 'common/components/RouteRender';
 // Pages
 import Home from 'common/components/Pages/Home';
 
-// Containers
-import AuthWrapper from 'common/containers/AuthWrapper';
-
 const routes = [
   {
     component: RouteRender(Master),
@@ -23,66 +20,14 @@ const routes = [
       {
         path: '/about',
         exact: true,
-        component: AuthWrapper(
-          Loadable(() =>
-            import(/* webpackChunkName: 'about' */ './components/Pages/About'),
-          ),
-          true,
+        component: Loadable(() =>
+          import(/* webpackChunkName: 'about' */ './components/Pages/About'),
         ),
       },
       {
         path: '/error',
         component: Loadable(() =>
           import(/* webpackChunkName: 'errorPage' */ './components/Pages/ErrorPage'),
-        ),
-      },
-      {
-        path: '/profile',
-        exact: true,
-        component: AuthWrapper(
-          Loadable(() =>
-            import(/* webpackChunkName: 'profile' */ './components/Pages/Profile'),
-          ),
-          true,
-        ),
-      },
-      {
-        path: '/login',
-        exact: true,
-        component: AuthWrapper(
-          Loadable(() =>
-            import(/* webpackChunkName: 'login' */ './components/Pages/Login'),
-          ),
-          false,
-        ),
-      },
-      {
-        path: '/register',
-        exact: true,
-        component: AuthWrapper(
-          Loadable(() =>
-            import(/* webpackChunkName: 'register' */ './components/Pages/Register'),
-          ),
-          false,
-        ),
-      },
-      {
-        path: '/forgot',
-        component: AuthWrapper(
-          Loadable(() =>
-            import(/* webpackChunkName: 'forgot' */ './components/Pages/ForgotPassword'),
-          ),
-          false,
-        ),
-      },
-      {
-        path: '/reset/:token',
-        exact: true,
-        component: AuthWrapper(
-          Loadable(() =>
-            import(/* webpackChunkName: 'forgot' */ './components/Pages/ResetPassword'),
-          ),
-          false,
         ),
       },
       {

@@ -14,6 +14,7 @@ const Btn = ({ purpose, children, rootLink, external, disabled }) => {
       </Link>
     );
   }
+
   if (typeof purpose === 'string') {
     if (external) {
       return (
@@ -28,6 +29,7 @@ const Btn = ({ purpose, children, rootLink, external, disabled }) => {
       </Link>
     );
   }
+
   return (
     <button onClick={(e) => !disabled && purpose(e)} styleName={btnStatus}>
       {children}

@@ -6,13 +6,7 @@ import routes from 'common/routes';
 import renderMarkup from './renderMarkup';
 
 export default function(ctx) {
-  const { user = {} } = ctx.state;
-  const initialState = {
-    csrf: ctx.csrf,
-    auth: {
-      user,
-    },
-  };
+  const initialState = {};
   const location = ctx.url;
   const history = createHistory(location);
   const store = createStore(history, initialState);
@@ -32,7 +26,7 @@ export default function(ctx) {
 
   return Promise.all(promises).then((data = []) => {
     const context = {};
-    const { auth, csrf } = state;
+    const { routing, ...restState } = state;
     const html = renderMarkup(view, store, location, context);
 
     return {
@@ -40,7 +34,7 @@ export default function(ctx) {
       url: context.url,
       payload: {
         html,
-        preloadedState: { auth, csrf, data },
+        preloadedState: { ...data, ...restState },
       },
     };
   });
