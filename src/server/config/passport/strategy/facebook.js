@@ -28,7 +28,9 @@ const Strategy = new FacebookStrategy(
 
       return done(['duplicateEmail', email], false);
     } catch (e) {
-      authLogger.error(`Facebook authentication went wrong. ${e}`);
+      authLogger.error(`Facebook authentication went wrong.
+        ${e}
+      `);
 
       return done(['failedOauth', 'facebook'], false);
     }

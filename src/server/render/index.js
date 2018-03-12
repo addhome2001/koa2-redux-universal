@@ -18,6 +18,8 @@ export default async function(ctx) {
       await ctx.redirect('/error');
     }
   } catch (e) {
-    viewsLogger.error('Something went wrong when SSR.', e);
+    viewsLogger.error(`Something went wrong with SSR.
+      ${e}
+    `);
   }
 }

@@ -23,7 +23,9 @@ const Strategy = new LocalStrategy(
 
       return done(new Error('This email has been took.'), false);
     } catch (e) {
-      authLogger.error('Something went wrong with registration', e);
+      authLogger.error(`Something went wrong with registration
+        ${e}
+      `);
 
       return done(
         new Error('Something went wrong with your registration'),

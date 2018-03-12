@@ -5,6 +5,8 @@ export default async (db) => {
     await db.sequelize.sync();
     await initLogger.info('Nice! Database looks fine');
   } catch (e) {
-    initLogger.error('Something went wrong with the Database!', e);
+    initLogger.error(`Something went wrong with the Database!
+      ${e}
+    `);
   }
 };

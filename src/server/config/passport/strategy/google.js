@@ -27,7 +27,9 @@ const Strategy = new GoogleStrategy(
 
       return done(['duplicateEmail', email], false);
     } catch (e) {
-      authLogger.error(`Google authentication went wrong. ${e}`);
+      authLogger.error(`Google authentication went wrong.
+        ${e}
+      `);
 
       return done(['failedOauth', 'google'], false);
     }

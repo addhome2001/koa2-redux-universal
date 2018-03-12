@@ -22,7 +22,9 @@ const Strategy = new LocalStrategy(
 
       return done(new Error('Email or password is invalid.'), false);
     } catch (e) {
-      authLogger.error('Something went wrong with Login', e);
+      authLogger.error(`Something went wrong with Login
+        ${e}
+      `);
       return done(new Error('Something went wrong with your Signing'), false);
     }
   },
