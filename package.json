@@ -2,7 +2,6 @@
   "name": "koa2-redux-universal",
   "version": "1.0.0",
   "description": "koa2 redux universal",
-  "main": "./dist/server",
   "scripts": {
     "dev": "better-npm-run dev",
     "compile": "better-npm-run compile",
