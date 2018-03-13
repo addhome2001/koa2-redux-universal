@@ -32,7 +32,7 @@ export default function(ctx) {
 
   return Promise.all(promises).then((data = []) => {
     const context = {};
-    const { auth, csrf } = state;
+    const { routing, ...restState } = state;
     const html = renderMarkup(view, store, location, context);
 
     return {
@@ -40,7 +40,7 @@ export default function(ctx) {
       url: context.url,
       payload: {
         html,
-        preloadedState: { auth, csrf, data },
+        preloadedState: { ...data, ...restState },
       },
     };
   });
