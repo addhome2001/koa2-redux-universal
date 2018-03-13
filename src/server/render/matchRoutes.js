@@ -35,7 +35,7 @@ export default function(ctx) {
         location,
         context,
       },
-      preloadedState: { ...data, ...restState },
+      preloadedState: { data, ...restState },
     };
   });
 }
