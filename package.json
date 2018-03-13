@@ -25,7 +25,8 @@
         "NODE_ENV": "development",
         "HOST": "localhost",
         "PORT": "8000",
-        "ENTRY": "src"
+        "ENTRY": "src",
+        "ENABLE_SSR": 0
       }
     },
     "serve": {
@@ -34,7 +35,8 @@
         "NODE_ENV": "production",
         "HOST": "localhost",
         "PORT": "8000",
-        "ENTRY": "dist"
+        "ENTRY": "dist",
+        "ENABLE_SSR": 1
       }
     },
     "build:client": {

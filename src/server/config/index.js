@@ -2,6 +2,7 @@ const config = {
   development: {
     PORT: process.env.PORT || 8000,
     HOST: process.env.HOST || 'localhost',
+    ENABLE_SSR: process.env.ENABLE_SSR,
 
     DEV: true,
   },
@@ -9,6 +10,7 @@ const config = {
   production: {
     PORT: process.env.PORT || 8000,
     HOST: process.env.HOST || 'localhost',
+    ENABLE_SSR: process.env.ENABLE_SSR,
   },
 
   test: {},
