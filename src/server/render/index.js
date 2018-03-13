@@ -1,9 +1,23 @@
 import matchRoutes from './matchRoutes';
+import renderMarkup from './renderMarkup';
 import { viewsLogger } from '../utils/loggers';
+import config from '../config';
 
 export default async function(ctx) {
   try {
-    const { code = 200, url = '/', payload } = await matchRoutes(ctx);
+    const {
+      code = 200,
+      url = '/',
+      renderMaterial,
+      preloadedState,
+    } = await matchRoutes(ctx);
+
+    const html = +config.ENABLE_SSR ? renderMarkup(renderMaterial) : '';
+
+    const payload = {
+      html,
+      preloadedState,
+    };
 
     ctx.status = code;
 
