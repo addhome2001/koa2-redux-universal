@@ -16,15 +16,17 @@ export function setCacheKey(key, content) {
   return content;
 }
 
-export default async function(ctx, render) {
-  const key = getCacheKey(ctx);
+export default function(render) {
+  return (ctx, material) => {
+    const key = getCacheKey(ctx);
 
-  if (ssrCache.has(key)) {
-    viewsLogger.info(`Rendering from cached: ${ctx.url}`);
-    return ssrCache.get(key);
-  }
+    if (ssrCache.has(key)) {
+      viewsLogger.info(`Rendering from cached: ${ctx.url}`);
+      return ssrCache.get(key);
+    }
 
-  viewsLogger.info(`Cached: ${ctx.url}`);
-  const content = await render(ctx);
-  return setCacheKey(key, content);
+    viewsLogger.info(`Cached: ${ctx.url}`);
+    const content = render(material);
+    return setCacheKey(key, content);
+  };
 }

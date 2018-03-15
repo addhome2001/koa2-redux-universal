@@ -1,10 +1,26 @@
 import matchRoutes from './matchRoutes';
-import cache from './cache';
+import renderMarkup from './renderMarkup';
+import cacheRender from './cache';
+import config from '../config';
 import { viewsLogger } from '../utils/loggers';
+
+const cachedRender = cacheRender(renderMarkup);
 
 export default async function(ctx) {
   try {
-    const { code = 200, url = '/', payload } = await cache(ctx, matchRoutes);
+    const {
+      code = 200,
+      url = '/',
+      renderMaterial,
+      preloadedState,
+    } = await matchRoutes(ctx);
+
+    const html = +config.ENABLE_SSR ? cachedRender(ctx, renderMaterial) : '';
+
+    const payload = {
+      html,
+      preloadedState,
+    };
 
     ctx.status = code;
 

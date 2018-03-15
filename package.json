@@ -27,7 +27,8 @@
         "NODE_ENV": "development",
         "HOST": "localhost",
         "PORT": "8000",
-        "ENTRY": "src"
+        "ENTRY": "src",
+        "ENABLE_SSR": 0
       }
     },
     "build:client": {
