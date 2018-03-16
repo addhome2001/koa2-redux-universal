@@ -1,5 +1,7 @@
 # koa2-redux-universal
 
+### The [pure-SSR](https://github.com/addhome2001/koa2-redux-universal/tree/pure-SSR) is the branch for someone who needs boilerplate.
+
 ## Contains
 
 - [Koa2](http://koajs.com)
