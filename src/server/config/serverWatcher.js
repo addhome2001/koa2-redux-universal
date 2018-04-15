@@ -7,7 +7,7 @@ module.exports = function serverWatcher(path) {
   watcher.on('ready', () => {
     watcher.on('all', () => {
       Object.keys(require.cache).forEach((id) => {
-        if (/[\/\\]server[\/\\]/.test(id)) {
+        if (id.includes(path)) {
           configLogger.info(`Clearing ${id} module cache`);
           delete require.cache[id];
         }
