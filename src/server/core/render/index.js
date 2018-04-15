@@ -1,7 +1,7 @@
 import matchRoutes from './matchRoutes';
 import renderMarkup from './renderMarkup';
 import { viewsLogger } from '../utils/loggers';
-import config from '../config';
+import config from '../../config';
 
 export default async function(ctx) {
   try {
