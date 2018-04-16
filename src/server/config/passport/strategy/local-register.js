@@ -1,6 +1,5 @@
 import { Strategy as LocalStrategy } from 'passport-local';
-import User from '../../../services/user';
-import { authLogger } from '../../../utils/loggers';
+import { authLogger } from '../../../core/utils/loggers';
 
 const Strategy = new LocalStrategy(
   {
@@ -9,6 +8,8 @@ const Strategy = new LocalStrategy(
     passReqToCallback: true,
   },
   async (ctx, username, password, done) => {
+    const User = require('../../../core/services/user').default;
+
     try {
       const { email } = ctx.body;
       const user = await User.register(username, email, password);

@@ -1,6 +1,5 @@
 import { Strategy as LocalStrategy } from 'passport-local';
-import User from '../../../services/user';
-import { authLogger } from '../../../utils/loggers';
+import { authLogger } from '../../../core/utils/loggers';
 
 const Strategy = new LocalStrategy(
   {
@@ -8,6 +7,8 @@ const Strategy = new LocalStrategy(
     passwordField: 'password',
   },
   async (email, password, done) => {
+    const User = require('../../../core/services/user').default;
+
     try {
       const user = await User.login(email, password);
 

@@ -1,15 +1,13 @@
 import chokidar from 'chokidar';
-import { configLogger } from '../utils/loggers';
+import { configLogger } from '../core/utils/loggers';
 
-module.exports = function watch(path) {
-  const watcher = chokidar.watch(path, {
-    ignored: /[\/\\]views[\/\\]/,
-  });
+module.exports = function serverWatcher(path) {
+  const watcher = chokidar.watch(path);
 
   watcher.on('ready', () => {
     watcher.on('all', () => {
       Object.keys(require.cache).forEach((id) => {
-        if (/[\/\\]server[\/\\]/.test(id)) {
+        if (id.includes(path)) {
           configLogger.info(`Clearing ${id} module cache`);
           delete require.cache[id];
         }

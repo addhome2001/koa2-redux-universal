@@ -1,7 +1,7 @@
 import matchRoutes from './matchRoutes';
 import renderMarkup from './renderMarkup';
 import cacheRender from './cache';
-import config from '../config';
+import config from '../../config';
 import { viewsLogger } from '../utils/loggers';
 
 const cachedRender = cacheRender(renderMarkup);

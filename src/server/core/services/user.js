@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import Models from '../models';
+import Models from '../../models';
 import { hash, isValidUser } from '../utils/bcrypt';
 
 const { User } = Models;

@@ -1,4 +1,4 @@
-import { initLogger } from '../utils/loggers';
+import { initLogger } from '../core/utils/loggers';
 
 export default async (db) => {
   try {
