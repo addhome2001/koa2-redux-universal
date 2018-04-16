@@ -1,8 +1,6 @@
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-
-import User from '../../../services/user';
+import { authLogger } from '../../../core/utils/loggers';
 import config from '../../../config';
-import { authLogger } from '../../../utils/loggers';
 
 const Strategy = new GoogleStrategy(
   {
@@ -11,6 +9,8 @@ const Strategy = new GoogleStrategy(
     callbackURL: `http://${config.HOST}:${config.PORT}/auth/google/callback`,
   },
   async (accessToken, refreshToken, profile, done) => {
+    const User = require('../../../core/services/user').default;
+
     try {
       const {
         displayName: username,

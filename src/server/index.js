@@ -1,13 +1,13 @@
 import Koa from 'koa';
+import path from 'path';
 import middlewares from './middlewares';
-import router from './routes';
-import render from './render';
 import config from './config';
 import dbInstance from './models';
-import { initLogger } from './utils/loggers';
+import { initLogger } from './core/utils/loggers';
 
 // register passport
 import './config/passport';
+
 import connectDB from './config/connectDB';
 
 const app = new Koa();
@@ -17,7 +17,7 @@ middlewares(app, config);
 
 if (config.DEV) {
   // server hot reload
-  require('./config/watch')(__dirname);
+  require('./config/serverWatcher')(path.resolve(__dirname, './core'));
   // webpack dev middlewares
   app.use(require('./config/webpack'));
 } else {
@@ -26,10 +26,17 @@ if (config.DEV) {
 }
 
 // router
-app.use(router.routes(), router.allowedMethods());
+app.use(async (ctx, next) => {
+  const routes = require('./core/routes').default;
+  await routes.routes()(ctx, async () => {
+    await routes.allowedMethods()(ctx, next);
+  });
+});
 
 // server-render
-app.use(render);
+app.use(async (ctx) => {
+  await require('./core/render').default(ctx);
+});
 
 // connect to Database
 connectDB(dbInstance).then(() => {

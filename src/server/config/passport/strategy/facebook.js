@@ -1,8 +1,6 @@
 import { Strategy as FacebookStrategy } from 'passport-facebook';
-
-import User from '../../../services/user';
+import { authLogger } from '../../../core/utils/loggers';
 import config from '../../../config';
-import { authLogger } from '../../../utils/loggers';
 
 const Strategy = new FacebookStrategy(
   {
@@ -12,6 +10,8 @@ const Strategy = new FacebookStrategy(
     profileFields: ['email', 'displayName'],
   },
   async (accessToken, refreshToken, profile, done) => {
+    const User = require('../../../core/services/user').default;
+
     try {
       const {
         displayName: username,
