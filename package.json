@@ -123,7 +123,7 @@
     "koa-redis": "^3.0.0",
     "koa-router": "^7.2.1",
     "koa-session": "^5.4.0",
-    "koa-static": "^4.0.0",
+    "koa-static": "^5.0.0",
     "koa-views": "^6.0.2",
     "koa-webpack": "^2.0.3",
     "lru-cache": "^4.1.1",
