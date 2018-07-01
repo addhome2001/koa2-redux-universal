@@ -1,0 +1,7 @@
+{
+  "name": "koa2-redux-universal",
+  "type": "npm",
+  "engines": {
+    "node": ">=8"
+  }
+}
