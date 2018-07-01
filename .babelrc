@@ -11,16 +11,16 @@
     ["transform-runtime", {
       "polyfill": false,
       "regenerator": true
-    }],
-    ["system-import-transformer", {
-      "commonJS": {
-        "useRequireEnsure": true
-      }
     }]
   ],
   "env": {
     "development": {
       "plugins": [
+        ["system-import-transformer", {
+          "commonJS": {
+            "useRequireEnsure": true
+          }
+        }],
         ["react-css-modules", {
           "context": "src/client",
           "generateScopedName": "[name]__[local]___[hash:base64:5]",
@@ -32,6 +32,7 @@
     "production": {
       "presets": ["react-optimize"],
       "plugins": [
+        "system-import-transformer",
         ["react-css-modules", {
           "context": "dist/client",
           "generateScopedName": "[name]__[local]___[hash:base64:5]"
