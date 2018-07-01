@@ -10,6 +10,8 @@
     "clear:prod": "rimraf dist",
     "clear:client": "rimraf dist/server/static",
     "serve": "better-npm-run serve",
+    "now-build": "yarn build:prod",
+    "now-start": "yarn serve",
     "precommit": "lint-staged"
   },
   "lint-staged": {
