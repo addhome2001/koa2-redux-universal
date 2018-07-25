@@ -14,6 +14,12 @@ export default function(state = initialState, action) {
         user: action.result,
         loading: false,
       };
+    case Constants.CLEAR_USER_INFO:
+      return {
+        ...state,
+        user: {},
+        loading: false,
+      };
     case Constants.FAILURE_MESSAGE:
       return {
         ...state,

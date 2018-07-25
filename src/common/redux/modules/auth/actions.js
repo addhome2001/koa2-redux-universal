@@ -5,8 +5,7 @@ export function redirectAction({ client, successfulConstant, redirect }) {
   return (dispatch) =>
     dispatch({
       types: [Constants.LOADING, successfulConstant, Constants.FAILURE_MESSAGE],
-      client: (api) =>
-        client(api).then(() => setTimeout(() => dispatch(redirect), 100)),
+      client: (api) => setTimeout(() => dispatch(redirect), 100) && client(api),
     });
 }
 
@@ -14,13 +13,15 @@ export function loginAsync(userInfo) {
   return redirectAction({
     client: (api) => api.auth.login(userInfo),
     successfulConstant: Constants.SET_USER_INFO,
+    redirect: replace('/'),
   });
 }
 
 export function logoutAsync() {
   return redirectAction({
     client: (api) => api.auth.logout(),
-    successfulConstant: Constants.SET_USER_INFO,
+    successfulConstant: Constants.CLEAR_USER_INFO,
+    redirect: replace('/'),
   });
 }
 
@@ -28,6 +29,7 @@ export function registerAsync(userInfo) {
   return redirectAction({
     client: (api) => api.auth.register(userInfo),
     successfulConstant: Constants.SET_USER_INFO,
+    redirect: replace('/'),
   });
 }
 
