@@ -20,7 +20,7 @@ forgot
     if (user) {
       await mailer.sendTokenMailer(ctx.host, user.email, token);
       ctx.status = 200;
-      ctx.body = { message: 'The email has been sent sucessfully.' };
+      ctx.body = { message: 'The email has been sent successfully.' };
     } else {
       ctx.status = 501;
       ctx.body = { message: 'The email was not found.' };
