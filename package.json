@@ -97,7 +97,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "better-npm-run": "^0.0.14",
+    "better-npm-run": "^0.1.1",
     "chokidar": "^1.7.0",
     "chunk-manifest-webpack2-plugin": "^1.0.1",
     "css-modules-require-hook": "^4.2.2",
