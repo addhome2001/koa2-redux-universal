@@ -88,7 +88,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^3.4.2",
     "passport": "^0.3.2",
-    "postcss-loader": "^2.0.6",
+    "postcss-loader": "^3.0.0",
     "precss": "^2.0.0",
     "prettier": "^1.10.2",
     "raw-loader": "^0.5.1",
