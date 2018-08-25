@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, hydrate } from 'react-dom';
 
 import App from './app';
 
-ReactDOM.render(<App />, document.getElementById('container'));
+const renderMethod = module.hot ? render : hydrate;
+renderMethod(<App />, document.getElementById('container'));

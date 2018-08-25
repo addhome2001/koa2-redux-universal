@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import './Master.css';
 
 const Master = ({ children }) => (
-  <div styleName="wrapper">
+  <section styleName="wrapper">
     <Link styleName="logo" to="/">
       Universal Redux
     </Link>
     <div styleName="content">{children}</div>
-  </div>
+  </section>
 );
 
 Master.propTypes = {
