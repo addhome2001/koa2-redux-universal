@@ -1,9 +1,11 @@
 import Koa from 'koa';
 import path from 'path';
+import Loadable from 'react-loadable';
 import middlewares from './middlewares';
 import config from './config';
 import dbInstance from './models';
 import { initLogger } from './core/utils/loggers';
+import render from './core/render';
 
 // register passport
 import './config/passport';
@@ -34,12 +36,10 @@ app.use(async (ctx, next) => {
 });
 
 // server-render
-app.use(async (ctx) => {
-  await require('./core/render').default(ctx);
-});
+app.use(render);
 
 // connect to Database
-connectDB(dbInstance).then(() => {
+Promise.all([Loadable.preloadAll(), connectDB(dbInstance)]).then(() => {
   app.listen(config.PORT, () => {
     initLogger.info(`Server is running at ${config.PORT}!`);
   });
