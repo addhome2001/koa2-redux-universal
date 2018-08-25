@@ -18,7 +18,7 @@ const routes = [
       {
         path: '/',
         exact: true,
-        component: RouteRender(Home),
+        component: Home,
       },
       {
         path: '/about',
