@@ -1,8 +1,10 @@
 import Koa from 'koa';
 import path from 'path';
+import Loadable from 'react-loadable';
 import middlewares from './middlewares';
 import config from './config';
 import { initLogger } from './core/utils/loggers';
+import render from './core/render';
 
 const app = new Koa();
 
@@ -17,12 +19,12 @@ if (config.DEV) {
 }
 
 // server-render
-app.use(async (ctx) => {
-  await require('./core/render').default(ctx);
-});
+app.use(render);
 
-app.listen(config.PORT, () => {
-  initLogger.info(`Server is running at ${config.PORT}!`);
+Loadable.preloadAll().then(() => {
+  app.listen(config.PORT, () => {
+    initLogger.info(`Server is running at ${config.PORT}!`);
+  });
 });
 
 module.exports = app;

@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Loading = ({ error, timedOut, pastDelay }) => {
+const Loading = ({ error, timedOut, pastDelay, retry }) => {
   if (error) {
-    return <div>Error!</div>;
+    return (
+      <div>
+        Error! <button onClick={retry}>Retry</button>
+      </div>
+    );
   } else if (timedOut) {
     return <div>Taking a long time...</div>;
   } else if (pastDelay) {
