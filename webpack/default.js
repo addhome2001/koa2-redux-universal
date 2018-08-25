@@ -111,6 +111,14 @@ module.exports = (dest, __DEV__ = true) => {
               loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
+                plugins: [
+                  [
+                    'system-import-transformer',
+                    {
+                      commonJS: { useRequireEnsure: true },
+                    },
+                  ],
+                ],
               },
             },
           ],
