@@ -1,62 +1,97 @@
 import { replace } from 'react-router-redux';
 import Constants from './constants';
 
-export function redirectAction({ client, successfulConstant, redirect }) {
-  return (dispatch) =>
-    dispatch({
-      types: [Constants.LOADING, successfulConstant, Constants.FAILURE_MESSAGE],
-      client: (api) => setTimeout(() => dispatch(redirect), 100) && client(api),
-    });
-}
-
 export function loginAsync(userInfo) {
-  return redirectAction({
-    client: (api) => api.auth.login(userInfo),
-    successfulConstant: Constants.SET_USER_INFO,
-    redirect: replace('/'),
-  });
+  return (dispatch) => {
+    dispatch({
+      types: [
+        Constants.LOADING,
+        Constants.SET_USER_INFO,
+        Constants.FAILURE_MESSAGE,
+      ],
+      client: (api) =>
+        api.auth.login(userInfo).then((me) => {
+          setTimeout(() => dispatch(replace('/')), 100);
+
+          return me;
+        }),
+    });
+  };
 }
 
 export function logoutAsync() {
-  return redirectAction({
-    client: (api) => api.auth.logout(),
-    successfulConstant: Constants.CLEAR_USER_INFO,
-    redirect: replace('/'),
-  });
+  return (dispatch) => {
+    dispatch({
+      types: [
+        Constants.LOADING,
+        Constants.CLEAR_USER_INFO,
+        Constants.FAILURE_MESSAGE,
+      ],
+      client: (api) =>
+        api.auth.logout().then((message) => {
+          setTimeout(() => dispatch(replace('/')), 100);
+
+          return message;
+        }),
+    });
+  };
 }
 
 export function registerAsync(userInfo) {
-  return redirectAction({
-    client: (api) => api.auth.register(userInfo),
-    successfulConstant: Constants.SET_USER_INFO,
-    redirect: replace('/'),
-  });
+  return (dispatch) => {
+    dispatch({
+      types: [
+        Constants.LOADING,
+        Constants.SET_USER_INFO,
+        Constants.FAILURE_MESSAGE,
+      ],
+      client: (api) =>
+        api.auth.register(userInfo).then((me) => {
+          setTimeout(() => dispatch(replace('/')), 100);
+
+          return me;
+        }),
+    });
+  };
 }
 
 export function forgotPasswordAsync(info) {
-  return redirectAction({
-    client: (api) => api.auth.forgotPassword(info),
-    successfulConstant: Constants.LOADED,
-    redirect: replace('/forgot/mailed'),
-  });
+  return (dispatch) => {
+    dispatch({
+      types: [Constants.LOADING, Constants.LOADED, Constants.FAILURE_MESSAGE],
+      client: (api) =>
+        api.auth.forgotPassword(info).then((message) => {
+          setTimeout(() => dispatch(replace('/forgot/mailed')), 100);
+
+          return message;
+        }),
+    });
+  };
 }
 
 export function resetPasswordAsync(info) {
   return (dispatch, getState) => {
-    const { routing: { location: { pathname } } } = getState();
+    const {
+      routing: {
+        location: { pathname },
+      },
+    } = getState();
     const [token] = pathname.split('/').reverse();
 
-    dispatch(
-      redirectAction({
-        client: (api) =>
-          api.auth.resetPassword({
+    dispatch({
+      types: [Constants.LOADING, Constants.LOADED, Constants.FAILURE_MESSAGE],
+      client: (api) =>
+        api.auth
+          .resetPassword({
             token,
             ...info,
+          })
+          .then((message) => {
+            setTimeout(() => dispatch(replace('/')), 100);
+
+            return message;
           }),
-        successfulConstant: Constants.LOADED,
-        redirect: replace('/'),
-      }),
-    );
+    });
   };
 }
 
