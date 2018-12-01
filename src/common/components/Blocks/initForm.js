@@ -12,7 +12,7 @@ export default function({
   subTitle = '',
   errorMessage,
 }) {
-  return class FormHOC extends PureComponent {
+  return class From extends PureComponent {
     static defaultProps = {
       failureMessage: '',
       loading: false,

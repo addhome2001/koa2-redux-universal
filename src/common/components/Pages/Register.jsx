@@ -1,11 +1,14 @@
 import React from 'react';
-import RegisterForm from 'common/containers/RegisterForm';
-import FormHOC from 'common/components/Blocks/FormHOC';
+import * as Actions from 'common/redux/modules/auth/actions';
+import makeFormController from 'common/components/Blocks/makeFormController';
+import initForm from 'common/components/Blocks/initForm';
 import Buttons from 'common/components/Layouts/Buttons';
 import Btn from 'common/components/Elements/Btn';
 
-const Form = RegisterForm(
-  FormHOC({
+const Form = makeFormController(
+  Actions.registerAsync,
+  Actions.setFailureMessage,
+  initForm({
     initialState: {
       email: '',
       username: '',

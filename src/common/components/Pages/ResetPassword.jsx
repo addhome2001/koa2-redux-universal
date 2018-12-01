@@ -1,10 +1,13 @@
 import React from 'react';
 import Btn from 'common/components/Elements/Btn';
-import FormHOC from 'common/components/Blocks/FormHOC';
-import resetForm from 'common/containers/ResetForm';
+import * as Actions from 'common/redux/modules/auth/actions';
+import makeFormController from 'common/components/Blocks/makeFormController';
+import initForm from 'common/components/Blocks/initForm';
 
-const Form = resetForm(
-  FormHOC({
+const Form = makeFormController(
+  Actions.resetPasswordAsync,
+  Actions.setFailureMessage,
+  initForm({
     initialState: {
       password: '',
     },

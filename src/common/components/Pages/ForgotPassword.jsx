@@ -1,12 +1,15 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import * as Actions from 'common/redux/modules/auth/actions';
 import Btn from 'common/components/Elements/Btn';
 import Text from 'common/components/Elements/Text';
-import FormHOC from 'common/components/Blocks/FormHOC';
-import ForgotForm from 'common/containers/ForgotForm';
+import initForm from 'common/components/Blocks/initForm';
+import makeFormController from 'common/components/Blocks/makeFormController';
 
-const Form = ForgotForm(
-  FormHOC({
+const Form = makeFormController(
+  Actions.forgotPasswordAsync,
+  Actions.setFailureMessage,
+  initForm({
     initialState: {
       email: '',
     },

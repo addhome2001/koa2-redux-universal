@@ -16,7 +16,11 @@ function selectorFactory(dispatch) {
   let result = {};
 
   return (nextState) => {
-    const { user: { id }, loading, failureMessage } = nextState.auth;
+    const {
+      user: { id },
+      loading,
+      failureMessage,
+    } = nextState.auth;
     const nextResult = {
       isAuth: !!id,
       loading,
