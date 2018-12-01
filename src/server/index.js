@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import path from 'path';
 import Loadable from 'react-loadable';
-import middlewares from './middlewares';
+import applyMiddleware from './applyMiddleware';
 import config from './config';
 import dbInstance from './models';
 import { initLogger } from './core/utils/loggers';
@@ -15,7 +15,7 @@ import connectDB from './config/connectDB';
 const app = new Koa();
 
 // common middlewares
-middlewares(app, config);
+applyMiddleware(app, config);
 
 if (config.DEV) {
   // server hot reload
