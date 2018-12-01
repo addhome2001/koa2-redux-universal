@@ -1,10 +1,10 @@
 import { createStore } from 'redux';
 
 import reducer from 'common/redux/modules/reducer';
-import middlewares from 'common/redux/middlewares';
+import applyMiddleware from 'common/redux/middleware/applyMiddleware';
 
 export default function(history, initialState = {}) {
-  const store = createStore(reducer, initialState, middlewares(history));
+  const store = createStore(reducer, initialState, applyMiddleware(history));
 
   if (module.hot) {
     module.hot.accept('./modules/reducer', () => {

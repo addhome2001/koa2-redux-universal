@@ -4,29 +4,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = (dest, __DEV__ = true) => {
-  const entryPath = path.resolve(__dirname, `../${dest}/client`);
-  const distPath = path.resolve(__dirname, `../${dest}/server/static/assets`);
+  const entryPath = path.resolve(__dirname, '../src/client');
+  const buildPath = path.resolve(__dirname, `../${dest}/server/static`);
   const templateSrc = path.resolve(__dirname, '../templates/index.ejs');
   const templateDest = path.resolve(__dirname, `../${dest}/server/views`);
   const favicon = path.resolve(__dirname, '../favicon.ico');
 
   return {
-    entry(externals = []) {
-      return {
-        bundle: externals.concat(entryPath),
-      };
+    entry: {
+      bundle: [entryPath],
     },
-    output(externals = {}) {
-      return Object.assign(
-        {
-          path: distPath,
-          publicPath: '/assets/',
-        },
-        externals,
-      );
+    output: {
+      path: buildPath,
+      publicPath: '/',
     },
     plugins: {
-      env(options = {}) {
+      getEnvPlugin(options = {}) {
         return [
           new webpack.EnvironmentPlugin(
             Object.assign(
@@ -38,7 +31,7 @@ module.exports = (dest, __DEV__ = true) => {
           ),
         ];
       },
-      html(options = {}) {
+      getHtmlPlugin(options = {}) {
         return [
           new HtmlWebpackPlugin(
             Object.assign(
@@ -59,7 +52,7 @@ module.exports = (dest, __DEV__ = true) => {
           }),
         ];
       },
-      loadersOptions(externals = {}) {
+      getLoadersOptionsPlugin(externals = {}) {
         return [
           new webpack.LoaderOptionsPlugin(
             Object.assign(
@@ -75,7 +68,6 @@ module.exports = (dest, __DEV__ = true) => {
       },
       core: [
         new webpack.ProvidePlugin({
-          Promise: 'es6-promise',
           fetch: 'isomorphic-fetch',
         }),
       ],
@@ -111,14 +103,6 @@ module.exports = (dest, __DEV__ = true) => {
               loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
-                plugins: [
-                  [
-                    'system-import-transformer',
-                    {
-                      commonJS: { useRequireEnsure: true },
-                    },
-                  ],
-                ],
               },
             },
           ],

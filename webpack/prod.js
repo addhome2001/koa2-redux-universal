@@ -4,25 +4,29 @@ const ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin');
 const InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html-webpack-plugin');
 const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const defConf = require('./default');
+const getDefaultConfig = require('./getDefaultConfig');
 
-const { entry, output, plugins, resolve, loaders } = defConf('dist', false);
+const { entry, output, plugins, resolve, loaders } = getDefaultConfig(
+  'build',
+  false,
+);
 
 module.exports = {
   target: 'web',
   devtool: 'cheap-source-map',
-  entry: entry(),
-  output: output({
+  entry,
+  output: {
+    ...output,
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].chunk.js',
-  }),
+  },
   plugins: plugins.core.concat([
-    ...plugins.loadersOptions({
+    ...plugins.getLoadersOptionsPlugin({
       minimize: true,
       debug: false,
     }),
-    ...plugins.env({ NODE_ENV: 'production' }),
-    ...plugins.html({
+    ...plugins.getEnvPlugin({ NODE_ENV: 'production' }),
+    ...plugins.getHtmlPlugin({
       minify: {
         removeComments: true,
         collapseWhitespace: true,
