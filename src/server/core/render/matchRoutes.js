@@ -19,7 +19,7 @@ export default function(ctx) {
 
   const branchs = matchRoutes(routes, location);
   const promises = branchs.reduce((acc, { route }) => {
-    const fetchData = route.component.fetchData;
+    const { fetchData } = route.component;
 
     if (fetchData instanceof Function) {
       return acc.concat(fetchData(state));
