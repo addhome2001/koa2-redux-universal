@@ -2,21 +2,21 @@
 import thunk from 'redux-thunk';
 import { applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import clientMiddleware from 'common/redux/middlewares/client';
+import clientMiddleware from 'common/redux/middleware/clientMiddleware';
 import api from 'common/utils/api';
 
-const devMiddlewares = [];
+const devMiddleware = [];
 
 if (process.env.__DEV__) {
-  devMiddlewares.push(require('redux-logger')());
+  devMiddleware.push(require('redux-logger')());
 }
 
 export default (history) => {
-  const middlewares = [
+  const middleware = [
     thunk,
     routerMiddleware(history),
     clientMiddleware(api),
-    ...devMiddlewares,
+    ...devMiddleware,
   ];
-  return applyMiddleware(...middlewares);
+  return applyMiddleware(...middleware);
 };
