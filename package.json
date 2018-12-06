@@ -11,8 +11,7 @@
     "clear:client": "rimraf build/server/static",
     "serve": "better-npm-run serve",
     "now-build": "yarn build:prod",
-    "now-start": "yarn serve",
-    "precommit": "lint-staged"
+    "now-start": "yarn serve"
   },
   "lint-staged": {
     "*.{js,jsx}": [
