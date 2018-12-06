@@ -1,4 +1,4 @@
-import createHistory from 'history/createMemoryHistory';
+import { createMemoryHistory } from 'history';
 import { matchRoutes } from 'react-router-config';
 
 import createStore from 'common/redux/createStore';
@@ -7,7 +7,7 @@ import routes from 'common/routes';
 export default function(ctx) {
   const initialState = {};
   const location = ctx.url;
-  const history = createHistory(location);
+  const history = createMemoryHistory(location);
   const store = createStore(history, initialState);
   const state = store.getState();
 

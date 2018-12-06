@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
-import { ConnectedRouter } from 'react-router-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import { hot } from 'react-hot-loader';
 
 import routes from 'common/routes';
