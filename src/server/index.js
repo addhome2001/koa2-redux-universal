@@ -1,25 +1,17 @@
 import Koa from 'koa';
-import path from 'path';
 import Loadable from 'react-loadable';
 import applyMiddleware from './applyMiddleware';
+import applySSRConfig from './applySSRConfig';
 import config from './config';
 import { initLogger } from './core/utils/loggers';
-import render from './core/render';
 
 const app = new Koa();
 
 // common middleware
 applyMiddleware(app);
 
-if (config.DEV) {
-  // server hot reload for the core directory
-  require('./config/serverWatcher')(path.resolve(__dirname, './core'));
-  // webpack dev middleware
-  app.use(require('./config/webpack'));
-}
-
-// server-render
-app.use(render);
+// server-side render config
+applySSRConfig(app, config);
 
 Loadable.preloadAll().then(() => {
   app.listen(config.PORT, () => {

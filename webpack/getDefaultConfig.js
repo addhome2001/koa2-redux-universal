@@ -21,31 +21,23 @@ module.exports = (dest, __DEV__ = true) => {
     plugins: {
       getEnvPlugin(options = {}) {
         return [
-          new webpack.EnvironmentPlugin(
-            Object.assign(
-              {
-                __DEV__,
-              },
-              options,
-            ),
-          ),
+          new webpack.EnvironmentPlugin({
+            __DEV__,
+            ...options,
+          }),
         ];
       },
       getHtmlPlugin(options = {}) {
         return [
-          new HtmlWebpackPlugin(
-            Object.assign(
-              {
-                template: templateSrc,
-                filename: 'index.ejs',
-                alwaysWriteToDisk: true,
-                favicon,
-              },
-              options,
-            ),
-          ),
+          new HtmlWebpackPlugin({
+            template: templateSrc,
+            filename: 'index.ejs',
+            alwaysWriteToDisk: true,
+            favicon,
+            ...options,
+          }),
           /**
-           * Webpack will always compile the template to src/server/views.
+           * Webpack will always compile the template to xxx/server/views.
            */
           new HtmlWebpackHarddiskPlugin({
             outputPath: templateDest,
@@ -54,16 +46,12 @@ module.exports = (dest, __DEV__ = true) => {
       },
       getLoadersOptionsPlugin(externals = {}) {
         return [
-          new webpack.LoaderOptionsPlugin(
-            Object.assign(
-              {
-                options: {
-                  context: entryPath,
-                },
-              },
-              externals,
-            ),
-          ),
+          new webpack.LoaderOptionsPlugin({
+            options: {
+              context: entryPath,
+            },
+            ...externals,
+          }),
         ];
       },
       core: [
@@ -82,6 +70,7 @@ module.exports = (dest, __DEV__ = true) => {
           loader: 'css-loader',
           options: {
             modules: true,
+            context: entryPath,
             localIdentName: '[name]__[local]___[hash:base64:5]',
             autoprefixer: __DEV__,
           },

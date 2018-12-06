@@ -1,7 +1,7 @@
 import chokidar from 'chokidar';
 import { configLogger } from '../core/utils/loggers';
 
-module.exports = function serverWatcher(path) {
+module.exports = function useServerWatcher(path) {
   const watcher = chokidar.watch(path);
 
   watcher.on('ready', () => {

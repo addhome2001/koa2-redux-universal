@@ -5,9 +5,9 @@
 ## Contains
 
 - [Koa2](http://koajs.com)
-- [Webpack 2](https://webpack.js.org/)
-- [Babel 6](https://babeljs.io/)
-- [React](https://facebook.github.io/react)
+- [Webpack 4](https://webpack.js.org/)
+- [Babel 7](https://babeljs.io/)
+- [React 16](https://facebook.github.io/react)
 - [Redux](http://redux.js.org)
 - [React-Router 4](https://reacttraining.com/react-router/)
 - [PostCSS](http://postcss.org/)

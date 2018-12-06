@@ -1,12 +1,9 @@
-/* eslint-disable no-underscore-dangle */
-const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const getDefaultConfig = require('./getDefaultConfig');
 
 const { entry, output, plugins, resolve, loaders } = getDefaultConfig('src');
 
 module.exports = {
-  target: 'web',
   devtool: 'eval',
   entry,
   output: {
@@ -14,12 +11,12 @@ module.exports = {
     filename: '[name].js',
     chunkFilename: '[name].js',
   },
+  mode: 'development',
   plugins: plugins.core.concat([
     ...plugins.getLoadersOptionsPlugin(),
     ...plugins.getEnvPlugin({ NODE_ENV: 'development' }),
     ...plugins.getHtmlPlugin(),
     new WebpackNotifierPlugin(),
-    new webpack.NamedModulesPlugin(),
   ]),
   resolve,
   module: {
