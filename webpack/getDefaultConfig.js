@@ -73,7 +73,6 @@ module.exports = (dest, __DEV__ = true) => {
             modules: true,
             context: entryPath,
             localIdentName: '[name]__[local]___[hash:base64:5]',
-            autoprefixer: __DEV__,
           },
         },
         {

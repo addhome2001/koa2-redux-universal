@@ -1,9 +1,9 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "global-require": "off",
-    "arrow-parens": ["error", "always"],
-    "space-before-function-paren": ["error", "never"],
     "no-param-reassign": ["error", { "props": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/extensions": [1, { "jsx": "never", "js": "never" }],

@@ -1,5 +1,5 @@
 import path from 'path';
-import csrf from 'koa-csrf';
+import CSRF from 'koa-csrf';
 import session from 'koa-session';
 import etag from 'koa-etag';
 import conditional from 'koa-conditional-get';
@@ -45,13 +45,13 @@ module.exports = (app, config) => {
   app.use(conditional());
   app.use(etag());
 
-  app.use(async(ctx, next) => {
+  app.use(async (ctx, next) => {
     ctx.body = ctx.request.body;
     await next();
   });
 
   // enable csrf
-  app.use(csrf());
+  app.use(new CSRF());
 
   // logger
   app.use(logger());

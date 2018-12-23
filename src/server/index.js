@@ -16,12 +16,13 @@ const app = new Koa();
 // common middleware
 applyCommonMiddleware(app, config);
 
+// apply middleware by config
 applyMiddlewareBy(app, config);
 
 // router
-app.use(async(ctx, next) => {
+app.use(async (ctx, next) => {
   const routes = require('./core/routes').default;
-  await routes.routes()(ctx, async() => {
+  await routes.routes()(ctx, async () => {
     await routes.allowedMethods()(ctx, next);
   });
 });

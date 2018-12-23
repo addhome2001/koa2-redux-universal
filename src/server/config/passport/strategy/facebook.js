@@ -1,6 +1,6 @@
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { authLogger } from '../../../core/utils/loggers';
-import config from '../../../config';
+import config from '../..';
 
 const Strategy = new FacebookStrategy(
   {

@@ -10,7 +10,7 @@ const Form = makeFormController(
   Actions.forgotPasswordAsync,
   Actions.setFailureMessage,
   initForm({
-    initialState: {
+    initialFormFields: {
       email: '',
     },
     page: 'Forgot Password',

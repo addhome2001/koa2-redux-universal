@@ -7,7 +7,7 @@ import Text from 'common/components/Elements/Text';
 import Form from 'common/components/Elements/Form';
 
 export default function({
-  initialState,
+  initialFormFields,
   page = '',
   subTitle = '',
   errorMessage,
@@ -28,10 +28,12 @@ export default function({
 
     constructor(props) {
       super(props);
-      this.state = initialState;
+      this.state = {
+        formFields: initialFormFields,
+      };
       this.submit = ::this.submit;
       this.changeHandler = ::this.changeHandler;
-      this.formScopes = Object.keys(this.state);
+      this.formFieldKeys = Object.keys(initialFormFields);
       this.page = page;
       this.subTitle = subTitle;
     }
@@ -43,16 +45,24 @@ export default function({
 
     changeHandler({ target }) {
       const { name, value } = target;
-      this.setState({ [name]: value });
+      const { formFields } = this.state;
+
+      this.setState({
+        formFields: {
+          ...formFields,
+          [name]: value,
+        },
+      });
     }
 
     submit(e) {
-      const { setFailureMessage } = this.props;
+      const { setFailureMessage, submitForm } = this.props;
+      const { formFields } = this.state;
 
       e.preventDefault();
 
-      if (this.formScopes.every((scope) => !!this.state[scope])) {
-        this.props.submitForm(this.state);
+      if (this.formFieldKeys.every((scope) => !!formFields[scope])) {
+        submitForm(this.state);
       } else {
         setFailureMessage(errorMessage);
       }
@@ -74,7 +84,7 @@ export default function({
             <Alert message={failureMessage} closeHandler={setFailureMessage} />
           )}
           <Form
-            scopes={this.formScopes}
+            fieldKeys={this.formFieldKeys}
             typeValues={this.state}
             changeHandler={this.changeHandler}
             disabled={loading}

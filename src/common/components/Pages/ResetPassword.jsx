@@ -8,7 +8,7 @@ const Form = makeFormController(
   Actions.resetPasswordAsync,
   Actions.setFailureMessage,
   initForm({
-    initialState: {
+    initialFormFields: {
       password: '',
     },
     page: 'Reset Password',

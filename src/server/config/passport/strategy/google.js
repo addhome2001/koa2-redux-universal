@@ -1,6 +1,6 @@
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { authLogger } from '../../../core/utils/loggers';
-import config from '../../../config';
+import config from '../..';
 
 const Strategy = new GoogleStrategy(
   {

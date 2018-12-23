@@ -9,7 +9,7 @@ const Form = makeFormController(
   Actions.loginAsync,
   Actions.setFailureMessage,
   initForm({
-    initialState: {
+    initialFormFields: {
       email: '',
       password: '',
     },

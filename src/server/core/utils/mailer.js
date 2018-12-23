@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
 import config from '../../config';
-import { authLogger } from '../utils/loggers';
+import { authLogger } from './loggers';
 
 export default {
   sendTokenMailer(host, email, token) {

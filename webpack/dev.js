@@ -9,6 +9,7 @@ module.exports = {
   target: 'web',
   devtool: 'eval',
   mode: 'development',
+  entry,
   output: {
     ...output,
     filename: '[name].js',
