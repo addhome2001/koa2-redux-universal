@@ -5,7 +5,7 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = (dest, __DEV__ = true) => {
   const entryPath = path.resolve(__dirname, '../src/client');
-  const buildPath = path.resolve(__dirname, `../${dest}/server/static/assets`);
+  const buildPath = path.resolve(__dirname, `../${dest}/server/static`);
   const templateSrc = path.resolve(__dirname, '../templates/index.ejs');
   const templateDest = path.resolve(__dirname, `../${dest}/server/views`);
   const favicon = path.resolve(__dirname, '../favicon.ico');
