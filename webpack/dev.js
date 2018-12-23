@@ -1,22 +1,22 @@
 /* eslint-disable no-underscore-dangle */
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
-const defConf = require('./default');
+const getDefaultConfig = require('./getDefaultConfig');
 
-const { entry, output, plugins, resolve, loaders } = defConf('src');
+const { entry, output, plugins, resolve, loaders } = getDefaultConfig('src');
 
 module.exports = {
   target: 'web',
   devtool: 'eval',
-  entry: entry(),
-  output: output({
+  output: {
+    ...output,
     filename: '[name].js',
     chunkFilename: '[name].js',
-  }),
+  },
   plugins: plugins.core.concat([
-    ...plugins.loadersOptions(),
-    ...plugins.env({ NODE_ENV: 'development' }),
-    ...plugins.html(),
+    ...plugins.getLoadersOptionsPlugin(),
+    ...plugins.getEnvPlugin({ NODE_ENV: 'development' }),
+    ...plugins.getHtmlPlugin(),
     new WebpackNotifierPlugin(),
     new webpack.NamedModulesPlugin(),
   ]),

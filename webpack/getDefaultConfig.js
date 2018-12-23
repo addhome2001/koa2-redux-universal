@@ -4,53 +4,38 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = (dest, __DEV__ = true) => {
-  const entryPath = path.resolve(__dirname, `../${dest}/client`);
-  const distPath = path.resolve(__dirname, `../${dest}/server/static/assets`);
+  const entryPath = path.resolve(__dirname, '../src/client');
+  const buildPath = path.resolve(__dirname, `../${dest}/server/static/assets`);
   const templateSrc = path.resolve(__dirname, '../templates/index.ejs');
   const templateDest = path.resolve(__dirname, `../${dest}/server/views`);
   const favicon = path.resolve(__dirname, '../favicon.ico');
 
   return {
-    entry(externals = []) {
-      return {
-        bundle: externals.concat(entryPath),
-      };
+    entry: {
+      bundle: [entryPath],
     },
-    output(externals = {}) {
-      return Object.assign(
-        {
-          path: distPath,
-          publicPath: '/assets/',
-        },
-        externals,
-      );
+    output: {
+      path: buildPath,
+      publicPath: '/',
     },
     plugins: {
-      env(options = {}) {
+      getEnvPlugin(options = {}) {
         return [
-          new webpack.EnvironmentPlugin(
-            Object.assign(
-              {
-                __DEV__,
-              },
-              options,
-            ),
-          ),
+          new webpack.EnvironmentPlugin({
+            __DEV__,
+            ...options,
+          }),
         ];
       },
-      html(options = {}) {
+      getHtmlPlugin(options = {}) {
         return [
-          new HtmlWebpackPlugin(
-            Object.assign(
-              {
-                template: templateSrc,
-                filename: 'index.ejs',
-                alwaysWriteToDisk: true,
-                favicon,
-              },
-              options,
-            ),
-          ),
+          new HtmlWebpackPlugin({
+            template: templateSrc,
+            filename: 'index.ejs',
+            alwaysWriteToDisk: true,
+            favicon,
+            ...options,
+          }),
           /**
            * Webpack will always compile the template to src/server/views.
            */
@@ -59,18 +44,14 @@ module.exports = (dest, __DEV__ = true) => {
           }),
         ];
       },
-      loadersOptions(externals = {}) {
+      getLoadersOptionsPlugin(externals = {}) {
         return [
-          new webpack.LoaderOptionsPlugin(
-            Object.assign(
-              {
-                options: {
-                  context: entryPath,
-                },
-              },
-              externals,
-            ),
-          ),
+          new webpack.LoaderOptionsPlugin({
+            options: {
+              context: entryPath,
+            },
+            ...externals,
+          }),
         ];
       },
       core: [
