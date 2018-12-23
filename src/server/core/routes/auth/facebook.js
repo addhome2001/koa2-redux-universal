@@ -1,9 +1,9 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
 
-const facebook = new Router();
+const router = new Router();
 
-facebook
+router
   .get('/', (ctx, next) => {
     if (ctx.isAuthenticated()) {
       ctx.redirect('/profile');
@@ -35,4 +35,4 @@ facebook
     )(ctx, next),
   );
 
-export default facebook;
+export default router;

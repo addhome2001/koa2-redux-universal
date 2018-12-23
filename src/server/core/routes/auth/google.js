@@ -1,9 +1,9 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
 
-const google = new Router();
+const router = new Router();
 
-google
+router
   .get('/', (ctx, next) => {
     if (ctx.isAuthenticated()) {
       ctx.redirect('/profile');
@@ -38,4 +38,4 @@ google
     )(ctx, next),
   );
 
-export default google;
+export default router;
