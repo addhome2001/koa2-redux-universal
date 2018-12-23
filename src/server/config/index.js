@@ -3,7 +3,7 @@ import database from './database';
 const config = {
   development: {
     PORT: process.env.PORT || 8000,
-    HOST: process.env.HOST || 'localhost',
+    HOST: process.env.HOST || '0.0.0.0',
     ENABLE_SSR: process.env.ENABLE_SSR,
     SESSION_STORE: {
       host: process.env.SESSION_STORE_HOST,
@@ -23,7 +23,7 @@ const config = {
 
   production: {
     PORT: process.env.PORT || 8000,
-    HOST: process.env.HOST || 'localhost',
+    HOST: process.env.HOST || '0.0.0.0',
     ENABLE_SSR: process.env.ENABLE_SSR,
     SESSION_STORE: {
       host: process.env.SESSION_STORE_HOST,

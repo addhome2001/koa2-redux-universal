@@ -71,6 +71,7 @@ module.exports = (dest, __DEV__ = true) => {
           loader: 'css-loader',
           options: {
             modules: true,
+            context: entryPath,
             localIdentName: '[name]__[local]___[hash:base64:5]',
             autoprefixer: __DEV__,
           },

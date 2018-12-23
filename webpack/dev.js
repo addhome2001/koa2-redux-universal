@@ -8,6 +8,7 @@ const { entry, output, plugins, resolve, loaders } = getDefaultConfig('src');
 module.exports = {
   target: 'web',
   devtool: 'eval',
+  mode: 'development',
   output: {
     ...output,
     filename: '[name].js',

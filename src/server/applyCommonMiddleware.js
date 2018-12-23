@@ -45,7 +45,7 @@ module.exports = (app, config) => {
   app.use(conditional());
   app.use(etag());
 
-  app.use(async (ctx, next) => {
+  app.use(async(ctx, next) => {
     ctx.body = ctx.request.body;
     await next();
   });
