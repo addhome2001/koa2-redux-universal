@@ -75,6 +75,7 @@ export default function({
         setFailureMessage,
         children,
       } = this.props;
+      const { formFields } = this.state;
 
       return (
         <React.Fragment>
@@ -84,8 +85,8 @@ export default function({
             <Alert message={failureMessage} closeHandler={setFailureMessage} />
           )}
           <Form
-            fieldKeys={this.formFieldKeys}
-            typeValues={this.state}
+            formFieldKeys={this.formFieldKeys}
+            formFields={formFields}
             changeHandler={this.changeHandler}
             disabled={loading}
           />

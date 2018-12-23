@@ -4,9 +4,9 @@ import capitalize from 'common/utils/capitalize';
 
 import './Form.css';
 
-const Form = ({ fieldKeys, changeHandler, typeValues, disabled }) => (
+const Form = ({ formFieldKeys, changeHandler, formFields, disabled }) => (
   <section styleName={`form ${disabled ? 'disabled' : ''}`}>
-    {fieldKeys.map((type) => (
+    {formFieldKeys.map((type) => (
       <div styleName="form-group" key={`${type}-form`}>
         <input
           key={`${type}-field`}
@@ -16,7 +16,7 @@ const Form = ({ fieldKeys, changeHandler, typeValues, disabled }) => (
           name={type}
           type={type}
           placeholder={capitalize(type)}
-          value={typeValues[type] || ''}
+          value={formFields[type] || ''}
           disabled={disabled}
         />
       </div>
@@ -25,9 +25,9 @@ const Form = ({ fieldKeys, changeHandler, typeValues, disabled }) => (
 );
 
 Form.propTypes = {
-  fieldKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+  formFieldKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   changeHandler: PropTypes.func.isRequired,
-  typeValues: PropTypes.objectOf(PropTypes.string).isRequired,
+  formFields: PropTypes.objectOf(PropTypes.string).isRequired,
   disabled: PropTypes.bool.isRequired,
 };
 
