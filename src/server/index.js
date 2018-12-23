@@ -1,17 +1,16 @@
 import Koa from 'koa';
 import Loadable from 'react-loadable';
-import applyMiddleware from './applyMiddleware';
-import applySSRConfig from './applySSRConfig';
+import applyCommonMiddleware from './applyCommonMiddleware';
+import applyMiddlewareBy from './applyMiddlewareBy';
 import config from './config';
 import { initLogger } from './core/utils/loggers';
 
 const app = new Koa();
 
 // common middleware
-applyMiddleware(app);
+applyCommonMiddleware(app);
 
-// server-side render config
-applySSRConfig(app, config);
+applyMiddlewareBy(app, config);
 
 Loadable.preloadAll().then(() => {
   app.listen(config.PORT, () => {

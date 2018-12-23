@@ -1,7 +1,7 @@
 import path from 'path';
 import render from './core/render';
 
-module.exports = async function applySSRConfig(app, config) {
+module.exports = async function applyMiddlewareBy(app, config) {
   if (config.DEV) {
     const createWebpackMiddleware = require('./config/createWebpackMiddleware');
     const useServerWatcher = require('./config/useServerWatcher');
