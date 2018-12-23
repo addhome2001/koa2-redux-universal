@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 import createStore from 'common/redux/createStore';
 
 const preloadedState = window.__PRELOADED_STATE__;
 
-export const history = createHistory();
+export const history = createBrowserHistory();
 export default createStore(history, preloadedState);
