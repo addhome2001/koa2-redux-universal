@@ -57,5 +57,9 @@ Production
 ```
 docker-compose -f docker-compose.prod.yml up
 ```
+down
+```
+docker-compose down -v
+```
 
 LICENSE

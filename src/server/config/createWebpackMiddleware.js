@@ -9,6 +9,7 @@ module.exports = function createWebpackMiddleware({ host }) {
     },
     hotClient: {
       host,
+      port: 8081,
     },
   });
 };

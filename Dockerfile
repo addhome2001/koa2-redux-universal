@@ -20,6 +20,8 @@ RUN yarn \
     && yarn global add sequelize-cli \
     && yarn cache clean
 
+RUN chown -R web:web ${APP} && chmod 755 ${APP}
+
 USER web
 
 EXPOSE $PORT
