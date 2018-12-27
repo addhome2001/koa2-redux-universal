@@ -72,7 +72,7 @@ export function forgotPasswordAsync(info) {
 export function resetPasswordAsync(info) {
   return (dispatch, getState) => {
     const {
-      routing: {
+      router: {
         location: { pathname },
       },
     } = getState();

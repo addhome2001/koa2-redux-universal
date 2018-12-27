@@ -12,7 +12,7 @@ router.post('/', (ctx, next) =>
     },
     async (err, user) => {
       if (err) {
-        ctx.status = 403;
+        ctx.status = 401;
         ctx.body = { message: err.message };
       } else {
         await ctx.login(user);

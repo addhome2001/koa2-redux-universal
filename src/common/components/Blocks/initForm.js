@@ -62,7 +62,7 @@ export default function({
       e.preventDefault();
 
       if (this.formFieldKeys.every((scope) => !!formFields[scope])) {
-        submitForm(this.state);
+        submitForm(formFields);
       } else {
         setFailureMessage(errorMessage);
       }
